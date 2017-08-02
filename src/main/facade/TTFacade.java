@@ -11,7 +11,7 @@ public class TTFacade {
 	}
 
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", };
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt"};
 		EasyAccept.main(args);
 
 	}
