@@ -32,4 +32,13 @@ public class Show extends BluRay {
 		this.nomeDoArtista = artista;
 		this.numeroFaixas = numeroFaixas;
 	}
+
+	/**
+	 * Metodo que retorna a representacao em String do show
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ", nome do artista: " + nomeDoArtista + ", numeroFaixas: " + numeroFaixas;
+	}
+
 }

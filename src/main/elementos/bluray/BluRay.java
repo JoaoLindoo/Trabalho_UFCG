@@ -92,4 +92,12 @@ public abstract class BluRay extends Item {
 		return true;
 	}
 
+	/**
+	 * Metodo retorna a representacao em string do BluRay
+	 */
+	@Override
+	public String toString() {
+		return "Nome: " + nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
+	}
+
 }

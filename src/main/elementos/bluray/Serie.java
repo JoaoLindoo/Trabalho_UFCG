@@ -89,7 +89,7 @@ public class Serie extends BluRay {
 	}
 
 	/**
-	 * Metodo que retorna o total de duracao da temporadaf
+	 * Metodo que retorna o total de duracao da temporada
 	 * 
 	 * @return retorna o a duracao total da temporada
 	 */
@@ -100,4 +100,14 @@ public class Serie extends BluRay {
 		}
 		return duracaoTotal;
 	}
+
+	/**
+	 * Representacao em string da serie
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ", genero: " + genero + ", numeroTemporada: " + numeroTemporada + ", descricao: "
+				+ descricao;
+	}
+
 }
