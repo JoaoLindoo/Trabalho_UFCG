@@ -17,13 +17,17 @@ public class TTFacade {
 
 	}
 
-	public void cadastrarUsuario(String nome, String telefone, String email) {
+	public void cadastrarUsuario(String nome, String telefone, String email) throws Exception {
 		usuarioController.adicionar(nome, telefone, email);
 	}
-	public String getInfoUsuario(String nome,String telefone,String atributo){
+	public String getInfoUsuario(String nome,String telefone,String atributo) throws Exception{
 		return usuarioController.getInfoUsuario(nome, atributo);
 	}
-	public void removerUsuario(String nome,String telefone){
+	public void removerUsuario(String nome,String telefone) throws Exception{
 		usuarioController.removerUsuario(nome, telefone);
 	}
+	public void atualizarUsuario(String nome,String telefone , String atributo,String email) throws Exception{
+		usuarioController.atualizarUsuario(nome, telefone, atributo, email);
+	}
+	
 }
