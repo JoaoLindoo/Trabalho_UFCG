@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Serie extends BluRay {
 
+	private String nome;
 	private List<Integer> episodios;
 	private String genero;
 	private int numeroTemporada;
@@ -53,4 +54,37 @@ public class Serie extends BluRay {
 		this.episodios.add(duracao);
 	}
 
+	/**
+	 * Metodo que retorna uma representacao inteira da serie
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + numeroTemporada;
+		return result;
+	}
+
+	/**
+	 * Metodo quer indica se uma serie é ou não igual a outra
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Serie other = (Serie) obj;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (numeroTemporada != other.numeroTemporada)
+			return false;
+		return true;
+	}
 }
