@@ -9,8 +9,8 @@ public class JogoEletronico extends Item{
 
 	private String plataforma;
 	
-	public JogoEletronico(String nome, double valor, boolean status, String plataforma) {
-		super(nome, valor, status);
+	public JogoEletronico(String nome, double valor, String plataforma) {
+		super(nome, valor);
 		this.plataforma = plataforma;
 	}
 
