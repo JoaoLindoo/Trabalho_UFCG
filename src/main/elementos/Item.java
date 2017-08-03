@@ -11,7 +11,7 @@ public abstract class Item {
 	protected double valor;
 	protected boolean status;
 	
-	public Item(String nome, double valor, boolean status) {
+	public Item(String nome, double valor) {
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;
