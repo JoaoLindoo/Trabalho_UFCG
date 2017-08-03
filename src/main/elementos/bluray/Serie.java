@@ -34,9 +34,10 @@ public class Serie extends BluRay {
 	 *            genero da serie
 	 * @param temporada
 	 *            numero da temporada
+	 * @throws Exception 
 	 */
 	public Serie(String nome, double valor, String descricao, int duracao, String classificacao, String genero,
-			int temporada) {
+			int temporada) throws Exception {
 		super(nome, valor, duracao, classificacao);
 		this.episodios = new ArrayList<Integer>();
 		this.descricao = descricao;

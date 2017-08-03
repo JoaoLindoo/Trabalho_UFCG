@@ -93,27 +93,28 @@ public class Usuario {
 	 * Métodos para criar e adicionar itens no usuario
 	 * 
 	 * @author Matheus Thiago
+	 * @throws Exception 
 	 */
-	public void adicionarItemJogoTabuleiro(String nome, double valor) {
+	public void adicionarItemJogoTabuleiro(String nome, double valor) throws Exception {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
 	}
 
-	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) {
+	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
 	}
 
 	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
-			String anoDeLancamento) {
+			String anoDeLancamento) throws Exception {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
 	}
 
 	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
-			String genero, int temporada) {
+			String genero, int temporada) throws Exception {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
 	}
 
 	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
-			String classificacao) {
+			String classificacao) throws Exception {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
 	}
 

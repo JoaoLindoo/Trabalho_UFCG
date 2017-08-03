@@ -26,8 +26,9 @@ public class Show extends BluRay {
 	 *            nome do artista
 	 * @param classificacao
 	 *            classificacao do show
+	 * @throws Exception 
 	 */
-	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao) {
+	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao) throws Exception {
 		super(nome, valor, duracao, classificacao);
 		this.nomeDoArtista = artista;
 		this.numeroFaixas = numeroFaixas;

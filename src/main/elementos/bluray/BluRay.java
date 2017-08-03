@@ -16,8 +16,9 @@ public abstract class BluRay extends Item {
 
 	/**
 	 * Construtor do BluRay
+	 * @throws Exception 
 	 */
-	public BluRay(String nome, double valor, int duracao, String classificacao) {
+	public BluRay(String nome, double valor, int duracao, String classificacao) throws Exception {
 		super(nome, valor);
 		this.duracao = duracao;
 		this.classificacao = classificacao;

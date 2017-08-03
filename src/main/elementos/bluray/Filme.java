@@ -26,8 +26,9 @@ public class Filme extends BluRay {
 	 *            classificacao do filme
 	 * @param anoDeLancamento
 	 *            ano de lancamento do filme
+	 * @throws Exception 
 	 */
-	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento) {
+	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento) throws Exception {
 		super(nome, valor, duracao, classificacao);
 		this.genero = genero;
 		this.anoDeLancamento = anoDeLancamento;

@@ -13,9 +13,10 @@ public class JogoDeTabuleiro extends Item {
 	
 	/**
 	 * Construto do Jogo De Tabuleiro
+	 * @throws Exception 
 	 * 
 	 */
-	public JogoDeTabuleiro(String nome, double valor) {
+	public JogoDeTabuleiro(String nome, double valor) throws Exception {
 		super(nome, valor);
 		this.listaDePecasPerdidas = new ArrayList<>();
 	}
