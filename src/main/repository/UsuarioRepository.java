@@ -1,6 +1,7 @@
 package main.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import main.elementos.Usuario;
@@ -10,21 +11,20 @@ import main.elementos.Usuario;
  *
  */
 public class UsuarioRepository {
-	private List<Usuario> usuarios;
+	private HashMap<String, Usuario> usuarios;
 
 	/**
-	 * Construtor de {@link UsuarioRepository} inicia um ArrayList do tipo
-	 * {@link Usuario}
+	 * Construtor de {@link UsuarioRepository} inicia um HashMap
 	 */
 	public UsuarioRepository() {
-		usuarios = new ArrayList<>();
+		usuarios = new HashMap<>();
 	}
 	/**
 	 * Adiciona um {@link Usuario} a esse repositorio
 	 * @param usuario
 	 */
 	public void adicionar(Usuario usuario) {
-		usuarios.add(usuario);
+		usuarios.put(usuario.getNome()+usuario.getNumeroDoCelular(), usuario);
 	}
 	 /**
      * O {@link Usuario} editado e passado como argumento. Se ela existir, e deletada e adicionada
@@ -37,20 +37,22 @@ public class UsuarioRepository {
 
      */
 	public boolean editar(Usuario usuario) {
-		if (!(remover(usuario.getNome()))) {
-			return false;
+		String codigo = usuario.getNome()+usuario.getNumeroDoCelular();
+		if (usuarios.containsKey(codigo)) {
+			usuarios.remove(codigo);
+			return usuarios.put(codigo, usuario) != null;
 		}
-		adicionar(usuario);
-		return true;
+		return false;
 	}
+	
 	/**
 	 * Remove {@link Usuario}
 	 * @param usuario
 	 * @return
 	 */
-	public boolean remover(String nome) {
-		if (recuperar(nome) != null) {
-			return usuarios.remove(recuperar(nome));
+	public boolean remover(String nome,String telefone) {
+		if (recuperar(nome,telefone) != null) {
+			return usuarios.remove(nome+telefone) != null;
 		}
 		return false;
 	}
@@ -59,12 +61,7 @@ public class UsuarioRepository {
 	 * @param nome
 	 * @return
 	 */
-	public Usuario recuperar(String nome) {
-		for (Usuario usuario : usuarios) {
-			if (usuario.getNome().equalsIgnoreCase(nome)) {
-				return usuario;
-			}
-		}
-		return null;
+	public Usuario recuperar(String nome,String telefone) {
+		return usuarios.get(nome+telefone);
 	}
 }

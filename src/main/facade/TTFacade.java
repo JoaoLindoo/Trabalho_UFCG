@@ -45,7 +45,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) throws Exception {
-		return usuarioController.getInfoUsuario(nome, atributo);
+		return usuarioController.getInfoUsuario(nome, telefone, atributo);
 	}
 	/**
 	 * Remove um usuario
