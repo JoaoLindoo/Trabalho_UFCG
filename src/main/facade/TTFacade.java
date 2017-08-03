@@ -87,5 +87,16 @@ public class TTFacade {
 	public void atualizarUsuario(String nome, String telefone, String atributo, String email) throws Exception {
 		usuarioController.atualizarUsuario(nome, telefone, atributo, email);
 	}
+	/**
+	 * Método que retorna a informação do item de acordo com o atributo.
+	 * @param nome
+	 * @param telefone
+	 * @param itemNome
+	 * @param atributo
+	 * @return
+	 */
+	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
+		return  "";
+	}
 
 }
