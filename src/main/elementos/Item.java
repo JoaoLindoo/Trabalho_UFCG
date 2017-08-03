@@ -112,6 +112,8 @@ public abstract class Item {
 			return false;
 		return true;
 	}
-	
+	public void addBluray(int duracao){
+		
+	}
 	
 }

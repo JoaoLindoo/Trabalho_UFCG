@@ -170,7 +170,7 @@ public class Usuario {
 	 *            plataforma do jogo
 	 * @throws Exception
 	 */
-	public void adiconarItemJogoEletronico(String nome, double valor, Plataforma plataforma) throws Exception {
+	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
 	}
 
@@ -250,7 +250,6 @@ public class Usuario {
 	 * @return
 	 */
 	public boolean removerItem(String nomeItem) {
-
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem)) {
 				this.listaItens.remove(item);
@@ -285,10 +284,8 @@ public class Usuario {
 	 * @return retorna o valor do item desejado
 	 */
 	public double getValorItem(String nomeItem) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
-				return item.getValor();
-			}
+		if (recuperItem(nomeItem) != null) {
+			return recuperItem(nomeItem).getValor();
 		}
 		return 0;
 	}
@@ -301,11 +298,20 @@ public class Usuario {
 	 * @return retorna o próprios nome do item
 	 */
 	public String getNomeItem(String nomeItem) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
-				return item.getNome();
-			}
+		if (recuperItem(nomeItem) != null) {
+			return recuperItem(nomeItem).getNome();
 		}
 		return "";
+	}
+	public Item recuperItem(String nomeItem){
+		for (Item item : listaItens) {
+			if (item.getNome().equals(nomeItem)) {
+				return item;
+			}
+		}
+		return null;
+	}
+	public void adicionarBluRay(String nomeItem, int duracao){
+		recuperItem(nomeItem).addBluray(duracao);
 	}
 }

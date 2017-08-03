@@ -82,14 +82,8 @@ public class UsuarioController {
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
-		if (ATRIBUTO_EMAIL.equalsIgnoreCase(atributo)) {
-			repository.editar(nome, telefone, atributo, valor);
-		} else if (ATRIBUTO_TELEFONE.equalsIgnoreCase(atributo)) {
-			String emailExistente = repository.recuperar(nome, telefone).getEmail();
-			repository.remover(nome, telefone);
-			usuario = new Usuario(nome, emailExistente, valor);
-			repository.adiciona(usuario);
-		}
+
+		repository.editar(nome, telefone, atributo, valor);
 	}
 
 	/**
@@ -105,27 +99,41 @@ public class UsuarioController {
 		return recuperar(nome, telefone);
 	}
 
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-		// TODO codar isso aqui
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) throws Exception {
+		repository.recuperar(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
 	}
 
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		// TODO codar isso aqui
-		return null;
+	public double getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
+		if (atributo.equalsIgnoreCase("preco")) {
+			return repository.recuperar(nome, telefone).recuperItem(nomeItem).getValor();
+		}
+		return 00;
 	}
 
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		// TODO codar isso aqui
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
+		repository.recuperar(nome, telefone).adicionarItemJogoTabuleiro(nomeItem, preco);
 
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		// TODO codar isso aqui
+		
 
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
-			int duracao, String classificacao, String genero, int temporada) {
-		// TODO codar isso aqui
+			int duracao, String classificacao, String genero, int temporada) throws Exception {
+		repository.recuperar(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+	}
+	public void cadastrarBluRayFilme(String nome,String telefone,String nomeItem,double valor,int duracao,String genero, String classificacao,
+			String anoDeLancamento) throws Exception{
+		repository.recuperar(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
+		
+	}
+	public void cadastrarBluRayShow(String nome,String telefone,String nomeItem,double valor,
+			int duracao,int numeroDeFaixas,String artista,String classificacao) throws Exception{
+		repository.recuperar(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
+	}
+	public void adicionarBluRay(String nome,String telefone,String nomeItem,int duracao){
+		repository.recuperar(nome, telefone).adicionarBluRay(nomeItem, duracao);
 	}
 }

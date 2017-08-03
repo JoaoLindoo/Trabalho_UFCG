@@ -110,7 +110,7 @@ public class TTFacade {
 	 * @param atributo
 	 * @return
 	 */
-	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
+	public double getInfoItem(String nome, String telefone, String itemNome, String atributo) {
 		return  this.usuarioController.getInfoItem(nome, telefone, itemNome, atributo);
 	}
 
@@ -126,8 +126,9 @@ public class TTFacade {
 	 *            preco do item
 	 * @param plataforma
 	 *            plataforma do jogo eletronico
+	 * @throws Exception 
 	 */
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) throws Exception {
 		usuarioController.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
@@ -143,8 +144,9 @@ public class TTFacade {
 	 *            nome do item
 	 * @param preco
 	 *            preco do item
+	 * @throws Exception 
 	 */
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		usuarioController.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 
@@ -187,15 +189,25 @@ public class TTFacade {
 	 *            genero da serie
 	 * @param temporada
 	 *            temporada da serie
+	 * @throws Exception 
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
-			int duracao, String classificacao, String genero, int temporada) {
+			int duracao, String classificacao, String genero, int temporada) throws Exception {
 		usuarioController.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao,
 				genero, temporada);
 	}
 
-	// cadastrarBluRayFilme nome=Maria telefone=96666-6666 nomeItem=Crepusculo
-	// preco=1.99 duracao=120 genero=ROMANCE classificacao=QUATORZE_ANOS
-	// anoLancamento=2008>
-	// TODO Terminar metodos aqui
+	public void cadastrarBluRayFilme(String nome,String telefone,String nomeItem,double valor,int duracao,String genero, String classificacao,
+			String anoDeLancamento) throws Exception{
+		usuarioController.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
+		
+	}
+	public void cadastrarBluRayShow(String nome,String telefone,String nomeItem,double valor,
+			int duracao,int numeroDeFaixas,String artista,String classificacao) throws Exception{
+		usuarioController.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
+		
+	}
+	public void adicionarBluRay(String nome,String telefone,String nomeItem,int duracao){
+		usuarioController.adicionarBluRay(nome, telefone, nomeItem, duracao);
+	}
 }

@@ -51,10 +51,10 @@ public class Serie extends BluRay {
 	 * @param duracao
 	 *            duracao do episodio
 	 */
-	public void adicionarBluRay(int duracao) {
+	@Override
+	public void addBluray(int duracao) {
 		this.episodios.add(duracao);
 	}
-
 	/**
 	 * Metodo que retorna uma representacao inteira da serie
 	 */

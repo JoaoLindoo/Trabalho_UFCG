@@ -100,5 +100,7 @@ public abstract class BluRay extends Item {
 	public String toString() {
 		return "Nome: " + nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
 	}
-
+	@Override
+	public void addBluray(int duracao) {
+	}
 }

@@ -6,14 +6,14 @@ package main.elementos;
  */
 public class JogoEletronico extends Item {
 	
-	private Plataforma plataforma;
+	private String plataforma;
 	
 	/**
 	 * Construtor do Jogo Eletronico
 	 * @throws Exception 
 	 * 
 	 */
-	public JogoEletronico(String nome, double valor, Plataforma plataforma) throws Exception {
+	public JogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		super(nome, valor);
 		this.plataforma = plataforma;
 	}
@@ -22,7 +22,7 @@ public class JogoEletronico extends Item {
 	 * Metodo que retorna a Plataforma do Jogo Eletronico
 	 * 
 	 */
-	public Plataforma getPlataforma() {
+	public String getPlataforma() {
 		return plataforma;
 	}
 	
@@ -30,7 +30,7 @@ public class JogoEletronico extends Item {
 	 * Metodo que altera a Plataforma do Jogo Eletronico
 	 * 
 	 */
-	public void setPlataforma(Plataforma plataforma) {
+	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
 
