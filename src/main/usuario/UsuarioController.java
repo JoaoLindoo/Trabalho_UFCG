@@ -1,5 +1,4 @@
-package main.controller;
-import main.elementos.Usuario;
+package main.usuario;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;

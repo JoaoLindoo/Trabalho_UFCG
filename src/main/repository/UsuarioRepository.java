@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import main.elementos.Usuario;
+import main.usuario.Usuario;
 
 /**
  * Classe responsavel pelo CRUD de {@link Usuario}

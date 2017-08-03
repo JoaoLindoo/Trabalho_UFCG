@@ -1,8 +1,8 @@
 package main.facade;
 
 import easyaccept.EasyAccept;
-import main.controller.UsuarioController;
-import main.elementos.Usuario;
+import main.usuario.Usuario;
+import main.usuario.UsuarioController;
 /**
  * Classe responsabel pela interacao do administrador com o programa
  */
