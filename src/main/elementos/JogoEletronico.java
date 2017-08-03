@@ -10,9 +10,10 @@ public class JogoEletronico extends Item {
 	
 	/**
 	 * Construtor do Jogo Eletronico
+	 * @throws Exception 
 	 * 
 	 */
-	public JogoEletronico(String nome, double valor, String plataforma) {
+	public JogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		super(nome, valor);
 		this.plataforma = plataforma;
 	}
