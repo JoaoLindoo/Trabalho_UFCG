@@ -1,7 +1,6 @@
 package main.repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import main.usuario.Usuario;
@@ -11,57 +10,33 @@ import main.usuario.Usuario;
  *
  */
 public class UsuarioRepository {
-	private HashMap<String, Usuario> usuarios;
-
-	/**
-	 * Construtor de {@link UsuarioRepository} inicia um HashMap
-	 */
+	List<Usuario> usuarios;
 	public UsuarioRepository() {
-		usuarios = new HashMap<>();
+		usuarios = new ArrayList<>();
+		
 	}
-	/**
-	 * Adiciona um {@link Usuario} a esse repositorio
-	 * @param usuario
-	 */
-	public void adicionar(Usuario usuario) {
-		usuarios.put(usuario.getNome()+usuario.getNumeroDoCelular(), usuario);
+	public void adiciona(Usuario usuario){
+		usuarios.add(usuario);
 	}
-	 /**
-     * O {@link Usuario} editado e passado como argumento. Se ela existir, e deletada e adicionada
-     * novamente, atualizando suas informacoes.
-     * E usada o retorno do metodo remover para
-     * saber se a {@link Usuario} ja faz parte da lista ou nao.
-     *
-     * @param usuario {@link Usuario} editado
-     * @return true , caso a {@link Usuario} tenha sido editada.
-
-     */
-	public boolean editar(Usuario usuario) {
-		String codigo = usuario.getNome()+usuario.getNumeroDoCelular();
-		if (usuarios.containsKey(codigo)) {
-			usuarios.remove(codigo);
-			return usuarios.put(codigo, usuario) != null;
+	public Usuario recuperar(String nome,String telefone){
+		for (Usuario usuario : usuarios) {
+			if (usuario.getNome().equalsIgnoreCase(nome)) {
+				if (usuario.getNumeroDoCelular().equalsIgnoreCase(telefone)) {
+					return usuario;
+				}
+				
+			}
 		}
-		return false;
+		return null ;
 	}
-	
-	/**
-	 * Remove {@link Usuario}
-	 * @param usuario
-	 * @return
-	 */
-	public boolean remover(String nome,String telefone) {
-		if (recuperar(nome,telefone) != null) {
-			return usuarios.remove(nome+telefone) != null;
+	public boolean remover(String nome,String telefone){
+		return usuarios.remove(recuperar(nome, telefone));
+	}
+	public void editar(String nome,String telefone,String atributo,String valor){
+		if (atributo.equalsIgnoreCase("email")) {
+			recuperar(nome, telefone).setEmail(valor);
+		}else {
+			recuperar(nome, telefone).setNumeroDoCelular(valor);
 		}
-		return false;
-	}
-	/**
-	 * Verifica se existe algum {@link Usuario}
-	 * @param nome
-	 * @return
-	 */
-	public Usuario recuperar(String nome,String telefone) {
-		return usuarios.get(nome+telefone);
 	}
 }

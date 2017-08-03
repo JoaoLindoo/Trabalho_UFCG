@@ -20,7 +20,7 @@ public class UsuarioController {
 			throw new OperacaoNaoPermitida(USUARIO_CASASTRADO);
 		}
 		usuario = new Usuario(nome, email, telefone);
-		repository.adicionar(usuario);
+		repository.adiciona(usuario);
 	}
 
 	public String getInfoUsuario(String nome, String telefone,String atributo) throws Exception {
@@ -45,15 +45,10 @@ public class UsuarioController {
 		if (repository.recuperar(nome,telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
-		if (ATRIBUTO_EMAIL.equalsIgnoreCase(atributo)) {
-			usuario = new Usuario(nome, valor, telefone);
-			repository.editar(usuario);
-		}
-		else if (ATRIBUTO_TELEFONE.equalsIgnoreCase(atributo)) {
-			String emailExistente = repository.recuperar(nome, telefone).getEmail();
-			repository.remover(nome, telefone);
-			usuario = new Usuario(nome, emailExistente, valor);
-			repository.adicionar(usuario);
-		}
+		repository.editar(nome, telefone, atributo, valor);
+		
+	}
+	public Usuario recuperar(String nome,String telefone){
+		return recuperar(nome, telefone);
 	}
 }
