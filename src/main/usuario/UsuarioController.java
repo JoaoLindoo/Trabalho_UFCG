@@ -63,7 +63,7 @@ public class UsuarioController {
 	 * @param nome Nome do usuario
 	 * @param telefone Telefone do usuario
 	 * @param atributo Atributo que determina como vai ser a modificacao
-	 * @param valor Valor � a variavel que vai atualizar o usuario
+	 * @param valor Valor � a variavel que vai atualizar o usuario
 	 */
 	public void atualizarUsuario(String nome,String telefone , String atributo, String valor) throws Exception{
 		if (repository.recuperar(nome,telefone) == null) {
@@ -80,5 +80,18 @@ public class UsuarioController {
 	 */
 	public Usuario recuperar(String nome,String telefone){
 		return recuperar(nome, telefone);
+	}
+	/**
+	 * Método para recupera a informação do item.
+	 * @param nome
+	 * @param telefone
+	 * @param itemNome
+	 * @param atributo
+	 * @return a String
+	 */
+	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
+		if(atributo.equals("Preco"))
+		return ""+this.repository.recuperar(itemNome, telefone).getValorItem(itemNome);
+	return"";
 	}
 }

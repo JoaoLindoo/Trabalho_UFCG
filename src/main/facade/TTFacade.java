@@ -8,7 +8,7 @@ import main.usuario.UsuarioController;
  * Classe responsabel pela interacao do administrador com o programa
  */
 public class TTFacade {
-	UsuarioController usuarioController;
+	private UsuarioController usuarioController;
 
 	public TTFacade() {
 		usuarioController = new UsuarioController();
@@ -96,7 +96,7 @@ public class TTFacade {
 	 * @return
 	 */
 	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
-		return  "";
+		return  this.usuarioController;
 	}
 
 }
