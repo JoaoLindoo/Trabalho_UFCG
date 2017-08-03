@@ -96,7 +96,7 @@ public class TTFacade {
 	 * @return
 	 */
 	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
-		return  this.usuarioController;
+		return  this.usuarioController.getInfoItem(nome, telefone, itemNome, atributo);
 	}
 
 }
