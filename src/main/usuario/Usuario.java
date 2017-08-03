@@ -90,34 +90,105 @@ public class Usuario {
 	}
 
 	/**
-	 * MÃ©todos para criar e adicionar itens no usuario
+	 * Metodo que adiciona um novo jodo de tabuleiro
 	 * 
 	 * @author Matheus Thiago
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void adicionarItemJogoTabuleiro(String nome, double valor) throws Exception {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
 	}
 
+	/**
+	 * Metodo que adiciona um novo jogo eletronico
+	 * 
+	 * @param nome
+	 *            nome do jogo
+	 * @param valor
+	 *            preco o jogo
+	 * @param plataforma
+	 *            plataforma do jogo
+	 * @throws Exception
+	 */
 	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
 	}
 
+	/**
+	 * Metodo que adiciona um novo filme
+	 * 
+	 * @param nome
+	 *            nome do filme
+	 * @param valor
+	 *            preco do filme
+	 * @param duracao
+	 *            duracao do filme
+	 * @param genero
+	 *            genero do filme
+	 * @param classificacao
+	 *            classificacao do filme
+	 * @param anoDeLancamento
+	 *            ano de lancamento do filme
+	 * @throws Exception
+	 */
 	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
 			String anoDeLancamento) throws Exception {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
 	}
 
+	/**
+	 * Metodo que adiciona uma nova serie
+	 * 
+	 * @param nome
+	 *            nome da serie
+	 * @param valor
+	 *            preco da serie
+	 * @param descricao
+	 *            descricao da serie
+	 * @param duracao
+	 *            duracao da serie
+	 * @param classificacao
+	 *            classisficacao da serie
+	 * @param genero
+	 *            genero da serie
+	 * @param temporada
+	 *            temporada da serie
+	 * @throws Exception
+	 */
 	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
 			String genero, int temporada) throws Exception {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
 	}
 
+	/**
+	 * Metodo que adiciona um novo show
+	 * 
+	 * @param nome
+	 *            nome dos show
+	 * @param valor
+	 *            preco do bluray de show
+	 * @param duracao
+	 *            duracao do show
+	 * @param numeroFaixas
+	 *            numero de faixas do show
+	 * @param artista
+	 *            nome do artista do show
+	 * @param classificacao
+	 *            classificacao do show
+	 * @throws Exception
+	 */
 	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
 			String classificacao) throws Exception {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
 	}
 
+	/**
+	 * Metodo que remove um item
+	 * 
+	 * @param nomeItem
+	 *            nome do idem
+	 * @return
+	 */
 	public boolean removerItem(String nomeItem) {
 
 		for (Item item : listaItens) {
@@ -125,29 +196,53 @@ public class Usuario {
 				this.listaItens.remove(item);
 				return true;
 			}
-
 		}
 		return false;
 	}
-	public void atualizarItemNome(String nomeItem,String nomeMudar) {
+
+	/**
+	 * Metodo que atualiza o nome do item
+	 * 
+	 * @param nomeItem
+	 *            nome atual do item
+	 * @param nomeMudar
+	 *            novo nome do item
+	 */
+	public void atualizarItemNome(String nomeItem, String nomeMudar) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeItem)) {
+			if (item.getNome().equals(nomeItem)) {
 				item.setNome(nomeMudar);
 				break;
 			}
 		}
 	}
-	public double valorProcuradoItem(String nomeItem) {
+
+	/**
+	 * Metodo que pega o valor de um item
+	 * 
+	 * @param nomeItem
+	 *            nome do item desejado
+	 * @return retorna o valor do item desejado
+	 */
+	public double getValorItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeItem)) {
+			if (item.getNome().equals(nomeItem)) {
 				return item.getValor();
 			}
 		}
 		return 0;
 	}
-	public String nomeItemProcurado(String nomeItem) {
+
+	/**
+	 * Metodo que retorna o nome do item desejado
+	 * 
+	 * @param nomeItem
+	 *            nome do item desejado
+	 * @return retorna o próprios nome do item
+	 */
+	public String getNomeItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeItem)) {
+			if (item.getNome().equals(nomeItem)) {
 				return item.getNome();
 			}
 		}
