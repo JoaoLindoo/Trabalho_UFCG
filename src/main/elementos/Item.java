@@ -1,4 +1,7 @@
 package main.elementos;
+
+import main.exception.DadoInvalido;
+
 /**
  * @author Redson
  *
@@ -16,7 +19,7 @@ public abstract class Item {
 	 */
 	public Item(String nome, double valor) throws Exception {
 		if (valor <= 0) 
-			throw new Exception("Preco invalido");
+			throw new DadoInvalido("Preco invalido");
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;
