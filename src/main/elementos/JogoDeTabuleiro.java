@@ -2,16 +2,28 @@ package main.elementos;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Redson
+ *
+ * Classe que representa um Jogo De Tabuleiro
+ */
 public class JogoDeTabuleiro extends Item {
 	
 	private List<String> listaDePecasPerdidas;
 	
+	/**
+	 * Construto do Jogo De Tabuleiro
+	 * 
+	 */
 	public JogoDeTabuleiro(String nome, double valor) {
 		super(nome, valor);
 		this.listaDePecasPerdidas = new ArrayList<>();
 	}
 	
+	/**
+	 * Metodo que retorna uma String a partir do tamanho da listaDePecasPerdidas do Jogo De Tabuleiro
+	 * 
+	 */
 	public String estadoPecas() {
 		if (listaDePecasPerdidas.size() > 0)
 			return "COM PECAS PERDIDAS";
@@ -19,10 +31,18 @@ public class JogoDeTabuleiro extends Item {
 			return "SEM PECAS PERDIDAS";
 	}
 	
+	/**
+	 * Metodo que retorna a listaDePecasPerdidas do Jogo De Tabuleiro
+	 * 
+	 */
 	public List<String> getListaDePecasPerdidas() {
 		return listaDePecasPerdidas;
 	}
 	
+	/**
+	 * Metodo que altera a listaDePecasPerdidas do Jogo De Tabuleiro 
+	 *
+	 */
 	public void setListaDePecasPerdidas(List<String> listaDePecasPerdidas) {
 		this.listaDePecasPerdidas = listaDePecasPerdidas;
 	}
@@ -57,7 +77,11 @@ public class JogoDeTabuleiro extends Item {
 			return false;
 		return true;
 	}
-
+	
+	/**
+	 * Metodo que retorna uma String que representa o Jogo De Tabuleiro
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "JOGO DE TABULEIRO: " + nome + ", R$ " + valor+ ", " + this.estado() + ", " + this.estadoPecas();
