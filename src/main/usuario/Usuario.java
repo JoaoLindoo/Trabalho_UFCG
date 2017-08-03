@@ -10,11 +10,18 @@ import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
 
+/**
+ * Classe que representa um usuario do sistema
+ * 
+ * @author Joao
+ *
+ */
 public class Usuario {
 
 	private String nome;
 	private String email;
 	private String numeroDoCelular;
+
 	/**
 	 * uso do hashset pois apenas adicionar elementos com nomes diferentes.
 	 * 
@@ -22,6 +29,16 @@ public class Usuario {
 	 */
 	private Set<Item> listaItens;
 
+	/**
+	 * Construtor do usuario
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param email
+	 *            email do usuario
+	 * @param numeroDoCelular
+	 *            numero do celular do usuario
+	 */
 	public Usuario(String nome, String email, String numeroDoCelular) {
 		this.nome = nome;
 		this.email = email;
@@ -29,35 +46,74 @@ public class Usuario {
 		this.listaItens = new HashSet<>();
 	}
 
+	/**
+	 * Metodo que retorna o nome do usuario
+	 * 
+	 * @return retorna o nome do usuario
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * Metodo que atualiza o nome do usuario
+	 * 
+	 * @param nome
+	 *            novo nome do usuario
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
+	/**
+	 * Metodo que reotorna o email do usuario
+	 * 
+	 * @return retorna o email do usuario
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Metodo que atualiza o email do usuario
+	 * 
+	 * @param email
+	 *            novo email do usuario
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Metodo que retorna o nomero do celular do usuario
+	 * 
+	 * @return retorna o numero do celular do usuario
+	 */
 	public String getNumeroDoCelular() {
 		return numeroDoCelular;
 	}
 
+	/**
+	 * Metodo que atualiza o numero do celular do usuario
+	 * 
+	 * @param numeroDoCelular
+	 *            novo numero de celular do usuario
+	 */
 	public void setNumeroDoCelular(String numeroDoCelular) {
 		this.numeroDoCelular = numeroDoCelular;
 	}
 
+	/**
+	 * Metodo que retorn uma representacao em String do usuario
+	 */
 	@Override
 	public String toString() {
 		return "Usuario [nome=" + nome + ", email=" + email + ", numeroDoCelular=" + numeroDoCelular + "]";
 	}
 
+	/**
+	 * Metodo que retorna uma representacao inteira do usuario
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,6 +123,9 @@ public class Usuario {
 		return result;
 	}
 
+	/**
+	 * Metodoque determina se um usuario eh ou nao igual a outro
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
