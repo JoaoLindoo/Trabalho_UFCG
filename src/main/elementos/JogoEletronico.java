@@ -5,15 +5,15 @@ package main.elementos;
  * Classe que representa um Jogo Eletronico
  */
 public class JogoEletronico extends Item {
-
-	private String plataforma;
+	
+	private Plataforma plataforma;
 	
 	/**
 	 * Construtor do Jogo Eletronico
 	 * @throws Exception 
 	 * 
 	 */
-	public JogoEletronico(String nome, double valor, String plataforma) throws Exception {
+	public JogoEletronico(String nome, double valor, Plataforma plataforma) throws Exception {
 		super(nome, valor);
 		this.plataforma = plataforma;
 	}
@@ -22,7 +22,7 @@ public class JogoEletronico extends Item {
 	 * Metodo que retorna a Plataforma do Jogo Eletronico
 	 * 
 	 */
-	public String getPlataforma() {
+	public Plataforma getPlataforma() {
 		return plataforma;
 	}
 	
@@ -30,7 +30,7 @@ public class JogoEletronico extends Item {
 	 * Metodo que altera a Plataforma do Jogo Eletronico
 	 * 
 	 */
-	public void setPlataforma(String plataforma) {
+	public void setPlataforma(Plataforma plataforma) {
 		this.plataforma = plataforma;
 	}
 
@@ -57,10 +57,7 @@ public class JogoEletronico extends Item {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
-		if (plataforma == null) {
-			if (other.plataforma != null)
-				return false;
-		} else if (!plataforma.equals(other.plataforma))
+		if (plataforma != other.plataforma)
 			return false;
 		return true;
 	}
