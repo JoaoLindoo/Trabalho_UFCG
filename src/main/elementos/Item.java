@@ -14,7 +14,9 @@ public abstract class Item {
 	 * Construtor do Item
 	 * 
 	 */
-	public Item(String nome, double valor) {
+	public Item(String nome, double valor) throws Exception {
+		if (valor <= 0) 
+			throw new Exception("Preco invalido");
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;

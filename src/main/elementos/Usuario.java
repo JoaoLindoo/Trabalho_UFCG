@@ -97,33 +97,33 @@ public class Usuario {
 	 * 
 	 * @author Matheus Thiago
 	 */
-	public void adicionarItenJogoTabuleiro(String nome, double valor) {
+	public void adicionarItemJogoTabuleiro(String nome, double valor) {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
 	}
 
-	public void adiconarItenJogoEletronico(String nome, double valor, String plataforma) {
+	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
 	}
 
-	public void adicionarItenFilme(String nome, double valor, int duracao, String genero, String classificacao,
+	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
 			String anoDeLancamento) {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
 	}
 
-	public void adicionarItenSerie(String nome, double valor, String descricao, int duracao, String classificacao,
+	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
 			String genero, int temporada) {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
 	}
 
-	public void adicionarItenShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
+	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
 			String classificacao) {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
 	}
 
-	public boolean removerIten(String nomeIten) {
+	public boolean removerItem(String nomeItem) {
 
 		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeIten)) {
+			if (item.getNome().equals(nomeItem)) {
 				this.listaItens.remove(item);
 				return true;
 			}
@@ -131,28 +131,28 @@ public class Usuario {
 		}
 		return false;
 	}
-	public void atualizarItenNome(String nomeIten,String nomeMudar) {
+	public void atualizarItemNome(String nomeItem,String nomeMudar) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeIten)) {
+			if(item.getNome().equals(nomeItem)) {
 				item.setNome(nomeMudar);
 				break;
 			}
 		}
 	}
-	public double valorProcuradoIten(String nomeIten) {
+	public double valorProcuradoItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeIten)) {
+			if(item.getNome().equals(nomeItem)) {
 				return item.getValor();
 			}
 		}
 		return 0;
 	}
-	public String nomeItenProcurado(String nomeIten) {
+	public String nomeItemProcurado(String nomeItem) {
 		for (Item item : listaItens) {
-			if(item.getNome().equals(nomeIten)) {
+			if(item.getNome().equals(nomeItem)) {
 				return item.getNome();
 			}
 		}
-		return"";
+		return "";
 	}
 }
