@@ -102,17 +102,19 @@ public class TTFacade {
 	public void atualizarUsuario(String nome, String telefone, String atributo, String email) throws Exception {
 		usuarioController.atualizarUsuario(nome, telefone, atributo, email);
 	}
+
 	/**
 	 * Método que retorna a informação do item de acordo com o atributo.
+	 * 
 	 * @param nome
 	 * @param telefone
 	 * @param itemNome
 	 * @param atributo
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) throws Exception {
-		return  this.usuarioController.getInfoItem(nome, telefone, itemNome, atributo);
+		return this.usuarioController.getInfoItem(nome, telefone, itemNome, atributo);
 	}
 
 	/**
@@ -127,9 +129,10 @@ public class TTFacade {
 	 *            preco do item
 	 * @param plataforma
 	 *            plataforma do jogo eletronico
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) throws Exception {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
+			throws Exception {
 		usuarioController.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
@@ -145,7 +148,7 @@ public class TTFacade {
 	 *            nome do item
 	 * @param preco
 	 *            preco do item
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		usuarioController.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
@@ -190,7 +193,7 @@ public class TTFacade {
 	 *            genero da serie
 	 * @param temporada
 	 *            temporada da serie
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) throws Exception {
@@ -198,24 +201,128 @@ public class TTFacade {
 				genero, temporada);
 	}
 
-	public void cadastrarBluRayFilme(String nome,String telefone,String nomeItem,double valor,int duracao,String genero, String classificacao,
-			String anoDeLancamento) throws Exception{
-		usuarioController.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
-		
+	/**
+	 * Metodo que cadastra um novo blutay de filme
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param valor
+	 *            valor do item
+	 * @param duracao
+	 *            duracao do item
+	 * @param genero
+	 *            genero do item
+	 * @param classificacao
+	 *            classificacao do item
+	 * @param anoDeLancamento
+	 *            ano de lancamento do filme
+	 * @throws Exception
+	 */
+	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
+			String genero, String classificacao, String anoDeLancamento) throws Exception {
+		usuarioController.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao,
+				anoDeLancamento);
+
 	}
-	public void cadastrarBluRayShow(String nome,String telefone,String nomeItem,double valor,
-			int duracao,int numeroDeFaixas,String artista,String classificacao) throws Exception{
-		usuarioController.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
-		
+
+	/**
+	 * Metodo que cadastra um show
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param valor
+	 *            valor do item
+	 * @param duracao
+	 *            duracao do show
+	 * @param numeroDeFaixas
+	 *            numero de faixas do show
+	 * @param artista
+	 *            nome do artista do show
+	 * @param classificacao
+	 *            classificacao do show
+	 * @throws Exception
+	 */
+	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
+			int numeroDeFaixas, String artista, String classificacao) throws Exception {
+		usuarioController.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista,
+				classificacao);
+
 	}
-	public void adicionarBluRay(String nome,String telefone,String nomeItem,int duracao){
+
+	/**
+	 * Metodo que adiciona um episodio na serie
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param duracao
+	 *            duracao do episodio
+	 */
+	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) {
 		usuarioController.adicionarBluRay(nome, telefone, nomeItem, duracao);
 	}
-	public void removerItem(String nome,String telefone,String nomeItem) throws Exception{
+
+	/**
+	 * Metodo que remove um item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @throws Exception
+	 */
+	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
 		usuarioController.removerItem(nome, telefone, nomeItem);
 	}
-	// nomeItem="Pokemon Emerald" atributo="Preco" valor="20.00"
-	public void atualizarItem(String nome,String telefone,String nomeItem,String atributo, String valor) throws Exception{
+
+	/**
+	 * Metodo que atualiza o nome do item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param atributo
+	 *            atributo a ser mudado
+	 * @param valor
+	 *            novo nome
+	 * @throws Exception
+	 */
+	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor)
+			throws Exception {
+		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+	}
+
+	/**
+	 * Metodo que atualiza o preco de um item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param atributo
+	 *            atributo a ser mudado
+	 * @param valor
+	 *            novo valor do item
+	 */
+	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, double valor) {
 		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
 }
