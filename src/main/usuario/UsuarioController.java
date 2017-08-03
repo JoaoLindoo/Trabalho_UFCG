@@ -61,9 +61,21 @@ public class UsuarioController {
 		}
 		repository.remover(nome, telefone);
 	}
+<<<<<<< HEAD
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
+=======
+	/**
+	 * Atualiza um {@link Usuario} de acordo com um atributo
+	 * @param nome Nome do usuario
+	 * @param telefone Telefone do usuario
+	 * @param atributo Atributo que determina como vai ser a modificacao
+	 * @param valor Valor � a variavel que vai atualizar o usuario
+	 */
+	public void atualizarUsuario(String nome,String telefone , String atributo, String valor) throws Exception{
+		if (repository.recuperar(nome,telefone) == null) {
+>>>>>>> 7333f4a4a1ae8aed17f1f8d27a382545e3124ed4
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
 		if (ATRIBUTO_EMAIL.equalsIgnoreCase(atributo)) {
@@ -85,6 +97,7 @@ public class UsuarioController {
 	public Usuario recuperar(String nome,String telefone){
 		return recuperar(nome, telefone);
 	}
+<<<<<<< HEAD
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		// TODO codar isso aqui
@@ -109,5 +122,19 @@ public class UsuarioController {
 			int duracao, String classificacao, String genero, int temporada) {
 		// TODO codar isso aqui
 
+=======
+	/**
+	 * Método para recupera a informação do item.
+	 * @param nome
+	 * @param telefone
+	 * @param itemNome
+	 * @param atributo
+	 * @return a String
+	 */
+	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) {
+		if(atributo.equals("Preco"))
+		return ""+this.repository.recuperar(itemNome, telefone).getValorItem(itemNome);
+	return"";
+>>>>>>> 7333f4a4a1ae8aed17f1f8d27a382545e3124ed4
 	}
 }
