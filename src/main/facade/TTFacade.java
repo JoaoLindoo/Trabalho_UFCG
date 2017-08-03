@@ -166,26 +166,6 @@ public class TTFacade {
 	}
 
 	/**
-	 * 
-	 * Metodo que retorna o atributo que se deseja saber sobre o item desejado
-	 * 
-	 * @author Giovana Brito Oliveira - 116110904
-	 * 
-	 * @param nome
-	 *            nome do usuario
-	 * @param telefone
-	 *            telefone do usuario
-	 * @param nomeItem
-	 *            nome do itemd desejado
-	 * @param atributo
-	 *            nome do atributo que se deseja obter
-	 * @return atributo desejado
-	 */
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		return usuarioController.getInfoItem(nome, telefone, nomeItem, atributo);
-	}
-
-	/**
 	 * Metodo que cadastra um novo bluRay de serie
 	 * 
 	 * @author Giovana Brito Oliveira - 116110904
