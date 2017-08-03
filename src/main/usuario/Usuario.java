@@ -251,7 +251,7 @@ public class Usuario {
 	 */
 	public boolean removerItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
+			if (item.getNome().equalsIgnoreCase(nomeItem)) {
 				this.listaItens.remove(item);
 				return true;
 			}
@@ -267,12 +267,12 @@ public class Usuario {
 	 * @param nomeMudar
 	 *            novo nome do item
 	 */
-	public void atualizarItemNome(String nomeItem, String nomeMudar) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
-				item.setNome(nomeMudar);
-				break;
-			}
+	public void atualizarItem(String nomeItem,String atributo, String valor) {
+		if (atributo.equalsIgnoreCase("nome")) {
+			recuperItem(nomeItem).setNome(valor);
+		}else if (atributo.equalsIgnoreCase("preco")) {
+			double valorDouble = Double.parseDouble(valor);
+			recuperItem(nomeItem).setValor(valorDouble);
 		}
 	}
 

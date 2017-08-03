@@ -109,8 +109,9 @@ public class TTFacade {
 	 * @param itemNome
 	 * @param atributo
 	 * @return
+	 * @throws Exception 
 	 */
-	public double getInfoItem(String nome, String telefone, String itemNome, String atributo) {
+	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) throws Exception {
 		return  this.usuarioController.getInfoItem(nome, telefone, itemNome, atributo);
 	}
 
@@ -209,5 +210,12 @@ public class TTFacade {
 	}
 	public void adicionarBluRay(String nome,String telefone,String nomeItem,int duracao){
 		usuarioController.adicionarBluRay(nome, telefone, nomeItem, duracao);
+	}
+	public void removerItem(String nome,String telefone,String nomeItem) throws Exception{
+		usuarioController.removerItem(nome, telefone, nomeItem);
+	}
+	// nomeItem="Pokemon Emerald" atributo="Preco" valor="20.00"
+	public void atualizarItem(String nome,String telefone,String nomeItem,String atributo, String valor) throws Exception{
+		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
 }
