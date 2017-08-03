@@ -2,7 +2,10 @@ package main.facade;
 
 import easyaccept.EasyAccept;
 import main.controller.UsuarioController;
-
+import main.elementos.Usuario;
+/**
+ * Classe responsabel pela interacao do administrador com o programa
+ */
 public class TTFacade {
 	UsuarioController usuarioController;
 
@@ -23,19 +26,44 @@ public class TTFacade {
 	public void fecharSistema() {
 
 	}
-
+	/**
+	 * Adiciona {@link Usuario} para um sistema
+	 * @param nome nome do usuario a ser cadastrado
+	 * @param telefone telefone do usuario a ser cadastrado
+	 * @param email email do usuario a ser cadastrasdo
+	 * @throws Exception
+	 */
 	public void cadastrarUsuario(String nome, String telefone, String email) throws Exception {
 		usuarioController.adicionar(nome, telefone, email);
 	}
-
+	/**
+	 * Recuperar informacoes de um usuario
+	 * @param nome nome do usuario a ser pesquisado
+	 * @param telefone telefone do usuario
+	 * @param atributo atribudo a ser atendido
+	 * @return retorna uma string com atributos do ususario
+	 * @throws Exception
+	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) throws Exception {
 		return usuarioController.getInfoUsuario(nome, atributo);
 	}
-
+	/**
+	 * Remove um usuario
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @throws Exception
+	 */
 	public void removerUsuario(String nome, String telefone) throws Exception {
 		usuarioController.removerUsuario(nome, telefone);
 	}
-
+	/**
+	 * Edita um atributo de um usuario
+	 * @param nome do usuario
+	 * @param telefone telefone 
+	 * @param atributo atributo a ser atendido
+	 * @param email
+	 * @throws Exception
+	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String email) throws Exception {
 		usuarioController.atualizarUsuario(nome, telefone, atributo, email);
 	}

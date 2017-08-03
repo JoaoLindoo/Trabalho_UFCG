@@ -32,4 +32,13 @@ public class Filme extends BluRay {
 		this.genero = genero;
 		this.anoDeLancamento = anoDeLancamento;
 	}
+
+	/**
+	 * Metodo que retorna a representacao em string do filme
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ", genero: " + genero + ", ano de lançamento: " + anoDeLancamento;
+	}
+
 }

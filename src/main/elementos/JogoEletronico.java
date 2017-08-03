@@ -1,23 +1,34 @@
 package main.elementos;
-
 /**
  * @author Redson
  *
+ * Classe que representa um Jogo Eletronico
  */
-
-public class JogoEletronico extends Item{
+public class JogoEletronico extends Item {
 
 	private String plataforma;
 	
+	/**
+	 * Construtor do Jogo Eletronico
+	 * 
+	 */
 	public JogoEletronico(String nome, double valor, String plataforma) {
 		super(nome, valor);
 		this.plataforma = plataforma;
 	}
-
+	
+	/**
+	 * Metodo que retorna a Plataforma do Jogo Eletronico
+	 * 
+	 */
 	public String getPlataforma() {
 		return plataforma;
 	}
-
+	
+	/**
+	 * Metodo que altera a Plataforma do Jogo Eletronico
+	 * 
+	 */
 	public void setPlataforma(String plataforma) {
 		this.plataforma = plataforma;
 	}
@@ -53,6 +64,10 @@ public class JogoEletronico extends Item{
 		return true;
 	}
 
+	/**
+	 * Metodo que retorna uma String para representar o Jogo Eletroniico
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return "JOGO ELETRONICO: " + nome + ", R$" + valor + ", " + this.estado() + ", " + plataforma;
