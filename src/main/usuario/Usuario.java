@@ -6,6 +6,7 @@ import java.util.Set;
 import main.elementos.Item;
 import main.elementos.JogoDeTabuleiro;
 import main.elementos.JogoEletronico;
+import main.elementos.Plataforma;
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
@@ -169,7 +170,7 @@ public class Usuario {
 	 *            plataforma do jogo
 	 * @throws Exception
 	 */
-	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
+	public void adiconarItemJogoEletronico(String nome, double valor, Plataforma plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
 	}
 
