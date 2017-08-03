@@ -176,9 +176,4 @@ public class UsuarioController {
 		repository.recuperar(nome, telefone).atualizarItem(nomeItem, atributo, valor);
 		
 	}
-
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, double valor) {
-		// João, coda isso aqui pfvr
-		
-	}
 }

@@ -307,22 +307,4 @@ public class TTFacade {
 			throws Exception {
 		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
-
-	/**
-	 * Metodo que atualiza o preco de um item
-	 * 
-	 * @param nome
-	 *            nome do usuario
-	 * @param telefone
-	 *            telefone do usuario
-	 * @param nomeItem
-	 *            nome do item
-	 * @param atributo
-	 *            atributo a ser mudado
-	 * @param valor
-	 *            novo valor do item
-	 */
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, double valor) {
-		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
-	}
 }
