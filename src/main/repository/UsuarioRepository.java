@@ -2,7 +2,9 @@ package main.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import main.elementos.Item;
 import main.usuario.Usuario;
 
 /**
@@ -23,7 +25,7 @@ public class UsuarioRepository {
 		usuarios.add(usuario);
 	}
 	/**
-	 * Verifica se existe um {@link Usuario} caso existe irá retorna 
+	 * Verifica se existe um {@link Usuario} caso existe irï¿½ retorna 
 	 * @param nome Nome do ususario
 	 * @param telefone Telefone do usuario
 	 * @return
@@ -53,7 +55,7 @@ public class UsuarioRepository {
 	 * @param nome Nome do usuario
 	 * @param telefone Telefone do usuario
 	 * @param atributo Atributo que determina como vai ser a modificacao
-	 * @param valor Valor é a variavel que vai atualizar o usuario
+	 * @param valor Valor ï¿½ a variavel que vai atualizar o usuario
 	 */
 	public void editar(String nome,String telefone,String atributo,String valor){
 		if (atributo.equalsIgnoreCase("email")) {
@@ -61,5 +63,20 @@ public class UsuarioRepository {
 		}else {
 			recuperar(nome, telefone).setNumeroDoCelular(valor);
 		}
+		
 	}
+	
+	public List<Item> listaTotalItens(){
+		List<Item> listaItens = new ArrayList<Item>();
+		
+		for (Usuario usuario : usuarios) {
+			Set<Item> listaItenUser = usuario.getListaItens();
+			for (Item item : listaItenUser) {
+				listaItens.add(item);
+			}
+		}
+		return listaItens;
+		
+	}
+	
 }

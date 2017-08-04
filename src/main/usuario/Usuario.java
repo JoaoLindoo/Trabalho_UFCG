@@ -295,7 +295,7 @@ public class Usuario {
 	 * 
 	 * @param nomeItem
 	 *            nome do item desejado
-	 * @return retorna o próprios nome do item
+	 * @return retorna o prï¿½prios nome do item
 	 */
 	public String getNomeItem(String nomeItem) {
 		if (recuperItem(nomeItem) != null) {
@@ -314,4 +314,9 @@ public class Usuario {
 	public void adicionarBluRay(String nomeItem, int duracao){
 		recuperItem(nomeItem).addBluray(duracao);
 	}
+
+	public Set<Item> getListaItens() {
+		return listaItens;
+	}
+	
 }
