@@ -7,6 +7,7 @@ import java.util.Set;
 
 import main.elementos.Item;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
+import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.usuario.Usuario;
 
 /**
@@ -67,7 +68,10 @@ public class UsuarioRepository {
 		}
 		
 	}
-	
+	/**
+	 * Método queretorna a lista dos itens de todos os usuários.
+	 * @return uma List de objetos itens
+	 */
 	public List<Item> listaTotalItens(){
 		List<Item> listaItens = new ArrayList<Item>();
 		
@@ -80,6 +84,11 @@ public class UsuarioRepository {
 		return listaItens;
 		
 	}
+	
+	/**
+	 * Método que retorna a lista em String dos itens ordenado por ordem alfabetica.
+	 * @return a string da descrição de todos os itens dos usuários
+	 */
 	public String ordenacaoItensNome() {
 		List<Item> listaItens = this.listaTotalItens();
 		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
@@ -87,7 +96,20 @@ public class UsuarioRepository {
 		for (Item item : listaItens) {
 			listaDescricaoItens += item.toString() + "|";
 		}
+		 return listaDescricaoItens;
+	}
+	
+	/**
+	 * Método que retorna a lista em String dos itens ordenado por ordem de valor.
+	 * @return a string da descrição de todos os itens dos usuários
+	 */
+	public String ordenacaoItensValor() {
+		List<Item> listaItens = this.listaTotalItens();
+		Collections.sort(listaItens, new ItemOrdenacaoValor());
+		String listaDescricaoItens = "";
+		for (Item item : listaItens) {
+			listaDescricaoItens += item.toString() + "|";
+		}
 		return listaDescricaoItens;
-		
 	}
 }

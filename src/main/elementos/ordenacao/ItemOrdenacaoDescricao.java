@@ -1,3 +1,7 @@
+/**
+ * Classe que gera o objeto que ordena em ordem alfabetica.
+ * @author Matheus Thiago
+ */
 package main.elementos.ordenacao;
 
 import java.util.Comparator;
