@@ -1,4 +1,7 @@
 package main.elementos;
+
+import main.exception.DadoInvalido;
+
 /**
  * @author Redson
  *
@@ -15,6 +18,12 @@ public class JogoEletronico extends Item {
 	 */
 	public JogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		super(nome, valor);
+		if (valor <= 0) 
+			throw new DadoInvalido("Preco invalido");
+		if (nome.trim().equals("") || nome == null)
+			throw new DadoInvalido("Nome invalido");
+		if (plataforma.trim().equals("") || plataforma == null)
+			throw new DadoInvalido("plataforma invalida");
 		this.plataforma = plataforma;
 	}
 	

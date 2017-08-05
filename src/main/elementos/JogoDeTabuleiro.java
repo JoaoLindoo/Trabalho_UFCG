@@ -2,6 +2,8 @@ package main.elementos;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.exception.DadoInvalido;
 /**
  * @author Redson
  *
@@ -18,6 +20,10 @@ public class JogoDeTabuleiro extends Item {
 	 */
 	public JogoDeTabuleiro(String nome, double valor) throws Exception {
 		super(nome, valor);
+		if (valor <= 0) 
+			throw new DadoInvalido("Preco invalido");
+		if (nome.trim().equals("") || nome == null)
+			throw new DadoInvalido("Nome invalido");
 		this.listaDePecasPerdidas = new ArrayList<>();
 	}
 	

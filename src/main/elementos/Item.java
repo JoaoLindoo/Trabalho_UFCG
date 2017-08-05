@@ -18,8 +18,6 @@ public abstract class Item {
 	 * 
 	 */
 	public Item(String nome, double valor) throws Exception {
-		if (valor <= 0) 
-			throw new DadoInvalido("Preco invalido");
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;
@@ -112,6 +110,7 @@ public abstract class Item {
 			return false;
 		return true;
 	}
+	
 	public void addBluray(int duracao){
 		
 	}
