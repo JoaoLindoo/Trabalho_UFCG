@@ -1,10 +1,13 @@
 package main.repository;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import main.elementos.Item;
+import main.elementos.ordenacao.ItemComparadorDescricao;
 import main.usuario.Usuario;
 
 /**
@@ -78,5 +81,14 @@ public class UsuarioRepository {
 		return listaItens;
 		
 	}
-	
+	public String ordenacaoItensNome() {
+		List<Item> listaItens = this.listaTotalItens();
+		Collections.sort(listaItens, new ItemComparadorDescricao());
+		String listaDescricaoItens = "";
+		for (Item item : listaItens) {
+			listaDescricaoItens += item.toString() + "|";
+		}
+		return listaDescricaoItens;
+		
+	}
 }
