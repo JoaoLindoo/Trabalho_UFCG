@@ -29,7 +29,7 @@ public class JogoDeTabuleiro extends Item {
 		if (listaDePecasPerdidas.size() > 0)
 			return "COM PECAS PERDIDAS";
 		else
-			return "SEM PECAS PERDIDAS";
+			return "COMPLETO";
 	}
 	
 	/**
@@ -86,6 +86,13 @@ public class JogoDeTabuleiro extends Item {
 	@Override
 	public String toString() {
 		return "JOGO DE TABULEIRO: " + nome + ", R$ " + valor+ ", " + this.estado() + ", " + this.estadoPecas();
+	}
+	/**
+	 * Método que adiciona peca pertida ao ArrayList.
+	 * @param nome em String da peca perdida
+	 */
+	public void adicionarPecaPerdida(String nome) {
+		this.listaDePecasPerdidas.add(nome);
 	}
 
 }

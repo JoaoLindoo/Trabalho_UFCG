@@ -26,9 +26,10 @@ public class Show extends BluRay {
 	 *            nome do artista
 	 * @param classificacao
 	 *            classificacao do show
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao) throws Exception {
+	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao)
+			throws Exception {
 		super(nome, valor, duracao, classificacao);
 		this.nomeDoArtista = artista;
 		this.numeroFaixas = numeroFaixas;
@@ -39,7 +40,8 @@ public class Show extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + ", nome do artista: " + nomeDoArtista + ", numeroFaixas: " + numeroFaixas;
+		return "SHOW: " + this.getNome() + ", R$ " + this.valor + ", Nao emprestado, " + this.getDuracao() + " min, "
+				+ this.getClassificacao() + ", " +this.nomeDoArtista+", "+this.numeroFaixas+ " faixas";
 	}
 
 }

@@ -129,6 +129,7 @@ public class UsuarioController {
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
+		repository.recuperar(nome, telefone).adicionarPecaperdida(nomeItem, nomePeca);
 
 	}
 
@@ -176,4 +177,20 @@ public class UsuarioController {
 		repository.recuperar(nome, telefone).atualizarItem(nomeItem, atributo, valor);
 		
 	}
+	public String listarItensOrdenadosPorNome() {
+		return this.repository.ordenacaoItensNome();
+	}
+	
+	public String listarItensOrdenadosPorValor() {
+		return this.repository.ordenacaoItensValor();
+	}
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception{
+		if (repository.recuperar(nome, telefone) == null) {
+			throw new DadoInvalido(USUARIO_INVALIDO);
+		}else if (repository.recuperar(nome, telefone).recuperItem(nomeItem) == null) {
+			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
+		}
+		return repository.recuperar(nome, telefone).recuperItem(nomeItem).toString();
+	}
+	
 }

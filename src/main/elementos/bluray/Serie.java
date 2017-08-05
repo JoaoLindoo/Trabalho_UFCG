@@ -34,7 +34,7 @@ public class Serie extends BluRay {
 	 *            genero da serie
 	 * @param temporada
 	 *            numero da temporada
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public Serie(String nome, double valor, String descricao, int duracao, String classificacao, String genero,
 			int temporada) throws Exception {
@@ -55,6 +55,7 @@ public class Serie extends BluRay {
 	public void addBluray(int duracao) {
 		this.episodios.add(duracao);
 	}
+
 	/**
 	 * Metodo que retorna uma representacao inteira da serie
 	 */
@@ -68,7 +69,7 @@ public class Serie extends BluRay {
 	}
 
 	/**
-	 * Metodo quer indica se uma serie é ou não igual a outra
+	 * Metodo quer indica se uma serie ï¿½ ou nï¿½o igual a outra
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -107,8 +108,8 @@ public class Serie extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + ", genero: " + genero + ", numeroTemporada: " + numeroTemporada + ", descricao: "
-				+ descricao;
+		return "SERIE: " + this.getNome() + ", R$ " + this.valor + ", " + "Nao emprestado, " + this.getDuracaoTotal()
+				+ " min, " + this.getClassificacao()+ ", "+this.genero+", Temporada " + this.numeroTemporada;
 	}
 
 }

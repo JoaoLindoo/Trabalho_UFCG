@@ -26,9 +26,10 @@ public class Filme extends BluRay {
 	 *            classificacao do filme
 	 * @param anoDeLancamento
 	 *            ano de lancamento do filme
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento) throws Exception {
+	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento)
+			throws Exception {
 		super(nome, valor, duracao, classificacao);
 		this.genero = genero;
 		this.anoDeLancamento = anoDeLancamento;
@@ -39,7 +40,8 @@ public class Filme extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return super.toString() + ", genero: " + genero + ", ano de lançamento: " + anoDeLancamento;
+		return "FILME: " + this.getNome() + "," + " R$ " + this.getValor() + ", Nao emprestado, " + this.getDuracao() + " min, "
+				+ this.getClassificacao() + ", " + this.genero + ", " + this.anoDeLancamento;
 	}
 
 }

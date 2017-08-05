@@ -6,7 +6,6 @@ import java.util.Set;
 import main.elementos.Item;
 import main.elementos.JogoDeTabuleiro;
 import main.elementos.JogoEletronico;
-import main.elementos.Plataforma;
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
@@ -295,7 +294,7 @@ public class Usuario {
 	 * 
 	 * @param nomeItem
 	 *            nome do item desejado
-	 * @return retorna o pr�prios nome do item
+	 * @return retorna o próprios nome do item
 	 */
 	public String getNomeItem(String nomeItem) {
 		if (recuperItem(nomeItem) != null) {
@@ -317,6 +316,14 @@ public class Usuario {
 
 	public Set<Item> getListaItens() {
 		return listaItens;
+	}
+	
+	public void adicionarPecaperdida(String nomeItem, String nomePeca) {
+		JogoDeTabuleiro itenTabuleiro = (JogoDeTabuleiro) this.recuperItem(nomeItem);
+		itenTabuleiro.adicionarPecaPerdida(nomePeca);
+	}
+	public String detalheTotalItem(String nomeItem) {
+		return this.recuperItem(nomeItem).toString();
 	}
 	
 }

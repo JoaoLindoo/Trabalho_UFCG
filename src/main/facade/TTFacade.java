@@ -24,7 +24,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt" };
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt" };
 		EasyAccept.main(args);
 
 	}
@@ -306,5 +306,33 @@ public class TTFacade {
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor)
 			throws Exception {
 		usuarioController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+	}
+	
+	/**
+	 * Método que lista todos os objetos em ordem alfabetica.
+	 * @return uma lista em String de itens
+	 */
+	public String listarItensOrdenadosPorNome() {
+		return this.usuarioController.listarItensOrdenadosPorNome();
+	}
+	
+	/**
+	 * Método que lista todos os objetos em ordem de valor.
+	 * @return uma lista em String de itens
+	 */
+	public String listarItensOrdenadosPorValor() {
+		return this.usuarioController.listarItensOrdenadosPorValor();
+	}
+	
+	/**
+	 * Método que pesquisa o item com a descrição completa.
+	 * @param nome em String
+	 * @param telefone em String
+	 * @param nomeItem em String
+	 * @return a descrição do item em string
+	 * @throws Exception
+	 */
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
+		return this.usuarioController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 }

@@ -20,6 +20,7 @@ public abstract class BluRay extends Item {
 	 */
 	public BluRay(String nome, double valor, int duracao, String classificacao) throws Exception {
 		super(nome, valor);
+		this.nome = nome;
 		this.duracao = duracao;
 		this.classificacao = classificacao;
 	}
@@ -74,7 +75,7 @@ public abstract class BluRay extends Item {
 	}
 
 	/**
-	 * Metodo que indica se um bluray é ou não igual ao outros
+	 * Metodo que indica se um bluray ï¿½ ou nï¿½o igual ao outros
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -98,7 +99,7 @@ public abstract class BluRay extends Item {
 	 */
 	@Override
 	public String toString() {
-		return "Nome: " + nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
+		return nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
 	}
 	@Override
 	public void addBluray(int duracao) {
