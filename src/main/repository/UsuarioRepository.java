@@ -1,13 +1,12 @@
 package main.repository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import main.elementos.Item;
-import main.elementos.ordenacao.ItemComparadorDescricao;
+import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.usuario.Usuario;
 
 /**
@@ -83,7 +82,7 @@ public class UsuarioRepository {
 	}
 	public String ordenacaoItensNome() {
 		List<Item> listaItens = this.listaTotalItens();
-		Collections.sort(listaItens, new ItemComparadorDescricao());
+		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
 		String listaDescricaoItens = "";
 		for (Item item : listaItens) {
 			listaDescricaoItens += item.toString() + "|";
