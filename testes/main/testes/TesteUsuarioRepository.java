@@ -35,13 +35,13 @@ public class TesteUsuarioRepository {
 
 	@Test
 	public void ordenacaoItensNome() {
-		assertEquals("JOGO DE TABULEIRO: ddd, R$ 24.0, Nao emprestado, SEM PECAS PERDIDAS|JOGO ELETRONICO: fff, R$26.0, Nao emprestado, jojo|FILME: floresta, R$ 22.0, 120 min, +16, aventura, 11/09/14|SHOW: hhh, R$ 30.0, Nao emprestado, 23 min, jiji, jiji, 12, faixas|SERIE: null, R$ 12.0, Nao emprestado, 0 min, ggg, grg, 10|FILME: lll, R$ 11.0, 26 min, koko, kklkl, oooo|JOGO ELETRONICO: lnnn, R$89.0, Nao emprestado, lll|SHOW: oooo, R$ 34.0, Nao emprestado, 79 min, 12, aaaa, 34, faixas|SERIE: null, R$ 45.0, Nao emprestado, 0 min, kokoko, ppp, 9|JOGO DE TABULEIRO: zzz, R$ 23.0, Nao emprestado, SEM PECAS PERDIDAS|",
+		assertEquals("JOGO DE TABULEIRO: ddd, R$ 24.0, Nao emprestado, COMPLETO|JOGO ELETRONICO: fff, R$ 26.0, Nao emprestado, jojo|FILME: floresta, R$ 22.0, Nao emprestado, 120 min, +16, aventura, 11/09/14|SHOW: hhh, R$ 30.0, Nao emprestado, 23 min, jiji, jiji, 12 faixas|SERIE: jiji, R$ 12.0, Nao emprestado, 0 min, ggg, grg, Temporada 10|FILME: lll, R$ 11.0, Nao emprestado, 26 min, koko, kklkl, oooo|JOGO ELETRONICO: lnnn, R$ 89.0, Nao emprestado, lll|SHOW: oooo, R$ 34.0, Nao emprestado, 79 min, 12, aaaa, 34 faixas|SERIE: qqq, R$ 45.0, Nao emprestado, 0 min, kokoko, ppp, Temporada 9|JOGO DE TABULEIRO: zzz, R$ 23.0, Nao emprestado, COMPLETO|",
 				repositorio.ordenacaoItensNome());
 	}
 
 	@Test
 	public void ordenacaoItensValor() {
-		assertEquals("FILME: lll, R$ 11.0, 26 min, koko, kklkl, oooo|SERIE: null, R$ 12.0, Nao emprestado, 0 min, ggg, grg, 10|FILME: floresta, R$ 22.0, 120 min, +16, aventura, 11/09/14|JOGO DE TABULEIRO: zzz, R$ 23.0, Nao emprestado, SEM PECAS PERDIDAS|JOGO DE TABULEIRO: ddd, R$ 24.0, Nao emprestado, SEM PECAS PERDIDAS|JOGO ELETRONICO: fff, R$26.0, Nao emprestado, jojo|SHOW: hhh, R$ 30.0, Nao emprestado, 23 min, jiji, jiji, 12, faixas|SHOW: oooo, R$ 34.0, Nao emprestado, 79 min, 12, aaaa, 34, faixas|SERIE: null, R$ 45.0, Nao emprestado, 0 min, kokoko, ppp, 9|JOGO ELETRONICO: lnnn, R$89.0, Nao emprestado, lll|", repositorio.ordenacaoItensValor());
+		assertEquals("FILME: lll, R$ 11.0, Nao emprestado, 26 min, koko, kklkl, oooo|SERIE: jiji, R$ 12.0, Nao emprestado, 0 min, ggg, grg, Temporada 10|FILME: floresta, R$ 22.0, Nao emprestado, 120 min, +16, aventura, 11/09/14|JOGO DE TABULEIRO: zzz, R$ 23.0, Nao emprestado, COMPLETO|JOGO DE TABULEIRO: ddd, R$ 24.0, Nao emprestado, COMPLETO|JOGO ELETRONICO: fff, R$ 26.0, Nao emprestado, jojo|SHOW: hhh, R$ 30.0, Nao emprestado, 23 min, jiji, jiji, 12 faixas|SHOW: oooo, R$ 34.0, Nao emprestado, 79 min, 12, aaaa, 34 faixas|SERIE: qqq, R$ 45.0, Nao emprestado, 0 min, kokoko, ppp, Temporada 9|JOGO ELETRONICO: lnnn, R$ 89.0, Nao emprestado, lll|", repositorio.ordenacaoItensValor());
 
 	}
 

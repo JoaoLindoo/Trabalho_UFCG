@@ -17,7 +17,7 @@ public abstract class Item {
 	 * Construtor do Item
 	 * 
 	 */
-	public Item(String nome, double valor) throws Exception {
+	public Item(String nome, double valor) throws DadoInvalido {
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;

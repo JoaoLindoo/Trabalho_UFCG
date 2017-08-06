@@ -16,7 +16,7 @@ public class JogoEletronico extends Item {
 	 * @throws Exception 
 	 * 
 	 */
-	public JogoEletronico(String nome, double valor, String plataforma) throws Exception {
+	public JogoEletronico(String nome, double valor, String plataforma) throws DadoInvalido {
 		super(nome, valor);
 		if (valor <= 0) 
 			throw new DadoInvalido("Preco invalido");

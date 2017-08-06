@@ -18,7 +18,7 @@ public class JogoDeTabuleiro extends Item {
 	 * @throws Exception 
 	 * 
 	 */
-	public JogoDeTabuleiro(String nome, double valor) throws Exception {
+	public JogoDeTabuleiro(String nome, double valor) throws DadoInvalido {
 		super(nome, valor);
 		if (valor <= 0) 
 			throw new DadoInvalido("Preco invalido");
