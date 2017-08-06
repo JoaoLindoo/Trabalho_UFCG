@@ -1,6 +1,7 @@
 package main.facade;
 
 import easyaccept.EasyAccept;
+import main.exception.DadoInvalido;
 import main.usuario.Usuario;
 import main.usuario.UsuarioController;
 
@@ -24,7 +25,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt" };
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt", "us/us4_test.txt" };
 		EasyAccept.main(args);
 
 	}
@@ -335,4 +336,9 @@ public class TTFacade {
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
 		return this.usuarioController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
+	
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido {
+		usuarioController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+	}
+	
 }

@@ -112,4 +112,24 @@ public class UsuarioRepository {
 		}
 		return listaDescricaoItens;
 	}
+	
+	/**
+	 * Metodo que registra o emprestimo 
+	 * @author Redson
+	 */
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+		Usuario dono = recuperar(nomeDono, telefoneDono);
+		Item item = dono.recuperItem(nomeItem);
+		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
+		item.setStatus(true);
+		
+	}
+	
+	/**
+	 * Metodo que aloca o item emprestado no usuario requerente
+	 * @author Redson
+	 */
+	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
+		recuperar(nomeRequerente, telefoneRequerente).aloca(item);
+	}
 }

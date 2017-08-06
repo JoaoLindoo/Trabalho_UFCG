@@ -184,6 +184,7 @@ public class UsuarioController {
 	public String listarItensOrdenadosPorValor() {
 		return this.repository.ordenacaoItensValor();
 	}
+	
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception{
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -193,4 +194,11 @@ public class UsuarioController {
 		return repository.recuperar(nome, telefone).recuperItem(nomeItem).toString();
 	}
 	
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido {
+		if (repository.recuperar(nomeDono, telefoneDono) == null || repository.recuperar(nomeRequerente, telefoneRequerente) == null)
+			throw new DadoInvalido(USUARIO_INVALIDO);
+		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
+			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
+		repository.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+	}
 }

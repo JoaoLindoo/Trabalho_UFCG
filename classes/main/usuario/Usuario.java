@@ -28,6 +28,7 @@ public class Usuario {
 	 * @author Matheus
 	 */
 	private Set<Item> listaItens;
+	private Set<Item> listaItensPegos;
 
 	/**
 	 * Construtor do usuario
@@ -44,6 +45,7 @@ public class Usuario {
 		this.email = email;
 		this.numeroDoCelular = numeroDoCelular;
 		this.listaItens = new HashSet<>();
+		this.listaItensPegos = new HashSet<>();
 	}
 
 	/**
@@ -302,6 +304,7 @@ public class Usuario {
 		}
 		return "";
 	}
+	
 	public Item recuperItem(String nomeItem){
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem)) {
@@ -324,6 +327,22 @@ public class Usuario {
 	}
 	public String detalheTotalItem(String nomeItem) {
 		return this.recuperItem(nomeItem).toString();
+	}
+	
+	
+	/**
+	 * aloca o item na lista de itens pegos
+	 */
+	public void aloca(Item item) {
+		listaItensPegos.add(item);
+	}
+
+	public Set<Item> getListaItensPegos() {
+		return listaItensPegos;
+	}
+
+	public void setListaItensPegos(Set<Item> listaItensPegos) {
+		this.listaItensPegos = listaItensPegos;
 	}
 	
 }
