@@ -1,5 +1,7 @@
 package main.elementos.bluray;
 
+import main.exception.DadoInvalido;
+
 /**
  * Classe que representa o filme
  * 
@@ -29,7 +31,7 @@ public class Filme extends BluRay {
 	 * @throws Exception
 	 */
 	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento)
-			throws Exception {
+			throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
 		this.genero = genero;
 		this.anoDeLancamento = anoDeLancamento;

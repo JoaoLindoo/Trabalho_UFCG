@@ -3,6 +3,8 @@ package main.elementos.bluray;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.exception.DadoInvalido;
+
 /**
  * Classe que representa um bluray de serie
  * 
@@ -37,7 +39,7 @@ public class Serie extends BluRay {
 	 * @throws Exception
 	 */
 	public Serie(String nome, double valor, String descricao, int duracao, String classificacao, String genero,
-			int temporada) throws Exception {
+			int temporada) throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
 		this.episodios = new ArrayList<Integer>();
 		this.descricao = descricao;

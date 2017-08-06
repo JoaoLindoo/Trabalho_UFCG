@@ -1,5 +1,7 @@
 package main.elementos.bluray;
 
+import main.exception.DadoInvalido;
+
 /**
  * Classe que representa o bluray de Show
  * 
@@ -29,7 +31,7 @@ public class Show extends BluRay {
 	 * @throws Exception
 	 */
 	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao)
-			throws Exception {
+			throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
 		this.nomeDoArtista = artista;
 		this.numeroFaixas = numeroFaixas;

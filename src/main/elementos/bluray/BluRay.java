@@ -1,6 +1,7 @@
 package main.elementos.bluray;
 
 import main.elementos.Item;
+import main.exception.DadoInvalido;
 
 /**
  * Classe que representa um bluray
@@ -18,7 +19,7 @@ public abstract class BluRay extends Item {
 	 * Construtor do BluRay
 	 * @throws Exception 
 	 */
-	public BluRay(String nome, double valor, int duracao, String classificacao) throws Exception {
+	public BluRay(String nome, double valor, int duracao, String classificacao) throws DadoInvalido {
 		super(nome, valor);
 		this.nome = nome;
 		this.duracao = duracao;
