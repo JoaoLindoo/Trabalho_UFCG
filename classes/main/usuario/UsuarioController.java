@@ -265,7 +265,10 @@ public class UsuarioController {
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
 		repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
-	
+	/**
+	 * Metodo para ordenacao de itens por nome
+	 * @return
+	 */
 	public String listarItensOrdenadosPorNome() {
 		List<Item> listaItens = repository.listaTotalItens();
 		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
@@ -275,6 +278,10 @@ public class UsuarioController {
 		}
 		return listaDescricaoItens;
 	}
+	/**
+	 * Metodo para ordenacao de itens por valor
+	 * @return
+	 */
 	public String ordenacaoItensValor() {
 		List<Item> listaItens = repository.listaTotalItens();
 		Collections.sort(listaItens, new ItemOrdenacaoValor());
