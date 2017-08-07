@@ -10,8 +10,8 @@ import main.repository.UsuarioRepository;
 import main.usuario.UsuarioController;
 
 public class TestUsuarioController {
-	UsuarioController controller;
-	UsuarioRepository repositorio;
+	private UsuarioController controller;
+	private UsuarioRepository repositorio;
 	
 	@Before
 	public void testAdicionar() throws Exception {

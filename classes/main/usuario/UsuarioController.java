@@ -29,15 +29,11 @@ public class UsuarioController {
 	/**
 	 * Adiciona um {@link Usuario} em um sistema de usuarios
 	 * 
-	 * @param nome
-	 *            Nome do usuario
-	 * @param telefone
-	 *            Telefone do usuario
-	 * @param email
-	 *            Email do usuario
-	 * @throws Exception
-	 *             Verifica se ja existe um usuario no sistema caso verdade ,
-	 *             lanca um Exception
+	 * @param nome Nome do usuario
+	 * @param telefone Telefone do usuario
+	 * @param email Email do usuario
+	 * @throws Exception  Verifica se ja existe um usuario no sistema caso verdade ,
+	 *  lanca um Exception
 	 */
 	public void adicionar(String nome, String telefone, String email) throws Exception {
 		if (repository.recuperar(nome, telefone) != null) {
@@ -113,7 +109,15 @@ public class UsuarioController {
 			throws Exception {
 		repository.recuperar(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
 	}
-
+	/**
+	 * Informacao do item desejado
+	 * @param nome nome do usuario
+	 * @param telefone telefonee do usuario
+	 * @param nomeItem nome do item
+	 * @param atributo atributo que deseja que seja informado
+	 * @return
+	 * @throws Exception
+	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) throws Exception{
 		if (repository.recuperar(nome, telefone).recuperItem(nomeItem) == null) {
 			throw new OperacaoNaoPermitida(ITEM_NAO_ENCONTRADO);
@@ -127,7 +131,14 @@ public class UsuarioController {
 		}
 		return "";
 	}
-
+	/**
+	 * Cadastrar Jogo de taboleiro
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param nomeItem nome do item
+	 * @param preco preco do item
+	 * @throws Exception
+	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -135,12 +146,30 @@ public class UsuarioController {
 		repository.recuperar(nome, telefone).adicionarItemJogoTabuleiro(nomeItem, preco);
 
 	}
-
+	/**
+	 * Adicionar peca percida do jogo de taboleiro
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param nomeItem nome do item
+	 * @param nomePeca nome da peca perdida 
+	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		repository.recuperar(nome, telefone).adicionarPecaperdida(nomeItem, nomePeca);
 
 	}
-
+	/**
+	 * Cadastrar BluRaySerie
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param nomeItem nome do serie
+	 * @param preco preco do serie
+	 * @param descricao descricao o serie
+	 * @param duracao duracao da serie
+	 * @param classificacao classificacao da serie
+	 * @param genero genero da serie
+	 * @param temporada temporada que da serie
+	 * @throws Exception
+	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
@@ -149,14 +178,36 @@ public class UsuarioController {
 		repository.recuperar(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao,
 				genero, temporada);
 	}
-
+	/**
+	 * Cadastrar BlurayFilme
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param nomeItem nome do filme
+	 * @param valor valor do filme
+	 * @param duracao duracao total do filme
+	 * @param genero genero do filme
+	 * @param classificacao classificacao do filme 
+	 * @param anoDeLancamento ano dde lancemento do filme
+	 * @throws Exception
+	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
 			String genero, String classificacao, String anoDeLancamento) throws Exception {
 		repository.recuperar(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao,
 				anoDeLancamento);
 
 	}
-
+	/**
+	 * Cadastrar BlurayShow
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param nomeItem nome do BlurayShow
+	 * @param valor valor do BlurayShow
+	 * @param duracao duracao do BlurayShow
+	 * @param numeroDeFaixas numero de faixas do BlurayShow
+	 * @param artista artista do BlurayShow
+	 * @param classificacao classificacao do BlurayShow
+	 * @throws Exception
+	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
 			int numeroDeFaixas, String artista, String classificacao) throws Exception {
 		repository.recuperar(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista,
