@@ -30,8 +30,8 @@ public class UsuarioRepository {
 	 * Adiciona um {@link Usuario} ao sistema
 	 * @param usuario
 	 */
-	public void adiciona(Usuario usuario){
-		usuarios.add(usuario);
+	public boolean adiciona(Usuario usuario){
+		return usuarios.add(usuario);
 	}
 	/**
 	 * Verifica se existe um {@link Usuario} caso existe ir� retorna 
