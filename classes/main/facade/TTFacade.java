@@ -1,5 +1,7 @@
 package main.facade;
 
+import java.text.ParseException;
+
 import easyaccept.EasyAccept;
 import main.exception.DadoInvalido;
 import main.usuario.Usuario;
@@ -337,8 +339,11 @@ public class TTFacade {
 		return this.usuarioController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 	
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido, ParseException {
 		usuarioController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
 	}
 	
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException, DadoInvalido {
+		usuarioController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
 }

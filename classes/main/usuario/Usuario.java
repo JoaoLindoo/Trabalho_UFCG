@@ -329,12 +329,21 @@ public class Usuario {
 		return this.recuperItem(nomeItem).toString();
 	}
 	
-	
 	/**
 	 * aloca o item na lista de itens pegos
 	 */
 	public void aloca(Item item) {
 		listaItensPegos.add(item);
+	}
+	
+	public boolean removerItemEmprestado(String nomeItem) {
+		for (Item item : listaItensPegos) {
+			if (item.getNome().equalsIgnoreCase(nomeItem)) {
+				listaItensPegos.remove(item);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Set<Item> getListaItensPegos() {

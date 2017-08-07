@@ -1,5 +1,7 @@
 package main.usuario;
 
+import java.text.ParseException;
+
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
@@ -11,8 +13,9 @@ public class UsuarioController {
 	private static final String ATRIBUTO_TELEFONE = "telefone";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private static final String USUARIO_CASASTRADO = "Usuario ja cadastrado";
-	
+	private static final String ITEM_JA_EMPRESTADO = "Item emprestado no momento";
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
+	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
 
 	public UsuarioController() {
 		repository = new UsuarioRepository();
@@ -194,11 +197,24 @@ public class UsuarioController {
 		return repository.recuperar(nome, telefone).recuperItem(nomeItem).toString();
 	}
 	
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido, ParseException {
 		if (repository.recuperar(nomeDono, telefoneDono) == null || repository.recuperar(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
+		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
+			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
 		repository.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
 	}
+	
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException, DadoInvalido {
+		if (repository.recuperar(nomeDono, telefoneDono) == null || repository.recuperar(nomeRequerente, telefoneRequerente) == null)
+			throw new DadoInvalido(USUARIO_INVALIDO);
+		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
+			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
+		if (repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao) == false)
+			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
+		repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
+	
 }

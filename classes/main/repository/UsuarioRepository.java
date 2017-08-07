@@ -1,10 +1,15 @@
 package main.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
@@ -16,9 +21,10 @@ import main.usuario.Usuario;
  */
 public class UsuarioRepository {
 	List<Usuario> usuarios;
+	List<Emprestimo> emprestimos;
 	public UsuarioRepository() {
 		usuarios = new ArrayList<>();
-		
+		emprestimos = new ArrayList<>();
 	}
 	/**
 	 * Adiciona um {@link Usuario} ao sistema
@@ -39,7 +45,6 @@ public class UsuarioRepository {
 				if (usuario.getNumeroDoCelular().equalsIgnoreCase(telefone)) {
 					return usuario;
 				}
-				
 			}
 		}
 		return null ;
@@ -82,7 +87,6 @@ public class UsuarioRepository {
 			}
 		}
 		return listaItens;
-		
 	}
 	
 	/**
@@ -116,13 +120,19 @@ public class UsuarioRepository {
 	/**
 	 * Metodo que registra o emprestimo 
 	 * @author Redson
+	 * @throws ParseException 
 	 */
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
 		Usuario dono = recuperar(nomeDono, telefoneDono);
+		Usuario requerente = recuperar(nomeRequerente, telefoneRequerente);
 		Item item = dono.recuperItem(nomeItem);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    Calendar data = Calendar.getInstance();     
+	    data.setTime(sdf.parse(dataEmprestimo));
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, data, periodo);
+		emprestimos.add(emprestimo);
 		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
-		item.setStatus(true);
-		
+		item.setStatus(true);	
 	}
 	
 	/**
@@ -132,4 +142,24 @@ public class UsuarioRepository {
 	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
 		recuperar(nomeRequerente, telefoneRequerente).aloca(item);
 	}
+	
+	public boolean devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
+		Usuario dono = recuperar(nomeDono, telefoneDono);
+		Usuario requerente = recuperar(nomeRequerente, telefoneRequerente);
+		Item item = dono.recuperItem(nomeItem);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    Calendar data = Calendar.getInstance();     
+	    Calendar dataFinal = Calendar.getInstance();     
+	    data.setTime(sdf.parse(dataEmprestimo));
+	    dataFinal.setTime(sdf.parse(dataDevolucao));
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getUsuarioDono() == dono && emprestimo.getUsuarioRequerente() == requerente && emprestimo.getItemEmprestado() == item && emprestimo.getDataEmprestimo() == data && emprestimo.getDataDevolucao() == dataFinal) {
+				recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
+				item.setStatus(false);
+				return true;
+			}	
+		}
+		return false;
+	}
+	
 }
