@@ -69,7 +69,9 @@ public class TestUsuarioController {
 		assertEquals("50.0", controller.getInfoItem("Joao", "3322", "Xuxa o retorno do pacto", "preco"));
 		assertEquals("2.0", controller.getInfoItem("Joao", "3322", "Xuxa", "preco"));
 	}
-
-
+	@Test
+	public void testPesquisarDetalhesItem() throws Exception{
+		assertEquals("SERIE: Supernatural, R$ 100.0, Nao emprestado, 0 min, 18, Ação, Temporada 1", controller.pesquisarDetalhesItem("Redson", "7813", "Supernatural"));
+	}
 
 }

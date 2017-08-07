@@ -74,7 +74,7 @@ public class UsuarioRepository {
 		
 	}
 	/**
-	 * Método queretorna a lista dos itens de todos os usuários.
+	 * Metodo queretorna a lista dos itens de todos os usuários.
 	 * @return uma List de objetos itens
 	 */
 	public List<Item> listaTotalItens(){
