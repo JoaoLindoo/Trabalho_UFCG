@@ -44,7 +44,6 @@ public class TestUsuarioController {
 
 	@Test
 	public void testOrdenacaoValor() {
-		controller.ordenacaoItensValor();
 		assertEquals("FILME: Xuxa, R$ 2.0, Nao emprestado, 60 min, 14, Infantil, 2016|"
 				+ "FILME: Pneu Assasino, R$ 10.0, Nao emprestado, 60 min, 14, Terror, 2016|"
 				+ "FILME: Jogos Mortais, R$ 15.0, Nao emprestado, 60 min, 16, Terror, 2016|"
@@ -63,6 +62,12 @@ public class TestUsuarioController {
 				+ "SERIE: Supernatural, R$ 100.0, Nao emprestado, 0 min, 18, Ação, Temporada 1|"
 				+ "FILME: Xuxa, R$ 2.0, Nao emprestado, 60 min, 14, Infantil, 2016|"
 				+ "FILME: Xuxa o retorno do pacto, R$ 50.0, Nao emprestado, 60 min, 14, Terror, 2020|", controller.listarItensOrdenadosPorNome());
+	}
+	
+	@Test
+	public void testGetInfoItem() throws Exception{
+		assertEquals("50.0", controller.getInfoItem("Joao", "3322", "Xuxa o retorno do pacto", "preco"));
+		assertEquals("2.0", controller.getInfoItem("Joao", "3322", "Xuxa", "preco"));
 	}
 
 
