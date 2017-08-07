@@ -324,7 +324,7 @@ public class TTFacade {
 	 * @return uma lista em String de itens
 	 */
 	public String listarItensOrdenadosPorValor() {
-		return this.usuarioController.listarItensOrdenadosPorValor();
+		return this.usuarioController.ordenacaoItensValor();
 	}
 	
 	/**

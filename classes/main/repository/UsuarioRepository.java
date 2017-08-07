@@ -79,7 +79,6 @@ public class UsuarioRepository {
 	 */
 	public List<Item> listaTotalItens(){
 		List<Item> listaItens = new ArrayList<Item>();
-		
 		for (Usuario usuario : usuarios) {
 			Set<Item> listaItenUser = usuario.getListaItens();
 			for (Item item : listaItenUser) {
@@ -87,34 +86,6 @@ public class UsuarioRepository {
 			}
 		}
 		return listaItens;
-	}
-	
-	/**
-	 * Método que retorna a lista em String dos itens ordenado por ordem alfabetica.
-	 * @return a string da descrição de todos os itens dos usuários
-	 */
-	public String ordenacaoItensNome() {
-		List<Item> listaItens = this.listaTotalItens();
-		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
-		String listaDescricaoItens = "";
-		for (Item item : listaItens) {
-			listaDescricaoItens += item.toString() + "|";
-		}
-		 return listaDescricaoItens;
-	}
-	
-	/**
-	 * Método que retorna a lista em String dos itens ordenado por ordem de valor.
-	 * @return a string da descrição de todos os itens dos usuários
-	 */
-	public String ordenacaoItensValor() {
-		List<Item> listaItens = this.listaTotalItens();
-		Collections.sort(listaItens, new ItemOrdenacaoValor());
-		String listaDescricaoItens = "";
-		for (Item item : listaItens) {
-			listaDescricaoItens += item.toString() + "|";
-		}
-		return listaDescricaoItens;
 	}
 	
 	/**
@@ -160,6 +131,9 @@ public class UsuarioRepository {
 			}	
 		}
 		return false;
+	}
+	public List<Usuario> getUsuarios() {
+		return usuarios;
 	}
 	
 }

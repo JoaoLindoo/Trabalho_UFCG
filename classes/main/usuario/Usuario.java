@@ -9,6 +9,7 @@ import main.elementos.JogoEletronico;
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
+import main.exception.DadoInvalido;
 
 /**
  * Classe que representa um usuario do sistema
@@ -40,7 +41,10 @@ public class Usuario {
 	 * @param numeroDoCelular
 	 *            numero do celular do usuario
 	 */
-	public Usuario(String nome, String email, String numeroDoCelular) {
+	public Usuario(String nome, String email, String numeroDoCelular) throws Exception{
+		if (nome.trim().equals("")) {
+			throw new DadoInvalido("Dado invalido");
+		}
 		this.nome = nome;
 		this.email = email;
 		this.numeroDoCelular = numeroDoCelular;

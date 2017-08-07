@@ -1,7 +1,12 @@
 package main.usuario;
 
 import java.text.ParseException;
+import java.util.Collections;
+import java.util.List;
 
+import main.elementos.Item;
+import main.elementos.ordenacao.ItemOrdenacaoDescricao;
+import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
@@ -180,13 +185,6 @@ public class UsuarioController {
 		repository.recuperar(nome, telefone).atualizarItem(nomeItem, atributo, valor);
 		
 	}
-	public String listarItensOrdenadosPorNome() {
-		return this.repository.ordenacaoItensNome();
-	}
-	
-	public String listarItensOrdenadosPorValor() {
-		return this.repository.ordenacaoItensValor();
-	}
 	
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception{
 		if (repository.recuperar(nome, telefone) == null) {
@@ -217,4 +215,22 @@ public class UsuarioController {
 		repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
+	public String listarItensOrdenadosPorNome() {
+		List<Item> listaItens = repository.listaTotalItens();
+		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
+		String listaDescricaoItens = "";
+		for (Item item : listaItens) {
+			listaDescricaoItens += item.toString() + "|";
+		}
+		return listaDescricaoItens;
+	}
+	public String ordenacaoItensValor() {
+		List<Item> listaItens = repository.listaTotalItens();
+		Collections.sort(listaItens, new ItemOrdenacaoValor());
+		String listaDescricaoItens = "";
+		for (Item item : listaItens) {
+			listaDescricaoItens += item.toString() + "|";
+		}
+		return listaDescricaoItens;
+	}
 }
