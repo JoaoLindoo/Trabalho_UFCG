@@ -38,13 +38,13 @@ public class Filme extends BluRay {
 			throw new NullPointerException("Genero nao pode ser nulo");
 		}
 		if (genero.equals("")) {
-			throw new IllegalArgumentException("Genero invalido");
+			throw new DadoInvalido("Genero invalido");
 		}
 		if (anoDeLancamento == null) {
 			throw new NullPointerException("Ano de lancamento nao pode ser nulo");
 		}
 		if (anoDeLancamento.equals("")) {
-			throw new IllegalArgumentException("Ano de lancamento invalido");
+			throw new DadoInvalido("Ano de lancamento invalido");
 		}
 
 		this.genero = genero;
@@ -56,8 +56,9 @@ public class Filme extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return "FILME: " + this.getNome() + "," + " R$ " + this.getValor() + ", Nao emprestado, " + this.getDuracao()
-				+ " min, " + this.getClassificacao() + ", " + this.genero + ", " + this.anoDeLancamento;
+		return "FILME: " + this.getNome() + "," + " R$ " + this.getValor() + ", " + this.estado() + ", "
+				+ this.getDuracao() + " min, " + this.getClassificacao() + ", " + this.genero + ", "
+				+ this.anoDeLancamento;
 	}
 
 }

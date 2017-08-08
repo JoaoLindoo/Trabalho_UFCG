@@ -29,13 +29,16 @@ public abstract class BluRay extends Item {
 			throw new NullPointerException("Classificacao nao pode ser nulo");
 		}
 		if (nome.equals("")) {
-			throw new IllegalArgumentException("Nome invalido");
+			throw new DadoInvalido("Nome invalido");
 		}
 		if (classificacao.equals("")) {
-			throw new IllegalArgumentException("Classificacao invalida");
+			throw new DadoInvalido("Classificacao invalida");
+		}
+		if (valor <= 0) {
+			throw new DadoInvalido("Valor invalido");
 		}
 		if (duracao <= 0) {
-			throw new IllegalArgumentException("Duracao nao pode ser menor ou igual a zero");
+			throw new DadoInvalido("Duracao nao pode ser menor ou igual a zero");
 		}
 
 		this.nome = nome;

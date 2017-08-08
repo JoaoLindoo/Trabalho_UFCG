@@ -46,16 +46,16 @@ public class Serie extends BluRay {
 			throw new NullPointerException("Descricao nao pode ser nula");
 		}
 		if (descricao.equals("")) {
-			throw new IllegalArgumentException("Descricao invalida");
+			throw new DadoInvalido("Descricao invalida");
 		}
 		if (genero == null) {
 			throw new NullPointerException("Genero nao pode ser nulo");
 		}
 		if (genero.equals("")) {
-			throw new IllegalArgumentException("Genero invalido");
+			throw new DadoInvalido("Genero invalido");
 		}
 		if (temporada <= 0) {
-			throw new IllegalArgumentException("Temporada invalida");
+			throw new DadoInvalido("Temporada invalida");
 		}
 
 		this.episodios = new ArrayList<Integer>();
