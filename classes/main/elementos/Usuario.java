@@ -336,7 +336,14 @@ public class Usuario {
 	public void aloca(Item item) {
 		listaItensPegos.add(item);
 	}
-	
+	public boolean recuperaAlocados(String nomeItem) {
+		for (Item item : listaItensPegos) {
+			if (nomeItem.equalsIgnoreCase(item.getNome())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public boolean removerItemEmprestado(String nomeItem) {
 		for (Item item : listaItensPegos) {
 			if (item.getNome().equalsIgnoreCase(nomeItem)) {

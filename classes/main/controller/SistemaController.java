@@ -1,22 +1,23 @@
 package main.controller;
-
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
+import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
+import main.repository.EmprestimoRepository;
 import main.repository.UsuarioRepository;
 
 public class SistemaController {
 	
 	private UsuarioRepository repository;
+	private EmprestimoRepository emprestimoRepository;
 	private Usuario usuario;
 	private static final String ATRIBUTO_EMAIL = "email";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
@@ -27,6 +28,7 @@ public class SistemaController {
 
 	public SistemaController() {
 		repository = new UsuarioRepository();
+		emprestimoRepository = new EmprestimoRepository();
 	}
 
 	/**
@@ -249,24 +251,41 @@ public class SistemaController {
 		return repository.recuperar(nome, telefone).recuperItem(nomeItem).toString();
 	}
 	
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido, ParseException {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
+			String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 		if (repository.recuperar(nomeDono, telefoneDono) == null || repository.recuperar(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
-		repository.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
+		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
+		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
+		Date data = emprestimoRepository.converteParaData(dataEmprestimo);
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, data, periodo);
+		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
+		item.setStatus(true);
+		emprestimoRepository.adicionar(emprestimo);
+		
+		}
+	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
+		repository.recuperar(nomeRequerente, telefoneRequerente).aloca(item);
 	}
-	
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException, DadoInvalido {
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
 		if (repository.recuperar(nomeDono, telefoneDono) == null || repository.recuperar(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
-		if (repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao) == false)
+		if (!repository.recuperar(nomeRequerente, telefoneRequerente).recuperaAlocados(nomeItem))
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
-		repository.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
+		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
+		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
+		Date data = emprestimoRepository.converteParaData(dataEmprestimo);
+		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
+		emprestimoRepository.remove(nomeItem);
+		item.setStatus(false);
 	}
 	/**
 	 * Metodo para ordenacao de itens por nome

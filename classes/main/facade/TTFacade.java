@@ -12,12 +12,12 @@ import main.exception.DadoInvalido;
  */
 public class TTFacade {
 	private SistemaController sistemaController;
-
 	/**
 	 * Contrutor da facade
 	 */
 	public TTFacade() {
 		sistemaController = new SistemaController();
+		
 	}
 
 	/**
@@ -339,11 +339,11 @@ public class TTFacade {
 		return this.sistemaController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 	
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws DadoInvalido, ParseException {
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 		sistemaController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
 	}
 	
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException, DadoInvalido {
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
 		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 }

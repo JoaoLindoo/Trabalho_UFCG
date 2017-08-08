@@ -1,12 +1,6 @@
 package main.repository;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import main.elementos.Emprestimo;
-import main.elementos.Item;
 import main.elementos.Usuario;
 
 
@@ -15,12 +9,10 @@ import main.elementos.Usuario;
  *
  */
 public class UsuarioRepository {
-	List<Usuario> usuarios;
-	List<Emprestimo> emprestimos;
+	private List<Usuario> usuarios;
 	
 	public UsuarioRepository() {
 		usuarios = new ArrayList<>();
-		emprestimos = new ArrayList<>();
 	}
 	/**
 	 * Adiciona um {@link Usuario} ao sistema
@@ -59,7 +51,7 @@ public class UsuarioRepository {
 	 * @param nome Nome do usuario
 	 * @param telefone Telefone do usuario
 	 * @param atributo Atributo que determina como vai ser a modificacao
-	 * @param valor Valor � a variavel que vai atualizar o usuario
+	 * @param valor Valor da variavel que vai atualizar o usuario
 	 */
 	public void editar(String nome,String telefone,String atributo,String valor){
 		if (atributo.equalsIgnoreCase("email")) {
@@ -67,50 +59,6 @@ public class UsuarioRepository {
 		}else {
 			recuperar(nome, telefone).setNumeroDoCelular(valor);
 		}		
-	}
-	/**
-	 * Metodo que registra o emprestimo 
-	 * @author Redson
-	 * @throws ParseException 
-	 */
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
-		Usuario dono = recuperar(nomeDono, telefoneDono);
-		Usuario requerente = recuperar(nomeRequerente, telefoneRequerente);
-		Item item = dono.recuperItem(nomeItem);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    Calendar data = Calendar.getInstance();     
-	    data.setTime(sdf.parse(dataEmprestimo));
-		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, data, periodo);
-		emprestimos.add(emprestimo);
-		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
-		item.setStatus(true);	
-	}
-	
-	/**
-	 * Metodo que aloca o item emprestado no usuario requerente
-	 * @author Redson
-	 */
-	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
-		recuperar(nomeRequerente, telefoneRequerente).aloca(item);
-	}
-	
-	public boolean devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
-		Usuario dono = recuperar(nomeDono, telefoneDono);
-		Usuario requerente = recuperar(nomeRequerente, telefoneRequerente);
-		Item item = dono.recuperItem(nomeItem);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	    Calendar data = Calendar.getInstance();     
-	    Calendar dataFinal = Calendar.getInstance();     
-	    data.setTime(sdf.parse(dataEmprestimo));
-	    dataFinal.setTime(sdf.parse(dataDevolucao));
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getUsuarioDono() == dono && emprestimo.getUsuarioRequerente() == requerente && emprestimo.getItemEmprestado() == item && emprestimo.getDataEmprestimo() == data && emprestimo.getDataDevolucao() == dataFinal) {
-				recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
-				item.setStatus(false);
-				return true;
-			}	
-		}
-		return false;
 	}
 	public List<Usuario> getUsuarios() {
 		return usuarios;
