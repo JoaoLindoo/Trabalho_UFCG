@@ -33,6 +33,17 @@ public class Show extends BluRay {
 	public Show(String nome, double valor, int duracao, int numeroFaixas, String artista, String classificacao)
 			throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
+
+		if (this.nomeDoArtista == null) {
+			throw new NullPointerException("Nome do artista nao pode ser nulo");
+		}
+		if (this.nomeDoArtista.equals("")) {
+			throw new IllegalArgumentException("Nome do artista invalido");
+		}
+		if (this.numeroFaixas <= 0) {
+			throw new IllegalArgumentException("Numero de faixas invalido");
+		}
+
 		this.nomeDoArtista = artista;
 		this.numeroFaixas = numeroFaixas;
 	}
@@ -43,7 +54,7 @@ public class Show extends BluRay {
 	@Override
 	public String toString() {
 		return "SHOW: " + this.getNome() + ", R$ " + this.valor + ", Nao emprestado, " + this.getDuracao() + " min, "
-				+ this.getClassificacao() + ", " +this.nomeDoArtista+", "+this.numeroFaixas+ " faixas";
+				+ this.getClassificacao() + ", " + this.nomeDoArtista + ", " + this.numeroFaixas + " faixas";
 	}
 
 }

@@ -10,17 +10,37 @@ import main.exception.DadoInvalido;
  *
  */
 public abstract class BluRay extends Item {
-
 	private String nome;
 	private int duracao;
 	private String classificacao;
 
 	/**
 	 * Construtor do BluRay
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	public BluRay(String nome, double valor, int duracao, String classificacao) throws DadoInvalido {
 		super(nome, valor);
+
+		if (this.nome == null) {
+			throw new NullPointerException("Nome nao pode ser nulo");
+		}
+		if (this.classificacao == null) {
+			throw new NullPointerException("Classificacao nao pode ser nulo");
+		}
+		if (this.nome.equals("")) {
+			throw new IllegalArgumentException("Nome invalido");
+		}
+		if (this.duracao <= 0) {
+			throw new IllegalArgumentException("Duracao invalida");
+		}
+		if (this.valor <= 0) {
+			throw new IllegalArgumentException("Valor invalido");
+		}
+		if (this.classificacao.equals("")) {
+			throw new IllegalArgumentException("Classificacao invalida");
+		}
+
 		this.nome = nome;
 		this.duracao = duracao;
 		this.classificacao = classificacao;
@@ -76,7 +96,7 @@ public abstract class BluRay extends Item {
 	}
 
 	/**
-	 * Metodo que indica se um bluray � ou n�o igual ao outros
+	 * Metodo que indica se um bluray eh ou nao igual ao outros
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -102,6 +122,10 @@ public abstract class BluRay extends Item {
 	public String toString() {
 		return nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
 	}
+
+	/**
+	 * Metodo que diicona um bluray na serie
+	 */
 	@Override
 	public void addBluray(int duracao) {
 	}
