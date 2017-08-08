@@ -22,6 +22,22 @@ public abstract class BluRay extends Item {
 	public BluRay(String nome, double valor, int duracao, String classificacao) throws DadoInvalido {
 		super(nome, valor);
 
+		if (nome == null) {
+			throw new NullPointerException("Nome nao pode ser nulo");
+		}
+		if (classificacao == null) {
+			throw new NullPointerException("Classificacao nao pode ser nulo");
+		}
+		if (nome.equals("")) {
+			throw new IllegalArgumentException("Nome invalido");
+		}
+		if (classificacao.equals("")) {
+			throw new IllegalArgumentException("Classificacao invalida");
+		}
+		if (duracao <= 0) {
+			throw new IllegalArgumentException("Duracao nao pode ser menor ou igual a zero");
+		}
+
 		this.nome = nome;
 		this.duracao = duracao;
 		this.classificacao = classificacao;
