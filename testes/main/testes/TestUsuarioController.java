@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.controller.SistemaController;
 import main.exception.DadoInvalido;
 import main.repository.UsuarioRepository;
-import main.usuario.UsuarioController;
 
 public class TestUsuarioController {
-	private UsuarioController controller;
+	private SistemaController controller;
 	private UsuarioRepository repositorio;
 	
 	@Before
 	public void testAdicionar() throws Exception {
-		controller = new UsuarioController();
+		controller = new SistemaController();
 		repositorio = new UsuarioRepository();
 		
 		controller.adicionar("Joao", "3322", "henrique@gmail.com");

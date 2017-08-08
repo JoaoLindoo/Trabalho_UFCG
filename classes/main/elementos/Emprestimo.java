@@ -2,8 +2,6 @@ package main.elementos;
 
 import java.util.Calendar;
 
-import main.usuario.Usuario;
-
 public class Emprestimo {
 	
 	private Usuario usuarioDono;

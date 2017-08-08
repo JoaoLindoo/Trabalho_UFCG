@@ -11,9 +11,9 @@ import java.util.Set;
 
 import main.elementos.Emprestimo;
 import main.elementos.Item;
+import main.elementos.Usuario;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
-import main.usuario.Usuario;
 
 /**
  * Classe responsavel pelo CRUD de {@link Usuario}
@@ -22,6 +22,7 @@ import main.usuario.Usuario;
 public class UsuarioRepository {
 	List<Usuario> usuarios;
 	List<Emprestimo> emprestimos;
+	
 	public UsuarioRepository() {
 		usuarios = new ArrayList<>();
 		emprestimos = new ArrayList<>();

@@ -1,17 +1,18 @@
-package main.usuario;
+package main.controller;
 
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.List;
 
 import main.elementos.Item;
+import main.elementos.Usuario;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
 
-public class UsuarioController {
+public class SistemaController {
 	private UsuarioRepository repository;
 	private Usuario usuario;
 	private static final String ATRIBUTO_EMAIL = "email";
@@ -22,7 +23,7 @@ public class UsuarioController {
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
 
-	public UsuarioController() {
+	public SistemaController() {
 		repository = new UsuarioRepository();
 	}
 

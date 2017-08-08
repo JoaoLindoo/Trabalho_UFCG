@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.elementos.Usuario;
 import main.repository.UsuarioRepository;
-import main.usuario.Usuario;
 
 public class TestUsuarioRepository {
 	private UsuarioRepository repositorio = new UsuarioRepository();

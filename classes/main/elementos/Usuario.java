@@ -1,11 +1,8 @@
-package main.usuario;
+package main.elementos;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import main.elementos.Item;
-import main.elementos.JogoDeTabuleiro;
-import main.elementos.JogoEletronico;
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
