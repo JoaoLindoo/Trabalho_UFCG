@@ -33,20 +33,7 @@ public class Filme extends BluRay {
 	public Filme(String nome, double valor, int duracao, String genero, String classificacao, String anoDeLancamento)
 			throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
-
-		if (this.genero == null) {
-			throw new NullPointerException("Genero nao pode ser nulo");
-		}
-		if (this.genero.equals("")) {
-			throw new IllegalArgumentException("Genero invalido");
-		}
-		if (this.anoDeLancamento == null) {
-			throw new NullPointerException("Ano de lancamento nao pode ser nulo");
-		}
-		if (this.anoDeLancamento.equals("")) {
-			throw new IllegalArgumentException("Ano de lancamento invalido");
-		}
-
+		
 		this.genero = genero;
 		this.anoDeLancamento = anoDeLancamento;
 	}

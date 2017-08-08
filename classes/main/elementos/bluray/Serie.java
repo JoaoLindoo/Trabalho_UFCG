@@ -41,23 +41,7 @@ public class Serie extends BluRay {
 	public Serie(String nome, double valor, String descricao, int duracao, String classificacao, String genero,
 			int temporada) throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
-
-		if (this.descricao == null) {
-			throw new NullPointerException("Descricao nao pode ser nula");
-		}
-		if (this.genero == null) {
-			throw new NullPointerException("Genero nao pode ser nulo");
-		}
-		if (this.descricao.equals("")) {
-			throw new IllegalArgumentException("Descricao invalida");
-		}
-		if (this.genero.equals("")) {
-			throw new IllegalArgumentException("Genero invalido");
-		}
-		if (this.numeroTemporada <= 0) {
-			throw new IllegalArgumentException("Numero da temporada nao pode ser menor ou igual a zero");
-		}
-
+		
 		this.episodios = new ArrayList<Integer>();
 		this.descricao = descricao;
 		this.genero = genero;

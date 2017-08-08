@@ -34,13 +34,13 @@ public class Show extends BluRay {
 			throws DadoInvalido {
 		super(nome, valor, duracao, classificacao);
 
-		if (this.nomeDoArtista == null) {
+		if (artista == null) {
 			throw new NullPointerException("Nome do artista nao pode ser nulo");
 		}
-		if (this.nomeDoArtista.equals("")) {
+		if (artista.equals("")) {
 			throw new IllegalArgumentException("Nome do artista invalido");
 		}
-		if (this.numeroFaixas <= 0) {
+		if (numeroFaixas <= 0) {
 			throw new IllegalArgumentException("Numero de faixas invalido");
 		}
 
