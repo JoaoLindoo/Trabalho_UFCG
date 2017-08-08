@@ -4,16 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-
 import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
-import main.elementos.ordenacao.ItemOrdenacaoDescricao;
-import main.elementos.ordenacao.ItemOrdenacaoValor;
+
 
 /**
  * Classe responsavel pelo CRUD de {@link Usuario}
@@ -71,24 +66,8 @@ public class UsuarioRepository {
 			recuperar(nome, telefone).setEmail(valor);
 		}else {
 			recuperar(nome, telefone).setNumeroDoCelular(valor);
-		}
-		
+		}		
 	}
-	/**
-	 * Metodo queretorna a lista dos itens de todos os usuários.
-	 * @return uma List de objetos itens
-	 */
-	public List<Item> listaTotalItens(){
-		List<Item> listaItens = new ArrayList<Item>();
-		for (Usuario usuario : usuarios) {
-			Set<Item> listaItenUser = usuario.getListaItens();
-			for (Item item : listaItenUser) {
-				listaItens.add(item);
-			}
-		}
-		return listaItens;
-	}
-	
 	/**
 	 * Metodo que registra o emprestimo 
 	 * @author Redson

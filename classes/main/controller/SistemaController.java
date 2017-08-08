@@ -1,8 +1,10 @@
 package main.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import main.elementos.Item;
 import main.elementos.Usuario;
@@ -271,7 +273,7 @@ public class SistemaController {
 	 * @return
 	 */
 	public String listarItensOrdenadosPorNome() {
-		List<Item> listaItens = repository.listaTotalItens();
+		List<Item> listaItens = listaTotalItens();
 		Collections.sort(listaItens, new ItemOrdenacaoDescricao());
 		String listaDescricaoItens = "";
 		for (Item item : listaItens) {
@@ -284,12 +286,23 @@ public class SistemaController {
 	 * @return
 	 */
 	public String ordenacaoItensValor() {
-		List<Item> listaItens = repository.listaTotalItens();
+		List<Item> listaItens = listaTotalItens();
 		Collections.sort(listaItens, new ItemOrdenacaoValor());
 		String listaDescricaoItens = "";
 		for (Item item : listaItens) {
 			listaDescricaoItens += item.toString() + "|";
 		}
 		return listaDescricaoItens;
+	}
+	
+	public List<Item> listaTotalItens(){
+		List<Item> listaItens = new ArrayList<Item>();
+		for (Usuario usuario : repository.getUsuarios()) {
+			Set<Item> listaItenUser = usuario.getListaItens();
+			for (Item item : listaItenUser) {
+				listaItens.add(item);
+			}
+		}
+		return listaItens;
 	}
 }
