@@ -13,10 +13,10 @@ import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
 
 public class SistemaController {
+	
 	private UsuarioRepository repository;
 	private Usuario usuario;
 	private static final String ATRIBUTO_EMAIL = "email";
-	private static final String ATRIBUTO_TELEFONE = "telefone";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private static final String USUARIO_CASASTRADO = "Usuario ja cadastrado";
 	private static final String ITEM_JA_EMPRESTADO = "Item emprestado no momento";

@@ -39,7 +39,7 @@ public class Usuario {
 	 *            numero do celular do usuario
 	 */
 	public Usuario(String nome, String email, String numeroDoCelular) throws Exception{
-		if (nome.trim().equals("")) {
+		if (nome.trim().equals("") || email.trim().equals("") || numeroDoCelular.trim().equals("")) {
 			throw new DadoInvalido("Dado invalido");
 		}
 		this.nome = nome;
