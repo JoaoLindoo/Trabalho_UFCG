@@ -1,19 +1,15 @@
 /**
- * Classe teste que realizar testes da classe ItemOrdenacaoDescricao. Verificar se os itens são ordenados
- * em ordem alfabetica.
- * @author Matheus Thiago
+ * Classe Teste que realizar teste da classe ItemOrdenacaoValor. Realizar teste se os itens são ordenados
+ * de acordo com o valor
  */
-package main.testes;
+package main.testes.elementos;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-/**
- * Classe Teste que testa a Classe ItemOrdenacaoDescrição.
- * @author Matheus Thiago.
- */
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,10 +19,11 @@ import main.elementos.JogoEletronico;
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
-import main.elementos.ordenacao.ItemOrdenacaoDescricao;
+import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 
-public class ItemOrdenacaoDescricaoTest {
+public class ItemOrdenacaoValorTest {
+
 
 	Item item1;
 	Item item2;
@@ -51,18 +48,19 @@ public class ItemOrdenacaoDescricaoTest {
 		this.lista.add(item5);
 	}
 	/** 
-	 * Teste para verificar se os itens estão sendo ordenado por ordem alfabetica.
+	 * Teste para verificar se os itens estão sendo ordenado por ordem de valor. Do menor valor para
+	 * o maior valor.
 	 */
 	@Test
-	public void testOrdenacaoDescricao() {
+	public void testOrdenacaoValor() {
 		
-		Collections.sort(this.lista, new ItemOrdenacaoDescricao());
+		Collections.sort(this.lista, new ItemOrdenacaoValor());
 		String listaString = "";
 		
 		for (Item item : lista) {
-			listaString += item.getNome() + " - ";
+			listaString += item.getNome() + " " + item.getValor() + " - ";
 		}
-		assertEquals("A Show - Pessoas - Rei Leao - xadrez - zelda - ", listaString);
+		assertEquals("A Show 14.22 - zelda 25.0 - xadrez 36.0 - Rei Leao 50.0 - Pessoas 56.0 - ", listaString);
 	}
 
 }
