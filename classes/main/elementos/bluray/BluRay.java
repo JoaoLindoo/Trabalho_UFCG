@@ -4,7 +4,7 @@ import main.elementos.Item;
 import main.exception.DadoInvalido;
 
 /**
- * Classe que representa um bluray
+ * Classe que representa um BluRay
  * 
  * @author Giovana Brito Oliveira - 116110904
  *

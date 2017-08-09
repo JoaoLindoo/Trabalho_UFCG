@@ -15,6 +15,12 @@ import main.exception.OperacaoNaoPermitida;
 import main.repository.EmprestimoRepository;
 import main.repository.UsuarioRepository;
 
+/**
+ * Classe que representa controla o sistema
+ * 
+ * @author Joao Henrique
+ *
+ */
 public class SistemaController {
 
 	private UsuarioRepository repository;
@@ -94,6 +100,19 @@ public class SistemaController {
 		repository.remover(nome, telefone);
 	}
 
+	/**
+	 * Memtodo que atualiza um usuario
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param atributo
+	 *            atributo a ser atualizado
+	 * @param valor
+	 *            novo valor do atributo
+	 * @throws Exception
+	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -115,6 +134,21 @@ public class SistemaController {
 		return recuperar(nome, telefone);
 	}
 
+	/**
+	 * Cadastra um jogo eletronico
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param preco
+	 *            preco do item
+	 * @param plataforma
+	 *            plataforma do jogo
+	 * @throws Exception
+	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
 		repository.recuperar(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
@@ -273,10 +307,34 @@ public class SistemaController {
 				classificacao);
 	}
 
+	/**
+	 * Metodo que adiciona um episodio numa serie
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param duracao
+	 *            duracao do episodio
+	 * @throws DadoInvalido
+	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws DadoInvalido {
 		repository.recuperar(nome, telefone).adicionarBluRay(nomeItem, duracao);
 	}
 
+	/**
+	 * Metodo que remove um item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @throws Exception
+	 */
 	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -286,6 +344,21 @@ public class SistemaController {
 		repository.recuperar(nome, telefone).removerItem(nomeItem);
 	}
 
+	/**
+	 * Metodo que atualiza um item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param atributo
+	 *            atributo a ser atualizado
+	 * @param valor
+	 *            novo valor do atributo
+	 * @throws Exception
+	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor)
 			throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
@@ -297,6 +370,18 @@ public class SistemaController {
 
 	}
 
+	/**
+	 * Metodo que pesquisa detalhes do item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @return retorna a toString do item
+	 * @throws Exception
+	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
 		if (repository.recuperar(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -306,6 +391,25 @@ public class SistemaController {
 		return repository.recuperar(nome, telefone).recuperItem(nomeItem).toString();
 	}
 
+	/**
+	 * Metodo que registra um emprestimo
+	 * 
+	 * @param nomeDono
+	 *            nome do dono
+	 * @param telefoneDono
+	 *            telefone do dono
+	 * @param nomeRequerente
+	 *            nome do requerente
+	 * @param telefoneRequerente
+	 *            telefone do requerente
+	 * @param nomeItem
+	 *            nome do item
+	 * @param dataEmprestimo
+	 *            data do emprestimo
+	 * @param periodo
+	 *            periodo
+	 * @throws Exception
+	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 		if (repository.recuperar(nomeDono, telefoneDono) == null
@@ -326,10 +430,39 @@ public class SistemaController {
 
 	}
 
+	/**
+	 * Metodo que aloca um item emprestado
+	 * 
+	 * @param nomeRequerente
+	 *            nome do requerente
+	 * @param telefoneRequerente
+	 *            telefone do requerente
+	 * @param item
+	 *            nome do item
+	 */
 	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
 		repository.recuperar(nomeRequerente, telefoneRequerente).aloca(item);
 	}
 
+	/**
+	 * Metodo que devolve um item para o seu dono
+	 * 
+	 * @param nomeDono
+	 *            nome do dono
+	 * @param telefoneDono
+	 *            telefone do dono
+	 * @param nomeRequerente
+	 *            nome do requerente
+	 * @param telefoneRequerente
+	 *            telefone do requerente
+	 * @param nomeItem
+	 *            nome do item
+	 * @param dataEmprestimo
+	 *            data do emprestimo
+	 * @param dataDevolucao
+	 *            data da devolucao
+	 * @throws Exception
+	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
 		if (repository.recuperar(nomeDono, telefoneDono) == null
@@ -378,6 +511,11 @@ public class SistemaController {
 		return listaDescricaoItens;
 	}
 
+	/**
+	 * Metodo que lista o total de itens
+	 * 
+	 * @return lista com total de itens
+	 */
 	public List<Item> listaTotalItens() {
 		List<Item> listaItens = new ArrayList<Item>();
 		for (Usuario usuario : repository.getUsuarios()) {

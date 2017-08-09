@@ -315,7 +315,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Método que lista todos os objetos em ordem alfabetica.
+	 * Metodo que lista todos os objetos em ordem alfabetica.
 	 * 
 	 * @return uma lista em String de itens
 	 */
@@ -324,7 +324,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Método que lista todos os objetos em ordem de valor.
+	 * Metodo que lista todos os objetos em ordem de valor.
 	 * 
 	 * @return uma lista em String de itens
 	 */
@@ -333,7 +333,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Método que pesquisa o item com a descrição completa.
+	 * Metodo que pesquisa o item com a descrição completa.
 	 * 
 	 * @param nome
 	 *            em String

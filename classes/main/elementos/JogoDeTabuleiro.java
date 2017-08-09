@@ -4,31 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.exception.DadoInvalido;
+
 /**
  * @author Redson
  *
- * Classe que representa um Jogo De Tabuleiro
+ *         Classe que representa um Jogo De Tabuleiro
  */
 public class JogoDeTabuleiro extends Item {
-	
+
 	private List<String> listaDePecasPerdidas;
-	
+
 	/**
 	 * Construto do Jogo De Tabuleiro
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	public JogoDeTabuleiro(String nome, double valor) throws DadoInvalido {
 		super(nome, valor);
-		if (valor <= 0) 
+		if (valor <= 0)
 			throw new DadoInvalido("Preco invalido");
 		if (nome.trim().equals("") || nome == null)
 			throw new DadoInvalido("Nome invalido");
 		this.listaDePecasPerdidas = new ArrayList<>();
 	}
-	
+
 	/**
-	 * Metodo que retorna uma String a partir do tamanho da listaDePecasPerdidas do Jogo De Tabuleiro
+	 * Metodo que retorna uma String a partir do tamanho da listaDePecasPerdidas
+	 * do Jogo De Tabuleiro
 	 * 
 	 */
 	public String estadoPecas() {
@@ -37,7 +40,7 @@ public class JogoDeTabuleiro extends Item {
 		else
 			return "COMPLETO";
 	}
-	
+
 	/**
 	 * Metodo que retorna a listaDePecasPerdidas do Jogo De Tabuleiro
 	 * 
@@ -45,15 +48,18 @@ public class JogoDeTabuleiro extends Item {
 	public List<String> getListaDePecasPerdidas() {
 		return listaDePecasPerdidas;
 	}
-	
+
 	/**
-	 * Metodo que altera a listaDePecasPerdidas do Jogo De Tabuleiro 
+	 * Metodo que altera a listaDePecasPerdidas do Jogo De Tabuleiro
 	 *
 	 */
 	public void setListaDePecasPerdidas(List<String> listaDePecasPerdidas) {
 		this.listaDePecasPerdidas = listaDePecasPerdidas;
 	}
 
+	/**
+	 * Metodo que retorna uma representacao inteira do objeto
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,6 +69,9 @@ public class JogoDeTabuleiro extends Item {
 		return result;
 	}
 
+	/**
+	 * Metodo que indica se um jogo de tabuleiro eh ou nao igual ao outro
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,18 +93,21 @@ public class JogoDeTabuleiro extends Item {
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * Metodo que retorna uma String que representa o Jogo De Tabuleiro
 	 * 
 	 */
 	@Override
 	public String toString() {
-		return "JOGO DE TABULEIRO: " + nome + ", R$ " + valor+ ", " + this.estado() + ", " + this.estadoPecas();
+		return "JOGO DE TABULEIRO: " + nome + ", R$ " + valor + ", " + this.estado() + ", " + this.estadoPecas();
 	}
+
 	/**
-	 * Método que adiciona peca pertida ao ArrayList.
-	 * @param nome em String da peca perdida
+	 * Metodo que adiciona peca pertida ao ArrayList.
+	 * 
+	 * @param nome
+	 *            em String da peca perdida
 	 */
 	public void adicionarPecaPerdida(String nome) {
 		this.listaDePecasPerdidas.add(nome);

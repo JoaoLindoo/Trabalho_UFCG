@@ -39,9 +39,11 @@ public class Usuario {
 	 *            numero do celular do usuario
 	 */
 	public Usuario(String nome, String email, String numeroDoCelular) throws Exception {
+
 		if (nome.trim().equals("") || email.trim().equals("") || numeroDoCelular.trim().equals("")) {
 			throw new DadoInvalido("Dado invalido");
 		}
+
 		this.nome = nome;
 		this.email = email;
 		this.numeroDoCelular = numeroDoCelular;
@@ -306,6 +308,13 @@ public class Usuario {
 		return "";
 	}
 
+	/**
+	 * Metodo que recupera um item
+	 * 
+	 * @param nomeItem
+	 *            nome do item
+	 * @return retorna o item solicitado
+	 */
 	public Item recuperItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem)) {
@@ -328,15 +337,35 @@ public class Usuario {
 		recuperItem(nomeItem).addBluray(duracao);
 	}
 
+	/**
+	 * Metodo que envia a lista de itens
+	 * 
+	 * @return lista de itens
+	 */
 	public Set<Item> getListaItens() {
 		return listaItens;
 	}
 
+	/**
+	 * Metodo que adiciona uma peca perdida
+	 * 
+	 * @param nomeItem
+	 *            nome do item
+	 * @param nomePeca
+	 *            nome da peca perdida
+	 */
 	public void adicionarPecaperdida(String nomeItem, String nomePeca) {
 		JogoDeTabuleiro itenTabuleiro = (JogoDeTabuleiro) this.recuperItem(nomeItem);
 		itenTabuleiro.adicionarPecaPerdida(nomePeca);
 	}
 
+	/**
+	 * Metodo que retorna o toString de um item
+	 * 
+	 * @param nomeItem
+	 *            nome do item
+	 * @return retorna o toString do item solicitado
+	 */
 	public String detalheTotalItem(String nomeItem) {
 		return this.recuperItem(nomeItem).toString();
 	}
@@ -348,6 +377,13 @@ public class Usuario {
 		listaItensPegos.add(item);
 	}
 
+	/**
+	 * Metodo que confere se um item ja esta presente na lista de itens pegos
+	 * 
+	 * @param nomeItem
+	 *            nome do item solicitadoF
+	 * @return retorna um booleano indicando se o item ja esta ou nao alocado
+	 */
 	public boolean recuperaAlocados(String nomeItem) {
 		for (Item item : listaItensPegos) {
 			if (nomeItem.equalsIgnoreCase(item.getNome())) {
@@ -357,6 +393,13 @@ public class Usuario {
 		return false;
 	}
 
+	/**
+	 * Metodo que remove um item emprestado
+	 * 
+	 * @param nomeItem
+	 *            nome do item solicitado
+	 * @return retorna um booleano indicando se o item foi ou nao removido
+	 */
 	public boolean removerItemEmprestado(String nomeItem) {
 		for (Item item : listaItensPegos) {
 			if (item.getNome().equalsIgnoreCase(nomeItem)) {
@@ -367,12 +410,23 @@ public class Usuario {
 		return false;
 	}
 
+	//Talvez seja melhor apagar esse metodo(Gio)
+	/**
+	 * Metodo que retorna a lista de itens pegos
+	 * 
+	 * @return retorna a lista de itens pegos
+	 */
 	public Set<Item> getListaItensPegos() {
 		return listaItensPegos;
 	}
 
+	//Acho melhor apagar esse tbm(gio)
+	/**
+	 * Metodo que atualiza a lista de itens pegos
+	 * 
+	 * @param listaItensPegos
+	 */
 	public void setListaItensPegos(Set<Item> listaItensPegos) {
 		this.listaItensPegos = listaItensPegos;
 	}
-
 }

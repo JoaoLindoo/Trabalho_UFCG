@@ -5,20 +5,21 @@ import main.exception.DadoInvalido;
 /**
  * @author Redson
  *
- * Classe que representa um Jogo Eletronico
+ *         Classe que representa um Jogo Eletronico
  */
 public class JogoEletronico extends Item {
-	
+
 	private String plataforma;
-	
+
 	/**
 	 * Construtor do Jogo Eletronico
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 * 
 	 */
 	public JogoEletronico(String nome, double valor, String plataforma) throws DadoInvalido {
 		super(nome, valor);
-		if (valor <= 0) 
+		if (valor <= 0)
 			throw new DadoInvalido("Preco invalido");
 		if (nome.trim().equals("") || nome == null)
 			throw new DadoInvalido("Nome invalido");
@@ -26,7 +27,7 @@ public class JogoEletronico extends Item {
 			throw new DadoInvalido("plataforma invalida");
 		this.plataforma = plataforma;
 	}
-	
+
 	/**
 	 * Metodo que retorna a Plataforma do Jogo Eletronico
 	 * 
@@ -34,7 +35,7 @@ public class JogoEletronico extends Item {
 	public String getPlataforma() {
 		return plataforma;
 	}
-	
+
 	/**
 	 * Metodo que altera a Plataforma do Jogo Eletronico
 	 * 
@@ -43,6 +44,9 @@ public class JogoEletronico extends Item {
 		this.plataforma = plataforma;
 	}
 
+	/**
+	 * Metodo que retorna uma represenacao inteira do jogo eletronico
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,6 +56,9 @@ public class JogoEletronico extends Item {
 		return result;
 	}
 
+	/**
+	 * Metodo que indica se um jogo eletronico eh ou nao igua ao outro
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,5 +86,5 @@ public class JogoEletronico extends Item {
 	public String toString() {
 		return "JOGO ELETRONICO: " + nome + ", R$ " + valor + ", " + this.estado() + ", " + plataforma;
 	}
-	
+
 }
