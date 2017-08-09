@@ -53,8 +53,8 @@ public class Show extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return "SHOW: " + this.getNome() + ", R$ " + this.valor + ", Nao emprestado, " + this.getDuracao() + " min, "
-				+ this.getClassificacao() + ", " + this.nomeDoArtista + ", " + this.numeroFaixas + " faixas";
+		return "SHOW: " + this.getNome() + ", R$ " + this.valor + ", " + this.estado() + ", " + this.getDuracao()
+				+ " min, " + this.getClassificacao() + ", " + this.nomeDoArtista + ", " + this.numeroFaixas + " faixas";
 	}
 
 }

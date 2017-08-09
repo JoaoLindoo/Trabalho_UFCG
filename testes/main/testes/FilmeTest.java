@@ -7,6 +7,12 @@ import org.junit.Test;
 import main.elementos.bluray.Filme;
 import main.exception.DadoInvalido;
 
+/**
+ * Classe de teste da classe Filme
+ * 
+ * @author Giovana Brito Oliveira - 116110904
+ *
+ */
 public class FilmeTest {
 
 	/**

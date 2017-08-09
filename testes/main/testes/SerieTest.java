@@ -7,6 +7,12 @@ import org.junit.Test;
 import main.elementos.bluray.Serie;
 import main.exception.DadoInvalido;
 
+/**
+ * Classe de testa da classe Serie
+ * 
+ * @author Giovana Brito Oliveira - 116110904
+ *
+ */
 public class SerieTest {
 
 	/**
