@@ -1,4 +1,4 @@
-package main.testes;
+package main.testes.elementos;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
