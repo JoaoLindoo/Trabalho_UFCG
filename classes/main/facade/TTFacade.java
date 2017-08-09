@@ -12,12 +12,13 @@ import main.exception.DadoInvalido;
  */
 public class TTFacade {
 	private SistemaController sistemaController;
+
 	/**
 	 * Contrutor da facade
 	 */
 	public TTFacade() {
 		sistemaController = new SistemaController();
-		
+
 	}
 
 	/**
@@ -27,7 +28,8 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt", "us/us4_test.txt" };
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt",
+				"us/us4_test.txt" };
 		EasyAccept.main(args);
 
 	}
@@ -271,8 +273,9 @@ public class TTFacade {
 	 *            nome do item
 	 * @param duracao
 	 *            duracao do episodio
+	 * @throws DadoInvalido
 	 */
-	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) {
+	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws DadoInvalido {
 		sistemaController.adicionarBluRay(nome, telefone, nomeItem, duracao);
 	}
 
@@ -310,40 +313,50 @@ public class TTFacade {
 			throws Exception {
 		sistemaController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
-	
+
 	/**
 	 * Método que lista todos os objetos em ordem alfabetica.
+	 * 
 	 * @return uma lista em String de itens
 	 */
 	public String listarItensOrdenadosPorNome() {
 		return this.sistemaController.listarItensOrdenadosPorNome();
 	}
-	
+
 	/**
 	 * Método que lista todos os objetos em ordem de valor.
+	 * 
 	 * @return uma lista em String de itens
 	 */
 	public String listarItensOrdenadosPorValor() {
 		return this.sistemaController.ordenacaoItensValor();
 	}
-	
+
 	/**
 	 * Método que pesquisa o item com a descrição completa.
-	 * @param nome em String
-	 * @param telefone em String
-	 * @param nomeItem em String
+	 * 
+	 * @param nome
+	 *            em String
+	 * @param telefone
+	 *            em String
+	 * @param nomeItem
+	 *            em String
 	 * @return a descrição do item em string
 	 * @throws Exception
 	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
 		return this.sistemaController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
-	
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
-		sistemaController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
+		sistemaController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
+				dataEmprestimo, periodo);
 	}
-	
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
-		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
+			String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
+		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
+				dataEmprestimo, dataDevolucao);
 	}
 }

@@ -69,9 +69,13 @@ public class Serie extends BluRay {
 	 * 
 	 * @param duracao
 	 *            duracao do episodio
+	 * @throws DadoInvalido
 	 */
 	@Override
-	public void addBluray(int duracao) {
+	public void addBluray(int duracao) throws DadoInvalido {
+		if (duracao <= 0) {
+			throw new DadoInvalido("Duracao invalida");
+		}
 		this.episodios.add(duracao);
 	}
 
@@ -127,7 +131,7 @@ public class Serie extends BluRay {
 	 */
 	@Override
 	public String toString() {
-		return "SERIE: " + this.getNome() + ", R$ " + this.valor + ", " + "Nao emprestado, " + this.getDuracaoTotal()
+		return "SERIE: " + this.getNome() + ", R$ " + this.valor + ", " + this.estado() + ", " + this.getDuracaoTotal()
 				+ " min, " + this.getClassificacao() + ", " + this.genero + ", Temporada " + this.numeroTemporada;
 	}
 

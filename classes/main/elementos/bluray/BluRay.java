@@ -122,11 +122,4 @@ public abstract class BluRay extends Item {
 	public String toString() {
 		return nome + ", duracao: " + duracao + ", classificacao: " + classificacao;
 	}
-
-	/**
-	 * Metodo que dicicona um bluray na serie
-	 */
-	@Override
-	public void addBluray(int duracao) {
-	}
 }

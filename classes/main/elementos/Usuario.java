@@ -38,7 +38,7 @@ public class Usuario {
 	 * @param numeroDoCelular
 	 *            numero do celular do usuario
 	 */
-	public Usuario(String nome, String email, String numeroDoCelular) throws Exception{
+	public Usuario(String nome, String email, String numeroDoCelular) throws Exception {
 		if (nome.trim().equals("") || email.trim().equals("") || numeroDoCelular.trim().equals("")) {
 			throw new DadoInvalido("Dado invalido");
 		}
@@ -269,10 +269,10 @@ public class Usuario {
 	 * @param nomeMudar
 	 *            novo nome do item
 	 */
-	public void atualizarItem(String nomeItem,String atributo, String valor) {
+	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		if (atributo.equalsIgnoreCase("nome")) {
 			recuperItem(nomeItem).setNome(valor);
-		}else if (atributo.equalsIgnoreCase("preco")) {
+		} else if (atributo.equalsIgnoreCase("preco")) {
 			double valorDouble = Double.parseDouble(valor);
 			recuperItem(nomeItem).setValor(valorDouble);
 		}
@@ -305,8 +305,8 @@ public class Usuario {
 		}
 		return "";
 	}
-	
-	public Item recuperItem(String nomeItem){
+
+	public Item recuperItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem)) {
 				return item;
@@ -314,28 +314,40 @@ public class Usuario {
 		}
 		return null;
 	}
-	public void adicionarBluRay(String nomeItem, int duracao){
+
+	/**
+	 * Metodo que adiciona um bluray numa serie
+	 * 
+	 * @param nomeItem
+	 *            nome do item
+	 * @param duracao
+	 *            duracao do item
+	 * @throws DadoInvalido
+	 */
+	public void adicionarBluRay(String nomeItem, int duracao) throws DadoInvalido {
 		recuperItem(nomeItem).addBluray(duracao);
 	}
 
 	public Set<Item> getListaItens() {
 		return listaItens;
 	}
-	
+
 	public void adicionarPecaperdida(String nomeItem, String nomePeca) {
 		JogoDeTabuleiro itenTabuleiro = (JogoDeTabuleiro) this.recuperItem(nomeItem);
 		itenTabuleiro.adicionarPecaPerdida(nomePeca);
 	}
+
 	public String detalheTotalItem(String nomeItem) {
 		return this.recuperItem(nomeItem).toString();
 	}
-	
+
 	/**
 	 * aloca o item na lista de itens pegos
 	 */
 	public void aloca(Item item) {
 		listaItensPegos.add(item);
 	}
+
 	public boolean recuperaAlocados(String nomeItem) {
 		for (Item item : listaItensPegos) {
 			if (nomeItem.equalsIgnoreCase(item.getNome())) {
@@ -344,6 +356,7 @@ public class Usuario {
 		}
 		return false;
 	}
+
 	public boolean removerItemEmprestado(String nomeItem) {
 		for (Item item : listaItensPegos) {
 			if (item.getNome().equalsIgnoreCase(nomeItem)) {
@@ -361,5 +374,5 @@ public class Usuario {
 	public void setListaItensPegos(Set<Item> listaItensPegos) {
 		this.listaItensPegos = listaItensPegos;
 	}
-	
+
 }
