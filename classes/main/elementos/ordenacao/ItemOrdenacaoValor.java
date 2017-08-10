@@ -11,6 +11,10 @@ import main.elementos.Item;
  */
 public class ItemOrdenacaoValor implements Comparator<Item> {
 
+	/**
+	 * metodo que recebe dois objetos itens como parametro e retorna qual vem primeiro de acordo com
+	 * que tem maior valor.
+	 */
 	@Override
 	public int compare(Item o1, Item o2) {
 		if (o1.getValor() < o2.getValor())

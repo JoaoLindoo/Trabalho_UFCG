@@ -9,7 +9,7 @@ import main.controller.SistemaController;
 import main.exception.DadoInvalido;
 
 /**
- * Essa Classe é responsável por testar as exceções da Classe SistemaController.
+ * Essa Classe e responsavel por testar as excecoes da Classe SistemaController.
  * 
  * @author Matheus Thiago
  */
@@ -18,7 +18,7 @@ public class SistemaControllerTest {
 	SistemaController sistema;
 
 	/**
-	 * Metodo que eh executado antes de todos os outros
+	 * Metodo que e executado antes de todos os outros
 	 * 
 	 * @throws Exception
 	 */
@@ -33,12 +33,12 @@ public class SistemaControllerTest {
 	}
 
 	/**
-	 * Testa o metodo adicionar() de sistemaController
+	 * Testa o metodo adicionar da classe sistemaController
 	 */
 	@Test
 	public void testAdicionar() {
 
-		// Teste para usuário já existente.
+		// Teste para usuario ja existente.
 		try {
 			sistema.adicionar("Thiago", "8888", "Thiago@gmail.com");
 
@@ -46,7 +46,7 @@ public class SistemaControllerTest {
 			assertEquals("main.exception.OperacaoNaoPermitida: Usuario ja cadastrado", e.toString());
 		}
 
-		// Teste para usuário com nome vazio.
+		// Teste para usuario com nome vazio.
 		try {
 			sistema.adicionar("", "8888", "Thiago@gmail.com");
 
@@ -62,15 +62,15 @@ public class SistemaControllerTest {
 	@Test
 	public void testGetInfoUsuario() {
 
-		// Teste para procurar usuário que não existe.
+		// Teste para procurar usuario que nao existe.
 		try {
 			sistema.getInfoUsuario("Maria", "333", "valor");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Usuario invalido", e.toString());
 		}
 
-		// * Teste para procurar usuário que não existe. Número de telefone não
-		// compatível com o usuário.
+		// * Teste para procurar usuario que nao existe. Numero de telefone nao
+		// compativel com o usuario.
 		try {
 			sistema.getInfoUsuario("Thiago", "333", "valor");
 		} catch (Exception e) {
@@ -79,7 +79,7 @@ public class SistemaControllerTest {
 	}
 
 	/**
-	 * Teste para remover usuário. Usuário não está cadastrado.
+	 * Teste para remover usuario. Usuario nao esta cadastrado.
 	 */
 	@Test
 	public void testRemoverUsuario() {
@@ -91,7 +91,7 @@ public class SistemaControllerTest {
 	}
 
 	/**
-	 * Teste para Atualizar Usuário. Usuário não está cadastrado.
+	 * Teste para Atualizar Usuario. Usuario nao esta cadastrado.
 	 */
 	@Test
 	public void testAtualizarUsuario() {
@@ -124,7 +124,7 @@ public class SistemaControllerTest {
 	}
 
 	/**
-	 * Teste para buscar item que não está cadastrado no usuário.
+	 * Teste para buscar item que nao esta cadastrado no usuario.
 	 */
 	@Test
 	public void testGetInfoItem() {
@@ -176,28 +176,28 @@ public class SistemaControllerTest {
 			assertEquals("main.exception.DadoInvalido: Valor invalido", e.toString());
 		}
 
-		// Teste para cadastrar serie com descrição vazia.
+		// Teste para cadastrar serie com descricao vazia.
 		try {
 			sistema.cadastrarBluRaySerie("Thiago", "8888", "Serie", 10, "", 120, "+10", "aventura", 2);
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Descricao invalida", e.toString());
 		}
 
-		// Teste para cadastrar serie com duração menor que zero.
+		// Teste para cadastrar serie com duracao menor que zero.
 		try {
 			sistema.cadastrarBluRaySerie("Thiago", "8888", "Serie", 10, "Qalquer", 0, "+10", "aventura", 2);
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Duracao nao pode ser menor ou igual a zero", e.toString());
 		}
 
-		// Teste para cadastrar serie com classificação vazia.
+		// Teste para cadastrar serie com classificacao vazia.
 		try {
 			sistema.cadastrarBluRaySerie("Thiago", "8888", "Serie", 10, "Qualquer", 120, "", "aventura", 2);
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Classificacao invalida", e.toString());
 		}
 
-		// Teste para cadastrar serie com gênero vazio.
+		// Teste para cadastrar serie com genero vazio.
 		try {
 			sistema.cadastrarBluRaySerie("Thiago", "8888", "Serie", 10, "Qualquer", 120, "+10", "", 2);
 		} catch (Exception e) {
@@ -240,14 +240,14 @@ public class SistemaControllerTest {
 			assertEquals("main.exception.DadoInvalido: Duracao nao pode ser menor ou igual a zero", e.toString());
 		}
 
-		// Teste para Filme com gênero vazio.
+		// Teste para Filme com genero vazio.
 		try {
 			sistema.cadastrarBluRayFilme("Thiago", "8888", "Leao", 10, 10, "", "+10", "10/12/15");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Genero invalido", e.toString());
 		}
 
-		// Teste para Filme com classificação vazia.
+		// Teste para Filme com classificacao vazia.
 		try {
 			sistema.cadastrarBluRayFilme("Thiago", "8888", "Leao", 10, 10, "Aventura", "", "10/12/15");
 		} catch (Exception e) {
@@ -282,7 +282,7 @@ public class SistemaControllerTest {
 			assertEquals("main.exception.DadoInvalido: Valor invalido", e.toString());
 		}
 
-		// teste para show com duração menor que zero.
+		// teste para show com duracao menor que zero.
 		try {
 			sistema.cadastrarBluRayShow("Thiago", "8888", "Show", 10, -120, 10, "jose", "+10");
 		} catch (Exception e) {
@@ -302,7 +302,7 @@ public class SistemaControllerTest {
 			assertEquals("main.exception.DadoInvalido: Nome do artista invalido", e.toString());
 		}
 
-		// teste para show com classificação vazia.
+		// teste para show com classificacao vazia.
 		try {
 			sistema.cadastrarBluRayShow("Thiago", "8888", "Show", 10, 120, 10, "Jose", "");
 		} catch (Exception e) {
@@ -316,14 +316,14 @@ public class SistemaControllerTest {
 	@Test
 	public void testRemoverItem() {
 
-		// teste para remover item que não está cadastrado.
+		// teste para remover item que nao esta cadastrado.
 		try {
 			sistema.removerItem("Thiago", "8888", "Dama");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Item nao encontrado", e.toString());
 		}
 
-		// teste para remover item de usuário que não está cadastrado.
+		// teste para remover item de usuario que nao esta cadastrado.
 		try {
 			sistema.removerItem("Maria", "8888", "Xadrez");
 		} catch (Exception e) {
@@ -337,14 +337,14 @@ public class SistemaControllerTest {
 	@Test
 	public void testAtualizarItem() {
 
-		// teste para atualizar item não cadastrado.
+		// teste para atualizar item nao cadastrado.
 		try {
 			sistema.atualizarItem("Thiago", "8888", "Dama", "valor", "88");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Item nao encontrado", e.toString());
 		}
 
-		// teste para atualizar item de usuário não cadastrado.
+		// teste para atualizar item de usuario nao cadastrado.
 		try {
 			sistema.atualizarItem("Maria", "8888", "Dama", "valor", "88");
 		} catch (Exception e) {
@@ -358,14 +358,14 @@ public class SistemaControllerTest {
 	@Test
 	public void testPesquisarDetalhesItem() {
 
-		// teste para procurar item de usuário não cadastrado.
+		// teste para procurar item de usuario nao cadastrado.
 		try {
 			sistema.pesquisarDetalhesItem("Maria", "8888", "Xadrez");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Usuario invalido", e.toString());
 		}
 
-		// teste para procurar item de usuário não cadastrado.
+		// teste para procurar item de usuario nao cadastrado.
 		try {
 			sistema.pesquisarDetalhesItem("Thiago", "8888", "Dama");
 		} catch (Exception e) {
@@ -379,21 +379,21 @@ public class SistemaControllerTest {
 	@Test
 	public void testRegistrarEmprestimo() {
 
-		// teste para emprestimo de item de usuário não cadastrado.
+		// teste para emprestimo de item de usuário nao cadastrado.
 		try {
 			sistema.registrarEmprestimo("Maria", "7777", "Thiago", "8888", "Xadrez", "12/10/17", 5);
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Usuario invalido", e.toString());
 		}
 
-		// teste para emprestimo de item não cadastrado.
+		// teste para emprestimo de item nao cadastrado.
 		try {
 			sistema.registrarEmprestimo("Thiago", "8888", "Juliana", "9999", "Dama", "12/10/17", 5);
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Item nao encontrado", e.toString());
 		}
 
-		// teste para emprestimo de item já emprestado.
+		// teste para emprestimo de item ja emprestado.
 		try {
 			sistema.registrarEmprestimo("Thiago", "8888", "Juliana", "9999", "Xadrez", "12/10/17", 5);
 		} catch (Exception e) {
@@ -408,21 +408,21 @@ public class SistemaControllerTest {
 	@Test
 	public void testDevolverItem() {
 
-		// teste para devolver item de usuário não cadastrado.
+		// teste para devolver item de usuario nao cadastrado.
 		try {
 			sistema.devolverItem("Maria", "8888", "Juliana", "9999", "Xadrez", "12/10/17", "15/10/17");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Usuario invalido", e.toString());
 		}
 
-		// teste para devolver item não cadastrado.
+		// teste para devolver item nao cadastrado.
 		try {
 			sistema.devolverItem("Thiago", "8888", "Juliana", "9999", "Dama", "12/10/17", "15/10/17");
 		} catch (Exception e) {
 			assertEquals("main.exception.DadoInvalido: Item nao encontrado", e.toString());
 		}
 
-		// teste para devolver item de empresto não feito.
+		// teste para devolver item de empresto nao feito.
 		try {
 			sistema.devolverItem("Juliana", "9999", "Thiago", "8888", "Jogo", "12/10/17", "15/10/17");
 		} catch (Exception e) {

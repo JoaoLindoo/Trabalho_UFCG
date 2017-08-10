@@ -10,7 +10,11 @@ import main.elementos.Item;
  * @author Matheus Thiago
  */
 public class ItemOrdenacaoDescricao implements Comparator<Item> {
-
+	
+	/**
+	 * metodo que recebe dois objetos itens como parametro e compra qual deles vem primeiro em ordem
+	 * alfabetica.
+	 */
 	@Override
 	public int compare(Item o1, Item o2) {
 
