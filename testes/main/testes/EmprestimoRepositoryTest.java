@@ -12,6 +12,11 @@ import main.elementos.JogoEletronico;
 import main.elementos.Usuario;
 import main.repository.EmprestimoRepository;
 
+/**
+ * Classe que testa a Classe EmprestimoRepository
+ * @author redson
+ *
+ */
 public class EmprestimoRepositoryTest {
 
 	private EmprestimoRepository repository;
