@@ -9,10 +9,12 @@ import main.elementos.Usuario;
 import main.repository.UsuarioRepository;
 
 public class TestUsuarioRepository {
+	
 	private UsuarioRepository repositorio = new UsuarioRepository();
 	private Usuario usuario;
 	private Usuario usuario1;
 	private Usuario usuario2;
+	
 	@Before
 	public void setup() throws Exception{
 		usuario = new Usuario("Henrique", "lindo@gmail.com", "1000-666");

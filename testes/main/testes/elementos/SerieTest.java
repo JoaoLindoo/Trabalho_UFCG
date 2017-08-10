@@ -75,6 +75,11 @@ public class SerieTest {
 		Serie serie = new Serie("nome", 10.0, "Aquela la", 50, "LIVRE", "ROMANCE", -1);
 	}
 
+	/**
+	 * Metodo que testa o equals da serie
+	 * 
+	 * @throws DadoInvalido
+	 */
 	@Test
 	public void testEqualsObject() throws DadoInvalido {
 		Serie serie1 = new Serie("nome", 10.0, "Essa msm", 50, "LIVRE,", "ESSA MSM", 3);
@@ -92,7 +97,7 @@ public class SerieTest {
 	@Test
 	public void testToString() throws DadoInvalido {
 		Serie serie = new Serie("The Flash", 69.90,
-				"Um cara ganha poderes de correr em alta velocidade e vira um super herói com ajuda dos amigos", 50,
+				"Um cara ganha poderes de correr em alta velocidade e vira um super herï¿½i com ajuda dos amigos", 50,
 				"Livre", "Ficcao cientifica", 1);
 		assertEquals("SERIE: The Flash, R$ 69.9, Nao emprestado, 0 min, Livre, Ficcao cientifica, Temporada 1",
 				serie.toString());

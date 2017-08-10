@@ -11,7 +11,7 @@ import main.exception.DadoInvalido;
 /**
  * Classe que representa um usuario do sistema
  * 
- * @author Joao
+ * @author Matheus
  *
  */
 public class Usuario {
@@ -20,11 +20,8 @@ public class Usuario {
 	private String email;
 	private String numeroDoCelular;
 
-	/**
-	 * uso do hashset pois apenas adicionar elementos com nomes diferentes.
-	 * 
-	 * @author Matheus
-	 */
+	 // uso do hashset pois apenas adicionar elementos com nomes diferentes.
+
 	private Set<Item> listaItens;
 	private Set<Item> listaItensPegos;
 
@@ -408,25 +405,5 @@ public class Usuario {
 			}
 		}
 		return false;
-	}
-
-	//Talvez seja melhor apagar esse metodo(Gio)
-	/**
-	 * Metodo que retorna a lista de itens pegos
-	 * 
-	 * @return retorna a lista de itens pegos
-	 */
-	public Set<Item> getListaItensPegos() {
-		return listaItensPegos;
-	}
-
-	//Acho melhor apagar esse tbm(gio)
-	/**
-	 * Metodo que atualiza a lista de itens pegos
-	 * 
-	 * @param listaItensPegos
-	 */
-	public void setListaItensPegos(Set<Item> listaItensPegos) {
-		this.listaItensPegos = listaItensPegos;
 	}
 }

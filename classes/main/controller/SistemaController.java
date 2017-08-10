@@ -33,6 +33,9 @@ public class SistemaController {
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
 
+	/**
+	 * Construtor de sistemaController
+	 */
 	public SistemaController() {
 		repository = new UsuarioRepository();
 		emprestimoRepository = new EmprestimoRepository();

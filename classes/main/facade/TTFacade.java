@@ -348,12 +348,50 @@ public class TTFacade {
 		return this.sistemaController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 
+	/**
+	 * Metodo que registra um emprestimo
+	 * 
+	 * @param nomeDono
+	 *            nome do dono do item
+	 * @param telefoneDono
+	 *            telefone do dono do item
+	 * @param nomeRequerente
+	 *            nome do requerente
+	 * @param telefoneRequerente
+	 *            telefone do requerente
+	 * @param nomeItem
+	 *            nome do item
+	 * @param dataEmprestimo
+	 *            data do emprestimo
+	 * @param periodo
+	 *            periodo de emprestimo
+	 * @throws Exception
+	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 		sistemaController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, periodo);
 	}
 
+	/**
+	 * Metodo que edevolve um item ao seu dono original
+	 * 
+	 * @param nomeDono
+	 *            nome do dono do item
+	 * @param telefoneDono
+	 *            telefone do dono do item
+	 * @param nomeRequerente
+	 *            nome do requerente
+	 * @param telefoneRequerente
+	 *            tefelone do requerente
+	 * @param nomeItem
+	 *            nome do item
+	 * @param dataEmprestimo
+	 *            data de emprestimo
+	 * @param dataDevolucao
+	 *            data da devolucao
+	 * @throws Exception
+	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
 		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
