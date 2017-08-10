@@ -7,21 +7,33 @@ import main.exception.DadoInvalido;
 
 public class JogoDeTabuleiroTest {
 
+	/**
+	 * Teste para nome do jogo vazio, retorna exception.
+	 */
 	@Test(expected = Exception.class)
 	public void testNomeVazio() throws DadoInvalido {
 		JogoDeTabuleiro item = new JogoDeTabuleiro("", 49.90);
 	}
 	
+	/**
+	 * Teste para nome do jogo = null, retorna exception.
+	 */
 	@Test(expected = Exception.class)
 	public void testNomeNull() throws DadoInvalido {
 		JogoDeTabuleiro item = new JogoDeTabuleiro(null, 49.90);
 	}
 	
+	/**
+	 * Teste para preco do jogo = 0, retorna exception.
+	 */
 	@Test(expected = Exception.class)
 	public void testPrecoNull() throws DadoInvalido {
 		JogoDeTabuleiro item = new JogoDeTabuleiro("Banco Imobiliario", 0);
 	}
 	
+	/**
+	 * Teste para preco do jogo negativo, retorna exception.
+	 */
 	@Test(expected = Exception.class)
 	public void testPrecoNegativo() throws DadoInvalido {
 		JogoDeTabuleiro item = new JogoDeTabuleiro("Banco Imobiliario", -5);
