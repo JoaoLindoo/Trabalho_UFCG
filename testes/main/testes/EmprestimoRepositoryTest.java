@@ -1,4 +1,4 @@
-package main.repository;
+package main.testes;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,7 @@ import org.junit.Test;
 import main.elementos.Emprestimo;
 import main.elementos.JogoEletronico;
 import main.elementos.Usuario;
+import main.repository.EmprestimoRepository;
 
 public class EmprestimoRepositoryTest {
 
