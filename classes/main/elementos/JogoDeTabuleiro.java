@@ -15,7 +15,7 @@ public class JogoDeTabuleiro extends Item {
 	private List<String> listaDePecasPerdidas;
 
 	/**
-	 * Construto do Jogo De Tabuleiro
+	 * Construtor do Jogo De Tabuleiro
 	 * 
 	 * @throws Exception
 	 * 

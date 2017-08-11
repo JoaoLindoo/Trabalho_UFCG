@@ -45,7 +45,7 @@ public class JogoEletronico extends Item {
 	}
 
 	/**
-	 * Metodo que retorna uma represenacao inteira do jogo eletronico
+	 * Metodo que retorna uma representacao inteira do jogo eletronico
 	 */
 	@Override
 	public int hashCode() {
