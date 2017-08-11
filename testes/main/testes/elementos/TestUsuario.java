@@ -6,10 +6,23 @@ import org.junit.Test;
 import main.elementos.Usuario;
 import main.exception.DadoInvalido;
 
+/**
+ * Testa a classe Usuario
+ * 
+ * @author Joao Henrique
+ *
+ */
 public class TestUsuario {
+
 	private Usuario usuario;
+
+	/**
+	 * Metodo que testa o construtor de usuario
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void testUsuario() throws Exception{
+	public void testUsuario() throws Exception {
 		try {
 			usuario = new Usuario("Henrique", "henrique@gmail.com", "");
 		} catch (DadoInvalido e) {

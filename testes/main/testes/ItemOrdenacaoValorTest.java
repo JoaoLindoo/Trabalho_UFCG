@@ -20,7 +20,7 @@ import main.exception.DadoInvalido;
 
 /**
  * Classe Teste que realizar teste da classe ItemOrdenacaoValor. Realizar teste
- * se os itens são ordenados de acordo com o valor
+ * se os itens sao ordenados de acordo com o valor
  * 
  * @author Matheus Tiago
  */

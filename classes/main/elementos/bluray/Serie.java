@@ -59,7 +59,7 @@ public class Serie extends BluRay {
 		}
 
 		this.episodios = new ArrayList<Integer>();
-		this.descricao = descricao;
+		this.setDescricao(descricao);
 		this.genero = genero;
 		this.numeroTemporada = temporada;
 	}
@@ -133,6 +133,25 @@ public class Serie extends BluRay {
 	public String toString() {
 		return "SERIE: " + this.getNome() + ", R$ " + this.valor + ", " + this.estado() + ", " + this.getDuracaoTotal()
 				+ " min, " + this.getClassificacao() + ", " + this.genero + ", Temporada " + this.numeroTemporada;
+	}
+
+	/**
+	 * Mettodo que envia a descricao da serie
+	 * 
+	 * @return retorna a descricao da serie
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+
+	/**
+	 * Metodo que recebe e atualiza a descricao da serie
+	 * 
+	 * @param descricao
+	 *            nova descricao da serie
+	 */
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 }
