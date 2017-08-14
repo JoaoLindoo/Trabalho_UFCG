@@ -529,4 +529,8 @@ public class SistemaController {
 		}
 		return listaItens;
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
+	}
 }

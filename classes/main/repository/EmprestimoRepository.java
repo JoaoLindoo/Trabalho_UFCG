@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import main.elementos.Emprestimo;
+import main.elementos.Usuario;
 
 /**
  * Classe que representa o repositorio de emprestimo
@@ -71,6 +72,16 @@ public class EmprestimoRepository {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = sdf.parse(datinha);
 		return data;
-
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		String lista = "";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getUsuarioDono().getNome().equals(nome) && emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
+				lista += emprestimo.toString();
+			}
+		}
+		return lista;
+	}
+	
 }

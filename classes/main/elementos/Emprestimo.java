@@ -152,7 +152,7 @@ public class Emprestimo {
 	}
 
 	/**
-	 * Metodo que indica se um Emprestimo é ou nao igual ao outro.
+	 * Metodo que indica se um Emprestimo ï¿½ ou nao igual ao outro.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -180,6 +180,10 @@ public class Emprestimo {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Emprestimo - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", " + itemEmprestado.getNome() + ", " + dataEmprestimo + ", " + tempoEmprestimo + " dias, ENTREGA: " + dataDevolucao;
+	}
+
 }
