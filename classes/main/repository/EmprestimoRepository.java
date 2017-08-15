@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import main.elementos.Emprestimo;
-import main.elementos.Usuario;
 
 /**
  * Classe que representa o repositorio de emprestimo

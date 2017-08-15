@@ -20,22 +20,29 @@ import main.repository.EmprestimoRepository;
 public class EmprestimoRepositoryTest {
 
 	private EmprestimoRepository repository;
-	private Emprestimo emprestimo;
+	private Emprestimo emprestimo1;
+	private Emprestimo emprestimo2;
 	private Usuario usuario1;
 	private Usuario usuario2;
+	private Usuario usuario3;
 	private Date data;
 	private JogoEletronico item;
+	private JogoEletronico item2;
 	
 	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
 		repository = new EmprestimoRepository();
-		usuario1 = new Usuario("Redson", "redson.filho@ccc.ufcg.edu.br", "991904203");
-		usuario2 = new Usuario("Joao", "joao.soares@ccc.ufcg.edu.br", "991240666");
-		data = new Date("23/08/2017");
-		item = new JogoEletronico("PES 18", 99.90, "PS4");
-		emprestimo = new Emprestimo(usuario1, usuario2, item, data, 7);
-		repository.adicionar(emprestimo);
+		usuario1 = new Usuario("Joao", "redson.filho@ccc.ufcg.edu.br", "98888-8888");
+		usuario2 = new Usuario("Carlos", "joao.soares@ccc.ufcg.edu.br", "89999-9999");
+		usuario3 = new Usuario("Josefina", "lucas.anthony@ccc.ufcg.edu.br", "77777-7777");
+		data = new Date("01/01/2018");
+		item = new JogoEletronico("War", 99.90, "PS4");
+		item2 = new JogoEletronico("FIFA 18", 100, "PS4");
+		emprestimo1 = new Emprestimo(usuario1, usuario2, item, data, 7);
+		emprestimo2 = new Emprestimo(usuario1, usuario3, item2, data, 7);
+		repository.adicionar(emprestimo1);
+		repository.adicionar(emprestimo2);
 		
 	}
 	
@@ -44,7 +51,7 @@ public class EmprestimoRepositoryTest {
 	 */
 	@Test
 	public void testRecuperar() {
-		assertNotNull(repository.recuperar("PES 18"));
+		assertNotNull(repository.recuperar("War"));
 	}
 
 	/**
@@ -52,8 +59,12 @@ public class EmprestimoRepositoryTest {
 	 */
 	@Test
 	public void testRemove() {
-		repository.remove("PES 18");
-		assertNull(repository.recuperar("PES 18"));
+		repository.remove("War");
+		assertNull(repository.recuperar("War"));
 	}
-
+	
+	@Test
+	public void testListarEmprestimosUsuarioEmprestando() {
+		assertEquals("EMPRESTIMO - De: Joao, Para: Carlos, War, 01/1/2018, 7 dias, ENTREGA: null|EMPRESTIMO - De: Joao, Para: Josefina, FIFA 18, 01/1/2018, 7 dias, ENTREGA: null|", repository.listarEmprestimosUsuarioEmprestando("Joao", "98888-8888"));
+	}
 }

@@ -1,5 +1,6 @@
 package main.elementos;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,7 +19,6 @@ public class Emprestimo {
 	private Date dataEmprestimo;
 	private int tempoEmprestimo;
 	private Date dataDevolucao;
-
 	
 	/**
 	 * Construtor de Emprestimo. 
@@ -30,8 +30,7 @@ public class Emprestimo {
 		this.itemEmprestado = itemEmprestado;
 		this.dataEmprestimo = dataEmprestimo;
 		this.tempoEmprestimo = tempoEmprestimo;
-		this.dataDevolucao = dataDevolucao;
-
+	    this.dataDevolucao = dataDevolucao;
 	}
 	
 	/**
@@ -139,6 +138,17 @@ public class Emprestimo {
 	}
 	
 	/**
+	 * Metodo que retorna a data do emprestimo em String.
+	 * @param dataEmprestimo
+	 * @return
+	 */
+	public String getDataEmprestimoString(Date dataEmprestimo) {
+		Date data = dataEmprestimo;
+		String novaData = new SimpleDateFormat("dd/M/yyyy").format(data);
+		return novaData;
+	}
+	
+	/**
 	 * Metodo que retorna uma representacao inteira do objeto.
 	 */
 	@Override
@@ -183,7 +193,7 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		return "Emprestimo - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", " + itemEmprestado.getNome() + ", " + dataEmprestimo + ", " + tempoEmprestimo + " dias, ENTREGA: " + dataDevolucao;
+		return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", " + itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo + " dias, ENTREGA: " + dataDevolucao + "|";
 	}
 
 }
