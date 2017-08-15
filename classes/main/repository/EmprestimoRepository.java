@@ -15,7 +15,7 @@ import main.elementos.Emprestimo;
 public class EmprestimoRepository {
 	
 	private List<Emprestimo> emprestimos;
-
+	
 	/**
 	 * Contrutor do EmprestimoRepository
 	 */

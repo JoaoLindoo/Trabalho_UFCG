@@ -32,6 +32,8 @@ public class SistemaController {
 	private static final String ITEM_JA_EMPRESTADO = "Item emprestado no momento";
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
+	private static final String NENHUM_ITEM_EMPRESTADO = "Nenhum item emprestado";
+	
 
 	/**
 	 * Construtor de sistemaController
@@ -531,6 +533,8 @@ public class SistemaController {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals(""))
+			return NENHUM_ITEM_EMPRESTADO;
 		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 }
