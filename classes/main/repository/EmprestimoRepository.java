@@ -48,7 +48,6 @@ public class EmprestimoRepository {
 		}
 		return null;
 	}
-
 	/**
 	 * Metodo que remove um item emprestado
 	 * 

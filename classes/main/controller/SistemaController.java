@@ -480,9 +480,10 @@ public class SistemaController {
 		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
 		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
 		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
-		Date data = emprestimoRepository.converteParaData(dataEmprestimo);
+		Date data = emprestimoRepository.converteParaData(dataDevolucao);
 		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
-		emprestimoRepository.remove(nomeItem);
+		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
+		
 		item.setStatus(false);
 	}
 
