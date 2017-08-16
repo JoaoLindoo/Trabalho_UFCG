@@ -82,4 +82,24 @@ public class EmprestimoRepository {
 		return lista;
 	}
 	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+		String lista = "Emprestimos pegos: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getUsuarioRequerente().getNome().equals(nome) && emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
+				lista += emprestimo.toString();
+			}
+		}
+		return lista;
+	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		String lista = "Emprestimos associados ao item: ";
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getItemEmprestado().getNome().equals(nomeItem)) {
+				lista += emprestimo.toString();
+			}
+		}
+		return lista;
+	}
+	
 }

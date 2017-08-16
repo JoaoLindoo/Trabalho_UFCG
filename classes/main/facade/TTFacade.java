@@ -398,8 +398,15 @@ public class TTFacade {
 				dataEmprestimo, dataDevolucao);
 	}
 	
-	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		return sistemaController.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
+		return sistemaController.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		return sistemaController.listarEmprestimosItem(nomeItem);
+	}
 }

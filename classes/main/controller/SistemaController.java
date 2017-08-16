@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import com.sun.xml.internal.ws.spi.db.DatabindingException;
+
 import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
@@ -33,6 +36,8 @@ public class SistemaController {
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
 	private static final String NENHUM_ITEM_EMPRESTADO = "Nenhum item emprestado";
+	private static final String NENHUM_ITEM_PEGO_EMPRESTADO = "Nenhum item pego emprestado";
+	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimo associado ao item";
 	
 
 	/**
@@ -533,9 +538,21 @@ public class SistemaController {
 		return listaItens;
 	}
 	
-	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals("Emprestimos: "))
 			return NENHUM_ITEM_EMPRESTADO;
 		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
+	}
+	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
+		if (emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone).equals("Emprestimos pegos: "))
+			return NENHUM_ITEM_PEGO_EMPRESTADO;
+		return emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		if (emprestimoRepository.listarEmprestimosItem(nomeItem).equals("Emprestimos associados ao item: "))
+			return NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM;
+		return emprestimoRepository.listarEmprestimosItem(nomeItem);
 	}
 }
