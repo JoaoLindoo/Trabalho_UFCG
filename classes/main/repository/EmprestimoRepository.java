@@ -73,7 +73,7 @@ public class EmprestimoRepository {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		String lista = "";
+		String lista = "Emprestimos: ";
 		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.getUsuarioDono().getNome().equals(nome) && emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
 				lista += emprestimo.toString();

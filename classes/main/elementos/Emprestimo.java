@@ -35,7 +35,14 @@ public class Emprestimo {
 		this.tempoEmprestimo = tempoEmprestimo;
 		this.dataDevolucao = null;
 	}
-
+	
+	public String dataFinal() {
+		if (itemEmprestado.getStatus() == true)
+			return "Emprestimo em andamento";
+		else
+			return getDataEmprestimoString(dataDevolucao);
+	}
+	
 	/**
 	 * Metodo que retorna o objeto Usuario dono do Emprestimo.
 	 * 
@@ -148,7 +155,7 @@ public class Emprestimo {
 	 */
 	public String getDataEmprestimoString(Date dataEmprestimo) {
 		Date data = dataEmprestimo;
-		String novaData = new SimpleDateFormat("dd/M/yyyy").format(data);
+		String novaData = new SimpleDateFormat("d/M/yyyy").format(data);
 		return novaData;
 	}
 
@@ -197,14 +204,11 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		if (!itemEmprestado.status) {
+		
 			return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", "
 					+ itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo
-					+ " dias, ENTREGA: " +  getDataEmprestimoString(dataDevolucao) +"|";
+					+ " dias, ENTREGA: " +  dataFinal() +"|";
 		}
-		return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", "
-				+ itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo
-				+ " dias, ENTREGA: "+"Emprestimo em andamento|";
-	}
+		
 
 }

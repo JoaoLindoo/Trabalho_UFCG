@@ -534,7 +534,7 @@ public class SistemaController {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals(""))
+		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals("Emprestimos: "))
 			return NENHUM_ITEM_EMPRESTADO;
 		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
