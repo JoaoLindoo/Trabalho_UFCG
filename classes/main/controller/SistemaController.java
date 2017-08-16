@@ -539,12 +539,16 @@ public class SistemaController {
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
+		if (repository.recuperar(nome, telefone) == null)
+			throw new DadoInvalido(USUARIO_INVALIDO);
 		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals("Emprestimos: "))
 			return NENHUM_ITEM_EMPRESTADO;
 		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 	
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
+		if (repository.recuperar(nome, telefone) == null)
+			throw new DadoInvalido(USUARIO_INVALIDO);
 		if (emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone).equals("Emprestimos pegos: "))
 			return NENHUM_ITEM_PEGO_EMPRESTADO;
 		return emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
