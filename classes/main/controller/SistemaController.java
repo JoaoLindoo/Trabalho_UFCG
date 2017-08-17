@@ -1,5 +1,7 @@
 package main.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -41,7 +43,6 @@ public class SistemaController {
 	private static final String NENHUM_ITEM_PEGO_EMPRESTADO = "Nenhum item pego emprestado";
 	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimos associados ao item";
 	private static final String ATRIBUTO_REPUTACAO = "Reputacao";
-	
 
 	/**
 	 * Construtor de sistemaController
@@ -61,8 +62,8 @@ public class SistemaController {
 	 * @param email
 	 *            Email do usuario
 	 * @throws Exception
-	 *             Verifica se ja existe um usuario no sistema caso verdade ,
-	 *             lanca um Exception
+	 *             Verifica se ja existe um usuario no sistema caso verdade , lanca
+	 *             um Exception
 	 */
 	public void adicionar(String nome, String telefone, String email) throws Exception {
 		if (repository.recuperar(nome, telefone) != null) {
@@ -428,7 +429,7 @@ public class SistemaController {
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
-		
+
 		if (repository.recuperar(nomeDono, telefoneDono) == null
 				|| repository.recuperar(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -436,7 +437,7 @@ public class SistemaController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
-		
+
 		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
 		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
 		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
@@ -447,7 +448,7 @@ public class SistemaController {
 		emprestimoRepository.adicionar(emprestimo);
 		emprestimoRepository.adicionarEmpIntens(emprestimo);
 		item.setPopularidade();
-		dono.atualizarReputacaoPorEmprestimo(item.getValor());
+		dono.atualizarReputacao(item.getValor() * 0.1);
 	}
 
 	/**
@@ -494,10 +495,13 @@ public class SistemaController {
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
 		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
+		Date dataDoEmprestimo = emprestimoRepository.converteParaData(dataEmprestimo);
 		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
+		repository.recuperar(nomeRequerente, telefoneRequerente)
+				.atualizarReputacao(this.atualizacaoReputacao(dataEmprestimo, dataDevolucao, item));
 	}
 
 	/**
@@ -529,6 +533,7 @@ public class SistemaController {
 		}
 		return listaDescricaoItens;
 	}
+
 	public String listarItensEmprestados() {
 		String listar = "";
 		List<Emprestimo> listaUsuario = emprestimoRepository.getEmprestimosItens();
@@ -538,6 +543,7 @@ public class SistemaController {
 		}
 		return listar;
 	}
+
 	/**
 	 * Metodo que lista o total de itens
 	 * 
@@ -553,13 +559,14 @@ public class SistemaController {
 		}
 		return listaItens;
 	}
-	
+
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		if (repository.recuperar(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
-			if (emprestimo.getUsuarioDono().getNome().equals(nome) && emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
+			if (emprestimo.getUsuarioDono().getNome().equals(nome)
+					&& emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
 				lista += emprestimo.toString();
 			}
 		}
@@ -567,13 +574,14 @@ public class SistemaController {
 			return NENHUM_ITEM_EMPRESTADO;
 		return lista;
 	}
-	
+
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
 		if (repository.recuperar(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos pegos: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
-			if (emprestimo.getUsuarioRequerente().getNome().equals(nome) && emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
+			if (emprestimo.getUsuarioRequerente().getNome().equals(nome)
+					&& emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
 				lista += emprestimo.toString();
 			}
 		}
@@ -581,7 +589,7 @@ public class SistemaController {
 			return NENHUM_ITEM_PEGO_EMPRESTADO;
 		return lista;
 	}
-	
+
 	public String listarEmprestimosItem(String nomeItem) {
 		String lista = "Emprestimos associados ao item: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
@@ -592,25 +600,26 @@ public class SistemaController {
 		if (lista.equals("Emprestimos associados ao item: "))
 			return NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM;
 		return lista;
-		
+
 	}
-	public String  listarItensNaoEmprestados() {
+
+	public String listarItensNaoEmprestados() {
 		List<Item> lista = new ArrayList<>();
 		String saida = "";
 		for (Usuario usuario : this.repository.getUsuarios()) {
 			for (Item Item : usuario.getListaItens()) {
-				if(Item.getStatus() == false) {
+				if (Item.getStatus() == false) {
 					lista.add(Item);
 				}
 			}
 		}
 		Collections.sort(lista, new ItemOrdenacaoDescricao());
 		for (Item item : lista) {
-			saida += item.toString()+"|";
+			saida += item.toString() + "|";
 		}
 		return saida;
 	}
-	
+
 	public String listarTop10Itens() {
 		List<Item> itensPopulares = new ArrayList<>();
 		for (Usuario usuario : this.repository.getUsuarios()) {
@@ -625,9 +634,43 @@ public class SistemaController {
 			if (i == 10) {
 				break;
 			}
-			top10 += i+1 + ") " + itensPopulares.get(i).getPopularidade() + " emprestimos - "+ itensPopulares.get(i).toString() + "|";
+			top10 += i + 1 + ") " + itensPopulares.get(i).getPopularidade() + " emprestimos - "
+					+ itensPopulares.get(i).toString() + "|";
 		}
 		return top10;
 	}
-	
+
+	/**
+	 * Metodo que retorna a quantidade a ser atualizada na reputacao do usuario
+	 * 
+	 * @param dataEmprestimo
+	 *            data em que foi feito o emprestimo
+	 * @param dataDevolucao
+	 *            data que foi feita a devolucao do item
+	 * @param item
+	 *            item devolvido
+	 * @return retorna a quantidade a ser atualizada na reputacao do usuario
+	 * @throws Exception 
+	 */
+	public double atualizacaoReputacao(String dataEmprestimo, String dataDevolucao, Item item) throws Exception {
+		int dias = this.contaDias(dataEmprestimo, dataDevolucao);
+		Emprestimo emprestimoTest = emprestimoRepository.recuperar(item.getNome());
+		if (dias > emprestimoTest.getTempoEmprestimo()) {
+			int atraso = dias - emprestimoTest.getTempoEmprestimo();
+			return -(item.getValor() * (atraso * 0.01));
+		}
+		return item.getValor() * 0.05;
+	}
+
+	public int contaDias(String dataInicial, String dataFinal) throws Exception {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		df.setLenient(false);
+		Date dataInicio = df.parse(dataInicial);
+		Date dataFim = df.parse(dataFinal);
+		long dt = (dataFim.getTime() - dataInicio.getTime()) + 3600000;
+		Long diasCorridosAnoLong = (dt / 86400000L);
+		Integer diasDecorridosInt = Integer.valueOf(diasCorridosAnoLong.toString());
+		return diasDecorridosInt ;
+
+	}
 }

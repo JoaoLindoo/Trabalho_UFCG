@@ -1,7 +1,4 @@
 package main.facade;
-
-import java.text.ParseException;
-
 import easyaccept.EasyAccept;
 import main.controller.SistemaController;
 import main.elementos.Usuario;
