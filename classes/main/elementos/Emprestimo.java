@@ -155,7 +155,7 @@ public class Emprestimo {
 	 */
 	public String getDataEmprestimoString(Date dataEmprestimo) {
 		Date data = dataEmprestimo;
-		String novaData = new SimpleDateFormat("d/M/yyyy").format(data);
+		String novaData = new SimpleDateFormat("dd/MM/yyyy").format(data);
 		return novaData;
 	}
 

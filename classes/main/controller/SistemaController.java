@@ -12,6 +12,7 @@ import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
+import main.elementos.ordenacao.ItemOrdenacaoPopularidade;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.elementos.ordenacao.UsuarioOrdenaPorNome;
 import main.exception.DadoInvalido;
@@ -38,7 +39,7 @@ public class SistemaController {
 	private static final String EMPRESTIMO_NAO_ENCONTRADO = "Emprestimo nao encontrado";
 	private static final String NENHUM_ITEM_EMPRESTADO = "Nenhum item emprestado";
 	private static final String NENHUM_ITEM_PEGO_EMPRESTADO = "Nenhum item pego emprestado";
-	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimo associado ao item";
+	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimos associados ao item";
 	private static final String ATRIBUTO_REPUTACAO = "Reputacao";
 	
 
@@ -445,6 +446,7 @@ public class SistemaController {
 		item.setStatus(true);
 		emprestimoRepository.adicionar(emprestimo);
 		emprestimoRepository.adicionarEmpIntens(emprestimo);
+		item.setPopularidade();
 		dono.atualizarReputacaoPorEmprestimo(item.getValor());
 	}
 
@@ -494,7 +496,6 @@ public class SistemaController {
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
 		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
-		emprestimoRepository.recuperar(nomeItem).getItemEmprestado().setStatus(false);
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
 	}
@@ -591,6 +592,7 @@ public class SistemaController {
 		if (lista.equals("Emprestimos associados ao item: "))
 			return NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM;
 		return lista;
+		
 	}
 	public String  listarItensNaoEmprestados() {
 		List<Item> lista = new ArrayList<>();
@@ -607,6 +609,25 @@ public class SistemaController {
 			saida += item.toString()+"|";
 		}
 		return saida;
+	}
+	
+	public String listarTop10Itens() {
+		List<Item> itensPopulares = new ArrayList<>();
+		for (Usuario usuario : this.repository.getUsuarios()) {
+			for (Item Item : usuario.getListaItens()) {
+				if (Item.getPopularidade() > 0)
+					itensPopulares.add(Item);
+			}
+		}
+		Collections.sort(itensPopulares, new ItemOrdenacaoPopularidade());
+		String top10 = "";
+		for (int i = 0; i < itensPopulares.size(); i++) {
+			if (i == 10) {
+				break;
+			}
+			top10 += i+1 + ") " + itensPopulares.get(i).getPopularidade() + " emprestimos - "+ itensPopulares.get(i).toString() + "|";
+		}
+		return top10;
 	}
 	
 }

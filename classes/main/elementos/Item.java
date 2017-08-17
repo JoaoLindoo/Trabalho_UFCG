@@ -12,6 +12,7 @@ public abstract class Item {
 	protected String nome;
 	protected double valor;
 	protected boolean status;
+	protected int popularidade;
 
 	/**
 	 * Construtor do Item
@@ -21,6 +22,7 @@ public abstract class Item {
 		this.nome = nome;
 		this.valor = valor;
 		this.status = false;
+		this.popularidade = 0;
 	}
 
 	/**
@@ -81,7 +83,15 @@ public abstract class Item {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+	
+	public int getPopularidade() {
+		return popularidade;
+	}
 
+	public void setPopularidade() {
+		this.popularidade += 1;
+	}
+	
 	/**
 	 * Metodo que retorna uma representacao inteira do item
 	 * 

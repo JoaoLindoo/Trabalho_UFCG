@@ -417,4 +417,8 @@ public class TTFacade {
 		return this.sistemaController.listarItensNaoEmprestados();
 	}
 	
+	public String listarTop10Itens() {
+		return sistemaController.listarTop10Itens();
+	}
+	
 }
