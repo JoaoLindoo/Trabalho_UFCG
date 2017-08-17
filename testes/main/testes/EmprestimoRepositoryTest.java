@@ -63,8 +63,4 @@ public class EmprestimoRepositoryTest {
 		assertNull(repository.recuperar("War"));
 	}
 	
-	@Test
-	public void testListarEmprestimosUsuarioEmprestando() {
-		assertEquals("EMPRESTIMO - De: Joao, Para: Carlos, War, 01/1/2018, 7 dias, ENTREGA: null|EMPRESTIMO - De: Joao, Para: Josefina, FIFA 18, 01/1/2018, 7 dias, ENTREGA: null|", repository.listarEmprestimosUsuarioEmprestando("Joao", "98888-8888"));
-	}
 }

@@ -482,13 +482,10 @@ public class SistemaController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (!repository.recuperar(nomeRequerente, telefoneRequerente).recuperaAlocados(nomeItem))
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
-		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
-		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
 		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
 		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
-		
 		item.setStatus(false);
 	}
 
@@ -541,22 +538,51 @@ public class SistemaController {
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		if (repository.recuperar(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		if (emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone).equals("Emprestimos: "))
+		String lista = "Emprestimos: ";
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+			if (emprestimo.getUsuarioDono().getNome().equals(nome) && emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
+				lista += emprestimo.toString();
+			}
+		}
+		if (lista.equals("Emprestimos: "))
 			return NENHUM_ITEM_EMPRESTADO;
-		return emprestimoRepository.listarEmprestimosUsuarioEmprestando(nome, telefone);
+		return lista;
 	}
 	
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
 		if (repository.recuperar(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		if (emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone).equals("Emprestimos pegos: "))
+		String lista = "Emprestimos pegos: ";
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+			if (emprestimo.getUsuarioRequerente().getNome().equals(nome) && emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
+				lista += emprestimo.toString();
+			}
+		}
+		if (lista.equals("Emprestimos pegos: "))
 			return NENHUM_ITEM_PEGO_EMPRESTADO;
-		return emprestimoRepository.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+		return lista;
 	}
 	
 	public String listarEmprestimosItem(String nomeItem) {
-		if (emprestimoRepository.listarEmprestimosItem(nomeItem).equals("Emprestimos associados ao item: "))
+		String lista = "Emprestimos associados ao item: ";
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+			if (emprestimo.getItemEmprestado().getNome().equals(nomeItem)) {
+				lista += emprestimo.toString();
+			}
+		}
+		if (lista.equals("Emprestimos associados ao item: "))
 			return NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM;
-		return emprestimoRepository.listarEmprestimosItem(nomeItem);
+		return lista;
 	}
+	
+	public String listarItensEmprestados() {
+		String lista = "";
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+			if (emprestimo.getItemEmprestado().getStatus() == true) {
+				lista += emprestimo.toString2();
+			}
+		}
+		return lista;
+	}
+	
 }

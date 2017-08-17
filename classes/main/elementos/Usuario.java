@@ -48,6 +48,16 @@ public class Usuario {
 		this.listaItensPegos = new HashSet<>();
 	}
 
+	public String listarItensEmprestados() {
+		String lista = "";
+		for (Item item : listaItens) {
+			if (item.getStatus() == true) {
+				lista += item.toString();
+			}
+		}
+		return lista;
+	}
+	
 	/**
 	 * Metodo que retorna o nome do usuario
 	 * 

@@ -58,6 +58,10 @@ public class EmprestimoRepository {
 		emprestimos.remove(recuperar(itemEmprestado));
 	}
 
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
 	/**
 	 * Metodo que coverte para o formato de data
 	 * 
@@ -70,36 +74,6 @@ public class EmprestimoRepository {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = sdf.parse(datinha);
 		return data;
-	}
-	
-	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		String lista = "Emprestimos: ";
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getUsuarioDono().getNome().equals(nome) && emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
-				lista += emprestimo.toString();
-			}
-		}
-		return lista;
-	}
-	
-	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		String lista = "Emprestimos pegos: ";
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getUsuarioRequerente().getNome().equals(nome) && emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
-				lista += emprestimo.toString();
-			}
-		}
-		return lista;
-	}
-	
-	public String listarEmprestimosItem(String nomeItem) {
-		String lista = "Emprestimos associados ao item: ";
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getItemEmprestado().getNome().equals(nomeItem)) {
-				lista += emprestimo.toString();
-			}
-		}
-		return lista;
 	}
 	
 }

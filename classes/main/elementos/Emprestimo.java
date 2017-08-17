@@ -204,11 +204,12 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		
 			return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", "
 					+ itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo
 					+ " dias, ENTREGA: " +  dataFinal() +"|";
 		}
 		
-
+	public String toString2() {
+		return "Dono do item: " + usuarioDono.getNome() + ", Nome do item emprestado: " + itemEmprestado.getNome() + "|";
+	}
 }

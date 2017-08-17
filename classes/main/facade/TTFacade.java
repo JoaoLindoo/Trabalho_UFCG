@@ -409,4 +409,9 @@ public class TTFacade {
 	public String listarEmprestimosItem(String nomeItem) {
 		return sistemaController.listarEmprestimosItem(nomeItem);
 	}
+	
+	public String listarItensEmprestados() {
+		return sistemaController.listarItensEmprestados();
+	}
+	
 }
