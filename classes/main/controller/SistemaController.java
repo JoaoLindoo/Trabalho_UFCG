@@ -427,6 +427,7 @@ public class SistemaController {
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
+		
 		if (repository.recuperar(nomeDono, telefoneDono) == null
 				|| repository.recuperar(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -434,6 +435,7 @@ public class SistemaController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
+		
 		Usuario dono = repository.recuperar(nomeDono, telefoneDono);
 		Usuario requerente = repository.recuperar(nomeRequerente, telefoneRequerente);
 		Item item = repository.recuperar(nomeDono, telefoneDono).recuperItem(nomeItem);
@@ -443,7 +445,7 @@ public class SistemaController {
 		item.setStatus(true);
 		emprestimoRepository.adicionar(emprestimo);
 		emprestimoRepository.adicionarEmpIntens(emprestimo);
-
+		dono.atualizarReputacaoPorEmprestimo(item.getValor());
 	}
 
 	/**

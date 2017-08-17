@@ -452,4 +452,12 @@ public class Usuario {
 		}
 		return false;
 	}
+
+	/**
+	 * Metodo que ira atualizar a reputacao do usuario toda vez que ele
+	 * emprestar um item seu
+	 */
+	public void atualizarReputacaoPorEmprestimo(double valorDoItem) {
+		this.reputacao += valorDoItem * 0.1;
+	}
 }
