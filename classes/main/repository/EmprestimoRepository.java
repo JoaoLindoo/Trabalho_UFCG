@@ -15,12 +15,14 @@ import main.elementos.Emprestimo;
 public class EmprestimoRepository {
 	
 	private List<Emprestimo> emprestimos;
+	private List<Emprestimo> emprestimosItens;
 	
 	/**
 	 * Contrutor do EmprestimoRepository
 	 */
 	public EmprestimoRepository() {
 		emprestimos = new ArrayList<>();
+		this.emprestimosItens = new ArrayList<>();
 	}
 
 	/**
@@ -31,6 +33,10 @@ public class EmprestimoRepository {
 	 */
 	public void adicionar(Emprestimo emprestimo) {
 		emprestimos.add(emprestimo);
+	}
+	
+	public void adicionarEmpIntens(Emprestimo emprestimo) {
+		this.emprestimosItens.add(emprestimo);
 	}
 
 	/**
@@ -75,5 +81,19 @@ public class EmprestimoRepository {
 		Date data = sdf.parse(datinha);
 		return data;
 	}
+	public void removerItenList(String nomeDono,String item) {
+		for (Emprestimo emprestimo : emprestimosItens) {
+			if(emprestimo.getUsuarioDono().getNome().equals(nomeDono) && emprestimo.getItemEmprestado().getNome().equals(item)) {
+				this.emprestimosItens.remove(emprestimo);
+				return;
+			}
+			
+		}
+	}
+
+	public List<Emprestimo> getEmprestimosItens() {
+		return emprestimosItens;
+	}
+	
 	
 }

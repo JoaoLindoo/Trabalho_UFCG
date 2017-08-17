@@ -37,10 +37,10 @@ public class Emprestimo {
 	}
 	
 	public String dataFinal() {
-		if (itemEmprestado.getStatus() == true)
+		if (this.dataDevolucao == null)
 			return "Emprestimo em andamento";
 		else
-			return getDataEmprestimoString(dataDevolucao);
+			return getDataEmprestimoString(this.dataDevolucao);
 	}
 	
 	/**

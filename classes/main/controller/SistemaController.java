@@ -437,6 +437,7 @@ public class SistemaController {
 		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
 		item.setStatus(true);
 		emprestimoRepository.adicionar(emprestimo);
+		emprestimoRepository.adicionarEmpIntens(emprestimo);
 
 	}
 
@@ -486,6 +487,8 @@ public class SistemaController {
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
 		repository.recuperar(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
+		emprestimoRepository.recuperar(nomeItem).getItemEmprestado().setStatus(false);
+		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
 	}
 
@@ -577,12 +580,27 @@ public class SistemaController {
 	
 	public String listarItensEmprestados() {
 		String lista = "";
-		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
-			if (emprestimo.getItemEmprestado().getStatus() == true) {
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimosItens()) {
+			
 				lista += emprestimo.toString2();
-			}
 		}
 		return lista;
+	}
+	public String  listarItensNaoEmprestados() {
+		List<Item> lista = new ArrayList<>();
+		String saida = "";
+		for (Usuario usuario : this.repository.getUsuarios()) {
+			for (Item Item : usuario.getListaItens()) {
+				if(Item.getStatus() == false) {
+					lista.add(Item);
+				}
+			}
+		}
+		Collections.sort(lista, new ItemOrdenacaoDescricao());
+		for (Item item : lista) {
+			saida += item.toString()+"|";
+		}
+		return saida;
 	}
 	
 }

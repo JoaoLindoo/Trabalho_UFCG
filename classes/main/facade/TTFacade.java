@@ -413,5 +413,8 @@ public class TTFacade {
 	public String listarItensEmprestados() {
 		return sistemaController.listarItensEmprestados();
 	}
+	public String  listarItensNaoEmprestados() {
+		return this.sistemaController.listarItensNaoEmprestados();
+	}
 	
 }
