@@ -522,13 +522,6 @@ public class SistemaController {
 		}
 		return listaDescricaoItens;
 	}
-	public String listarItensEmprestadosss() {
-		String lista = "";
-		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimosItens()) {
-				lista += emprestimo.toString2();
-		}
-		return lista;
-	}
 	public String listarItensEmprestados() {
 		String listar = "";
 		List<Emprestimo> listaUsuario = emprestimoRepository.getEmprestimosItens();
