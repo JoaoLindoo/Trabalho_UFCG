@@ -13,6 +13,7 @@ import main.elementos.Item;
 import main.elementos.Usuario;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
+import main.elementos.ordenacao.UsuarioOrdenaPorNome;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.EmprestimoRepository;
@@ -521,7 +522,22 @@ public class SistemaController {
 		}
 		return listaDescricaoItens;
 	}
-
+	public String listarItensEmprestadosss() {
+		String lista = "";
+		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimosItens()) {
+				lista += emprestimo.toString2();
+		}
+		return lista;
+	}
+	public String listarItensEmprestados() {
+		String listar = "";
+		List<Emprestimo> listaUsuario = emprestimoRepository.getEmprestimosItens();
+		Collections.sort(listaUsuario, new UsuarioOrdenaPorNome());
+		for (Emprestimo emprestimo : listaUsuario) {
+			listar += emprestimo.toString2();
+		}
+		return listar;
+	}
 	/**
 	 * Metodo que lista o total de itens
 	 * 
@@ -575,15 +591,6 @@ public class SistemaController {
 		}
 		if (lista.equals("Emprestimos associados ao item: "))
 			return NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM;
-		return lista;
-	}
-	
-	public String listarItensEmprestados() {
-		String lista = "";
-		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimosItens()) {
-			
-				lista += emprestimo.toString2();
-		}
 		return lista;
 	}
 	public String  listarItensNaoEmprestados() {

@@ -17,7 +17,6 @@ public class ItemOrdenacaoDescricao implements Comparator<Item> {
 	 */
 	@Override
 	public int compare(Item o1, Item o2) {
-
 		return o1.getNome().trim().toLowerCase().compareTo(o2.getNome().trim().toLowerCase());
 	}
 
