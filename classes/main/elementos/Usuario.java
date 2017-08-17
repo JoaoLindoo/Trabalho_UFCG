@@ -19,8 +19,9 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numeroDoCelular;
+	private double reputacao;
 
-	 // uso do hashset pois apenas adicionar elementos com nomes diferentes.
+	// uso do hashset pois apenas adicionar elementos com nomes diferentes.
 
 	private Set<Item> listaItens;
 	private Set<Item> listaItensPegos;
@@ -46,6 +47,36 @@ public class Usuario {
 		this.numeroDoCelular = numeroDoCelular;
 		this.listaItens = new HashSet<>();
 		this.listaItensPegos = new HashSet<>();
+
+		// Calculando valor inicial da reputacao do usuario
+		if (listaItens.size() == 0) {
+			this.reputacao = 0.0;
+		} else {
+			this.reputacao = this.totalInicialReputacao();
+		}
+	}
+
+	/**
+	 * Metodo que calcula qual sera a reputacao do usuario a partir dos seus
+	 * itens
+	 * 
+	 * @return retorna o total inicial da reputacao do usuario
+	 */
+	private double totalInicialReputacao() {
+		double soma = 0;
+		for (Item item : listaItens) {
+			soma += item.getValor();
+		}
+		return soma * 0.05;
+	}
+
+	/**
+	 * Metodo que retona a reputaccao do usuario
+	 * 
+	 * @return retorna a reputacao atual do usuario
+	 */
+	public double getReputacao() {
+		return reputacao;
 	}
 
 	public String listarItensEmprestados() {
@@ -57,7 +88,7 @@ public class Usuario {
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * Metodo que retorna o nome do usuario
 	 * 
@@ -168,6 +199,7 @@ public class Usuario {
 	 */
 	public void adicionarItemJogoTabuleiro(String nome, double valor) throws Exception {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
+		this.reputacao += valor * 0.05;
 	}
 
 	/**
@@ -183,6 +215,7 @@ public class Usuario {
 	 */
 	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
+		this.reputacao += valor * 0.05;
 	}
 
 	/**
@@ -205,6 +238,7 @@ public class Usuario {
 	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
 			String anoDeLancamento) throws Exception {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
+		this.reputacao += valor * 0.05;
 	}
 
 	/**
@@ -229,6 +263,7 @@ public class Usuario {
 	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
 			String genero, int temporada) throws Exception {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
+		this.reputacao += valor * 0.05;
 	}
 
 	/**
@@ -251,6 +286,7 @@ public class Usuario {
 	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
 			String classificacao) throws Exception {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
+		this.reputacao += valor * 0.05;
 	}
 
 	/**

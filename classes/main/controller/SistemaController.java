@@ -39,6 +39,7 @@ public class SistemaController {
 	private static final String NENHUM_ITEM_EMPRESTADO = "Nenhum item emprestado";
 	private static final String NENHUM_ITEM_PEGO_EMPRESTADO = "Nenhum item pego emprestado";
 	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimo associado ao item";
+	private static final String ATRIBUTO_REPUTACAO = "Reputacao";
 	
 
 	/**
@@ -90,6 +91,9 @@ public class SistemaController {
 		}
 		if (ATRIBUTO_EMAIL.equalsIgnoreCase(atributo)) {
 			return usuario.getEmail();
+		}
+		if (ATRIBUTO_REPUTACAO.equalsIgnoreCase(atributo)) {
+			return String.valueOf(usuario.getReputacao());
 		}
 		return null;
 	}
