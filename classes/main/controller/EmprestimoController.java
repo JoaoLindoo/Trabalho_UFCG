@@ -14,16 +14,16 @@ import main.elementos.ordenacao.ItemOrdenacaoPopularidade;
 import main.elementos.ordenacao.UsuarioOrdenaPorNome;
 import main.exception.DadoInvalido;
 import main.repository.EmprestimoRepository;
-import main.service.SistemaService;
+import main.util.Util;
 
 /**
- * Classe que representa controla o sistema
+ * Classe que representa controla o Emprestimo
  * 
  * @author Joao Henrique
  *
  */
 public class EmprestimoController {
-	private SistemaService sistemaService;
+	private Util util;
 	private EmprestimoRepository emprestimoRepository;
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private static final String ITEM_JA_EMPRESTADO = "Item emprestado no momento";
@@ -37,23 +37,23 @@ public class EmprestimoController {
 	 * Construtor de sistemaController
 	 */
 	public EmprestimoController() {
-		this.sistemaService = new SistemaService();
+		this.util = new Util();
 		emprestimoRepository = new EmprestimoRepository();
 	}
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 
-		if (sistemaService.retornaUsuario(nomeDono, telefoneDono) == null
-				|| sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente) == null)
+		if (util.retornaUsuario(nomeDono, telefoneDono) == null
+				|| util.retornaUsuario(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		if (sistemaService.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
+		if (util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
-		if (sistemaService.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
+		if (util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
 
-		Usuario dono = sistemaService.retornaUsuario(nomeDono, telefoneDono);
-		Usuario requerente = sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente);
-		Item item = sistemaService.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
+		Usuario dono = util.retornaUsuario(nomeDono, telefoneDono);
+		Usuario requerente = util.retornaUsuario(nomeRequerente, telefoneRequerente);
+		Item item = util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataEmprestimo);
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, data, periodo);
 		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
@@ -75,7 +75,7 @@ public class EmprestimoController {
 	 *            nome do item
 	 */
 	public void alocaItemEmprestado(String nomeRequerente, String telefoneRequerente, Item item) {
-		sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente).aloca(item);
+		util.retornaUsuario(nomeRequerente, telefoneRequerente).aloca(item);
 	}
 
 	/**
@@ -99,21 +99,21 @@ public class EmprestimoController {
 	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
-		if (sistemaService.retornaUsuario(nomeDono, telefoneDono) == null
-				|| sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente) == null)
+		if (util.retornaUsuario(nomeDono, telefoneDono) == null
+				|| util.retornaUsuario(nomeRequerente, telefoneRequerente) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		if (sistemaService.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
+		if (util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem) == null)
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
-		if (!sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente).recuperaAlocados(nomeItem))
+		if (!util.retornaUsuario(nomeRequerente, telefoneRequerente).recuperaAlocados(nomeItem))
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
-		Item item = sistemaService.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
+		Item item = util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
 		Date dataDoEmprestimo = emprestimoRepository.converteParaData(dataEmprestimo);
-		sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
+		util.retornaUsuario(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
-		sistemaService.retornaUsuario(nomeRequerente, telefoneRequerente)
+		util.retornaUsuario(nomeRequerente, telefoneRequerente)
 				.atualizarReputacao(this.atualizacaoReputacao(dataEmprestimo, dataDevolucao, item));
 	}
 
@@ -128,7 +128,7 @@ public class EmprestimoController {
 	}
 
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null)
+		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
@@ -143,7 +143,7 @@ public class EmprestimoController {
 	}
 
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
-		if (sistemaService.retornaUsuario(nome, telefone) == null)
+		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos pegos: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
@@ -173,7 +173,7 @@ public class EmprestimoController {
 	public String listarItensNaoEmprestados() {
 		List<Item> lista = new ArrayList<>();
 		String saida = "";
-		for (Usuario usuario : this.sistemaService.getUsuarios()) {
+		for (Usuario usuario : this.util.getUsuarios()) {
 			for (Item Item : usuario.getListaItens()) {
 				if (Item.getStatus() == false) {
 					lista.add(Item);
@@ -189,7 +189,7 @@ public class EmprestimoController {
 
 	public String listarTop10Itens() {
 		List<Item> itensPopulares = new ArrayList<>();
-		for (Usuario usuario : this.sistemaService.getUsuarios()) {
+		for (Usuario usuario : this.util.getUsuarios()) {
 			for (Item Item : usuario.getListaItens()) {
 				if (Item.getPopularidade() > 0)
 					itensPopulares.add(Item);

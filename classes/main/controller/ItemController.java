@@ -9,27 +9,29 @@ import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
-import main.service.SistemaService;
-
-
+import main.util.Util;
+/**
+ * Classe que representa controle Item
+ * 
+ */
 public class ItemController {
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
-	private SistemaService sistemaService;
+	private Util util;
 	
 	public ItemController() {
 		
-		sistemaService = new SistemaService();
+		util = new Util();
 	}
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
-		sistemaService.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
+		util.retornaUsuario(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
 	}
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null) {
+		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
-		sistemaService.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
+		util.retornaUsuario(nome, telefone).adicionarItemJogoTabuleiro(nomeItem, preco);
 
 	}
 
@@ -46,7 +48,7 @@ public class ItemController {
 	 *            nome da peca perdida
 	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		sistemaService.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
+		util.retornaUsuario(nome, telefone).adicionarPecaperdida(nomeItem, nomePeca);
 
 	}
 
@@ -75,10 +77,10 @@ public class ItemController {
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null) {
+		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
-		sistemaService.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+		util.retornaUsuario(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 		
 	}
 
@@ -105,7 +107,7 @@ public class ItemController {
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
 			String genero, String classificacao, String anoDeLancamento) throws Exception {
-		sistemaService.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
+		util.retornaUsuario(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
 	}
 
 	/**
@@ -131,7 +133,7 @@ public class ItemController {
 	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
 			int numeroDeFaixas, String artista, String classificacao) throws Exception {
-		sistemaService.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
+	util.retornaUsuario(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
 	}
 
 	/**
@@ -148,15 +150,15 @@ public class ItemController {
 	 * @throws DadoInvalido
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws DadoInvalido {
-		sistemaService.adicionarBluRay(nome, telefone, nomeItem, duracao);
+		util.retornaUsuario(nome, telefone).adicionarBluRay(nomeItem, duracao);
 	}
 	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null) {
+		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		} else if (sistemaService.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
+		} else if (util.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		}
-		sistemaService.retornaUsuario(nome, telefone).removerItem(nomeItem);
+		util.retornaUsuario(nome, telefone).removerItem(nomeItem);
 	}
 
 	/**
@@ -176,12 +178,12 @@ public class ItemController {
 	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor)
 			throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null) {
+		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		} else if (sistemaService.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
+		} else if (util.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		}
-		sistemaService.retornaUsuario(nome, telefone).atualizarItem(nomeItem, atributo, valor);
+		util.retornaUsuario(nome, telefone).atualizarItem(nomeItem, atributo, valor);
 
 	}
 
@@ -198,17 +200,17 @@ public class ItemController {
 	 * @throws Exception
 	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
-		if (sistemaService.retornaUsuario(nome, telefone) == null) {
+		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
-		} else if (sistemaService.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
+		} else if (util.retornaUsuario(nome, telefone).recuperItem(nomeItem) == null) {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		}
-		return sistemaService.retornaUsuario(nome, telefone).recuperItem(nomeItem).toString();
+		return util.retornaUsuario(nome, telefone).recuperItem(nomeItem).toString();
 	}
 
 	
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) throws Exception {
-		Usuario usuario = sistemaService.retornaUsuario(nome, telefone);
+		Usuario usuario = util.retornaUsuario(nome, telefone);
 		if (usuario.recuperItem(nomeItem) == null) {
 			throw new OperacaoNaoPermitida(ITEM_NAO_ENCONTRADO);
 		}
@@ -258,7 +260,7 @@ public class ItemController {
 	 */
 	public List<Item> listaTotalItens() {
 		List<Item> listaItens = new ArrayList<Item>();
-		for (Usuario usuario : sistemaService.getUsuarios() ) {
+		for (Usuario usuario : util.getUsuarios() ) {
 			Set<Item> listaItenUser = usuario.getListaItens();
 			for (Item item : listaItenUser) {
 				listaItens.add(item);
