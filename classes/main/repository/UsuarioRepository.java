@@ -38,10 +38,8 @@ public class UsuarioRepository {
 	 */
 	public Usuario recuperar(String nome, String telefone) {
 		for (Usuario usuario : usuarios) {
-			if (usuario.getNome().equalsIgnoreCase(nome)) {
-				if (usuario.getNumeroDoCelular().equalsIgnoreCase(telefone)) {
-					return usuario;
-				}
+			if (usuario.getNome().equalsIgnoreCase(nome) && usuario.getNumeroDoCelular().equals(telefone)) {
+				return usuario;
 			}
 		}
 		return null;

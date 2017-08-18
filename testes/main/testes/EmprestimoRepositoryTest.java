@@ -29,7 +29,6 @@ public class EmprestimoRepositoryTest {
 	private JogoEletronico item;
 	private JogoEletronico item2;
 	
-	@SuppressWarnings("deprecation")
 	@Before
 	public void setUp() throws Exception {
 		repository = new EmprestimoRepository();
