@@ -1,32 +1,32 @@
 package main.facade;
+
 import easyaccept.EasyAccept;
-import main.controller.SistemaController;
+import main.controller.EmprestimoController;
+import main.controller.ItemController;
+import main.controller.UsuarioController;
 import main.elementos.Usuario;
-import main.exception.DadoInvalido;
 
 /**
  * Classe responsabel pela interacao do administrador com o programa
  */
 public class TTFacade {
-	private SistemaController sistemaController;
+	private EmprestimoController sistemaController;
+	private UsuarioController usuarioController;
+	private ItemController itemController;
 
 	/**
 	 * Contrutor da facade
 	 */
 	public TTFacade() {
-		sistemaController = new SistemaController();
+		sistemaController = new EmprestimoController();
+		usuarioController = new UsuarioController();
+		itemController = new ItemController();
 
 	}
 
-	/**
-	 * Metodo onde se inicia o programa
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt",
-				"us/us4_test.txt", "us/us5_test.txt", "us/us6_test.txt" };
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt", "us/us4_test.txt","us/us5_test.txt",
+				"us/us6_test.txt"};
 		EasyAccept.main(args);
 
 	}
@@ -57,7 +57,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public void cadastrarUsuario(String nome, String telefone, String email) throws Exception {
-		sistemaController.adicionar(nome, telefone, email);
+		usuarioController.adicionar(nome, telefone, email);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) throws Exception {
-		return sistemaController.getInfoUsuario(nome, telefone, atributo);
+		return usuarioController.getInfoUsuario(nome, telefone, atributo);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public void removerUsuario(String nome, String telefone) throws Exception {
-		sistemaController.removerUsuario(nome, telefone);
+		usuarioController.removerUsuario(nome, telefone);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String email) throws Exception {
-		sistemaController.atualizarUsuario(nome, telefone, atributo, email);
+		usuarioController.atualizarUsuario(nome, telefone, atributo, email);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) throws Exception {
-		return this.sistemaController.getInfoItem(nome, telefone, itemNome, atributo);
+		return this.itemController.getInfoItem(nome, telefone, itemNome, atributo);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class TTFacade {
 	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
-		sistemaController.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
+		itemController.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
-		sistemaController.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
+		itemController.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class TTFacade {
 	 *            nome da peca perdida
 	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		sistemaController.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
+		itemController.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
 	}
 
 	/**
@@ -199,7 +199,7 @@ public class TTFacade {
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) throws Exception {
-		sistemaController.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao,
+		itemController.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao,
 				genero, temporada);
 	}
 
@@ -226,7 +226,7 @@ public class TTFacade {
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
 			String genero, String classificacao, String anoDeLancamento) throws Exception {
-		sistemaController.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao,
+		itemController.cadastrarBluRayFilme(nome, telefone, nomeItem, valor, duracao, genero, classificacao,
 				anoDeLancamento);
 
 	}
@@ -254,7 +254,7 @@ public class TTFacade {
 	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
 			int numeroDeFaixas, String artista, String classificacao) throws Exception {
-		sistemaController.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista,
+		itemController.cadastrarBluRayShow(nome, telefone, nomeItem, valor, duracao, numeroDeFaixas, artista,
 				classificacao);
 
 	}
@@ -272,8 +272,8 @@ public class TTFacade {
 	 *            duracao do episodio
 	 * @throws DadoInvalido
 	 */
-	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws DadoInvalido {
-		sistemaController.adicionarBluRay(nome, telefone, nomeItem, duracao);
+	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws Exception {
+		itemController.adicionarBluRay(nome, telefone, nomeItem, duracao);
 	}
 
 	/**
@@ -288,7 +288,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
-		sistemaController.removerItem(nome, telefone, nomeItem);
+		itemController.removerItem(nome, telefone, nomeItem);
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class TTFacade {
 	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor)
 			throws Exception {
-		sistemaController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+		itemController.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
 
 	/**
@@ -317,7 +317,7 @@ public class TTFacade {
 	 * @return uma lista em String de itens
 	 */
 	public String listarItensOrdenadosPorNome() {
-		return this.sistemaController.listarItensOrdenadosPorNome();
+		return this.itemController.listarItensOrdenadosPorNome();
 	}
 
 	/**
@@ -326,11 +326,11 @@ public class TTFacade {
 	 * @return uma lista em String de itens
 	 */
 	public String listarItensOrdenadosPorValor() {
-		return this.sistemaController.ordenacaoItensValor();
+		return this.itemController.ordenacaoItensValor();
 	}
 
 	/**
-	 * Metodo que pesquisa o item com a descriÃ§Ã£o completa.
+	 * Metodo que pesquisa o item com a descrição completa.
 	 * 
 	 * @param nome
 	 *            em String
@@ -338,11 +338,11 @@ public class TTFacade {
 	 *            em String
 	 * @param nomeItem
 	 *            em String
-	 * @return a descriÃ§Ã£o do item em string
+	 * @return a descrição do item em string
 	 * @throws Exception
 	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
-		return this.sistemaController.pesquisarDetalhesItem(nome, telefone, nomeItem);
+		return this.itemController.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 
 	/**
@@ -394,28 +394,28 @@ public class TTFacade {
 		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, dataDevolucao);
 	}
-	
+
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		return sistemaController.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
-	
+
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
 		return sistemaController.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
-	
+
 	public String listarEmprestimosItem(String nomeItem) {
 		return sistemaController.listarEmprestimosItem(nomeItem);
 	}
-	
+
 	public String listarItensEmprestados() {
 		return sistemaController.listarItensEmprestados();
 	}
-	public String  listarItensNaoEmprestados() {
+
+	public String listarItensNaoEmprestados() {
 		return this.sistemaController.listarItensNaoEmprestados();
 	}
-	
+
 	public String listarTop10Itens() {
 		return sistemaController.listarTop10Itens();
 	}
-	
 }
