@@ -45,12 +45,18 @@ public class EmprestimoRepositoryTest {
 		
 	}
 	
+	@Test
+	public void testListaDeEmprestimos() {
+		assertEquals(2, repository.getEmprestimos().size());
+	}
+	
 	/**
 	 * Teste para recuperar o Emprestimo a partir do nome do item.
 	 */
 	@Test
 	public void testRecuperar() {
 		assertNotNull(repository.recuperar("War"));
+		assertNotNull(repository.recuperar("FIFA 18"));
 	}
 
 	/**
