@@ -20,9 +20,9 @@ public class ItemController {
 	private Util util;
 	
 	public ItemController() {
-		
 		util = new Util();
 	}
+	
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
 		util.retornaUsuario(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);

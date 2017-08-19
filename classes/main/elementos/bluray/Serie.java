@@ -1,6 +1,7 @@
 package main.elementos.bluray;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import main.exception.DadoInvalido;
@@ -119,7 +120,7 @@ public class Serie extends BluRay {
 	 * @return retorna o a duracao total da temporada
 	 */
 	public int getDuracaoTotal() {
-		int duracaoTotal = 0;
+		int duracaoTotal = getDuracao();
 		for (int duracao : episodios) {
 			duracaoTotal += duracao;
 		}
