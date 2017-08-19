@@ -26,13 +26,14 @@ public class ItemController {
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
 		util.retornaUsuario(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
 		util.retornaUsuario(nome, telefone).adicionarItemJogoTabuleiro(nomeItem, preco);
-
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class ItemController {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
 		util.retornaUsuario(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
-		
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**
@@ -108,6 +109,7 @@ public class ItemController {
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
 			String genero, String classificacao, String anoDeLancamento) throws Exception {
 		util.retornaUsuario(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**
@@ -134,6 +136,7 @@ public class ItemController {
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
 			int numeroDeFaixas, String artista, String classificacao) throws Exception {
 	util.retornaUsuario(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
+	util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**
@@ -151,6 +154,7 @@ public class ItemController {
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeItem, int duracao) throws DadoInvalido {
 		util.retornaUsuario(nome, telefone).adicionarBluRay(nomeItem, duracao);
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null) {
@@ -159,6 +163,7 @@ public class ItemController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		}
 		util.retornaUsuario(nome, telefone).removerItem(nomeItem);
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**

@@ -13,6 +13,7 @@ public class UsuarioController {
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private static final String USUARIO_CASASTRADO = "Usuario ja cadastrado";
 	private static final String ATRIBUTO_REPUTACAO = "Reputacao";
+	private static final String ATRIBUTO_CARTAO = "Cartao";
 
 	/**
 	 * Construtor de sistemaController
@@ -65,7 +66,10 @@ public class UsuarioController {
 			return usuario.getEmail();
 		}
 		if (ATRIBUTO_REPUTACAO.equalsIgnoreCase(atributo)) {
-			return String.valueOf(usuario.getReputacao());
+			return String.valueOf(usuario.getReputacaoValor());
+		}
+		if(ATRIBUTO_CARTAO.equalsIgnoreCase(atributo)) {
+			return usuario.getReputacao().toStringReputacao();
 		}
 		return null;
 	}
@@ -120,5 +124,6 @@ public class UsuarioController {
 	public Usuario recuperar(String nome, String telefone) {
 		return recuperar(nome, telefone);
 	}
+//	
 
 }

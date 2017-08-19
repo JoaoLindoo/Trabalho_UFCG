@@ -32,7 +32,8 @@ public class EmprestimoController {
 	private static final String NENHUM_ITEM_EMPRESTADO = "Nenhum item emprestado";
 	private static final String NENHUM_ITEM_PEGO_EMPRESTADO = "Nenhum item pego emprestado";
 	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimos associados ao item";
-
+	private static final String USUARIO_NAO_PEGAR_EMPRESTADO = "Usuario nao pode pegar nenhum item emprestado";
+	private static final String USUARIO_NAO_PEGAR_EMPRESTADO_PERIODO = "Usuario impossiblitado de pegar emprestado por esse periodo";
 	/**
 	 * Construtor de sistemaController
 	 */
@@ -50,7 +51,10 @@ public class EmprestimoController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
-
+		if(!util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().pegarEmprestado())
+			throw new DadoInvalido(USUARIO_NAO_PEGAR_EMPRESTADO);
+		if(periodo > util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().periodoEmprestimo())
+			throw new DadoInvalido(USUARIO_NAO_PEGAR_EMPRESTADO_PERIODO);
 		Usuario dono = util.retornaUsuario(nomeDono, telefoneDono);
 		Usuario requerente = util.retornaUsuario(nomeRequerente, telefoneRequerente);
 		Item item = util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
@@ -58,10 +62,11 @@ public class EmprestimoController {
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, data, periodo);
 		alocaItemEmprestado(nomeRequerente, telefoneRequerente, item);
 		item.setStatus(true);
+		util.retornaUsuario(nomeDono, telefoneDono).atualizarReputacao();
 		emprestimoRepository.adicionar(emprestimo);
 		emprestimoRepository.adicionarEmpIntens(emprestimo);
 		item.setPopularidade();
-		dono.atualizarReputacao(item.getValor() * 0.1);
+		dono.atualizarReputacaoValor(item.getValor() * 0.1);
 	}
 
 	/**
@@ -114,7 +119,8 @@ public class EmprestimoController {
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
 		util.retornaUsuario(nomeRequerente, telefoneRequerente)
-				.atualizarReputacao(this.atualizacaoReputacao(dataEmprestimo, dataDevolucao, item));
+				.atualizarReputacaoValor(this.atualizacaoReputacao(dataEmprestimo, dataDevolucao, item));
+		util.retornaUsuario(nomeRequerente, telefoneRequerente).atualizarReputacao();
 	}
 
 	public String listarItensEmprestados() {

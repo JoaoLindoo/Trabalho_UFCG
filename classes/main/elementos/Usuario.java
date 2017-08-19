@@ -7,6 +7,11 @@ import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
 import main.exception.DadoInvalido;
+import main.reputacao.BomAmigo;
+import main.reputacao.Caloteiro;
+import main.reputacao.FreeRyder;
+import main.reputacao.Noob;
+import main.reputacao.Reputacao;
 
 /**
  * Classe que representa um usuario do sistema
@@ -19,10 +24,10 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numeroDoCelular;
-	private double reputacao;
+	private double reputacaoValor;
+	private Reputacao reputacao; 
 
 	// uso do hashset pois apenas adicionar elementos com nomes diferentes.
-
 	private Set<Item> listaItens;
 	private Set<Item> listaItensPegos;
 
@@ -50,9 +55,10 @@ public class Usuario {
 
 		// Calculando valor inicial da reputacao do usuario
 		if (listaItens.size() == 0) {
-			this.reputacao = 0.0;
+			this.reputacaoValor = 0.0;
+			this.atualizarReputacao();
 		} else {
-			this.reputacao = this.totalInicialReputacao();
+			this.reputacaoValor = this.totalInicialReputacao();
 		}
 	}
 
@@ -75,8 +81,8 @@ public class Usuario {
 	 * 
 	 * @return retorna a reputacao atual do usuario
 	 */
-	public double getReputacao() {
-		return reputacao;
+	public double getReputacaoValor() {
+		return reputacaoValor;
 	}
 
 	public String listarItensEmprestados() {
@@ -199,7 +205,7 @@ public class Usuario {
 	 */
 	public void adicionarItemJogoTabuleiro(String nome, double valor) throws Exception {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
-		this.reputacao += valor * 0.05;
+		this.reputacaoValor += valor * 0.05;
 	}
 
 	/**
@@ -215,7 +221,7 @@ public class Usuario {
 	 */
 	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
-		this.reputacao += valor * 0.05;
+		this.reputacaoValor += valor * 0.05;
 	}
 
 	/**
@@ -238,7 +244,7 @@ public class Usuario {
 	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
 			String anoDeLancamento) throws Exception {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
-		this.reputacao += valor * 0.05;
+		this.reputacaoValor += valor * 0.05;
 	}
 
 	/**
@@ -263,7 +269,7 @@ public class Usuario {
 	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
 			String genero, int temporada) throws Exception {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
-		this.reputacao += valor * 0.05;
+		this.reputacaoValor += valor * 0.05;
 	}
 
 	/**
@@ -286,7 +292,7 @@ public class Usuario {
 	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
 			String classificacao) throws Exception {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
-		this.reputacao += valor * 0.05;
+		this.reputacaoValor += valor * 0.05;
 	}
 
 	/**
@@ -457,7 +463,46 @@ public class Usuario {
 	 * Metodo que ira atualizar a reputacao do usuario toda vez que ele
 	 * emprestar um item seu
 	 */
-	public void atualizarReputacao(double atualizacao) {
-		this.reputacao += atualizacao;
+	public void atualizarReputacaoValor(double atualizacao) {
+		this.reputacaoValor += atualizacao;
 	}
+	
+	/**
+	 * Metodo que atualiza a reputacao do usuario toda vez que e chamado.
+	 */
+	public void atualizarReputacao() {
+		if(this.reputacaoValor > 100)
+			this.reputacao = new BomAmigo();
+		else if(this.reputacaoValor < 0)
+			this.reputacao = new Caloteiro();
+		else if(this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() != 0)
+			this.reputacao = new Noob();
+		else if(this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() == 0)
+			this.reputacao = new FreeRyder();
+			
+	}
+	/**
+	 * metodo get que retorna o objeto reputacao.
+	 * @return o objeto Reputacao
+	 */
+	public Reputacao getReputacao() {
+		return reputacao;
+	}
+	/**
+	 * Metodo para listar o numeros de itens do usuario para serem emprestados.
+	 * @return inteiro do numeros de itens para serem emprestados 
+	 */
+	public int numeroItensParaEmprestar() {
+		int totalItens = 0;
+		for (Item item : listaItens) {
+			if(item.getStatus() == false)
+				totalItens++;
+			
+		}
+		return totalItens;
+	}
+	
+	
+	
+	
 }
