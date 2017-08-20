@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import main.exception.DadoInvalido;
+
 /**
  * Classe que representa o emprestimo.
  * 
@@ -24,10 +26,19 @@ public class Emprestimo {
 
 	/**
 	 * Construtor de Emprestimo.
+	 * @throws DadoInvalido 
 	 *
 	 */
 	public Emprestimo(Usuario usuarioDono, Usuario usuarioRequerente, Item itemEmprestado, Date dataEmprestimo,
-			int tempoEmprestimo) {
+			int tempoEmprestimo) throws DadoInvalido {
+		if (usuarioDono == null || usuarioRequerente == null)
+			throw new DadoInvalido("Usuario invalido");
+		if (itemEmprestado == null)
+			throw new DadoInvalido("Item invalido");
+		if (dataEmprestimo == null)
+			throw new DadoInvalido("Data invalida");
+		if (tempoEmprestimo <= 0)
+			throw new DadoInvalido("Tempo de emprestimo invalido");
 		this.usuarioDono = usuarioDono;
 		this.usuarioRequerente = usuarioRequerente;
 		this.itemEmprestado = itemEmprestado;
