@@ -132,7 +132,15 @@ public class EmprestimoController {
 		}
 		return listar;
 	}
-
+	
+	/**
+	 * Metodo que retorna os Emprestimos em que o usuario esta emprestando o item
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return
+	 * @throws Exception
+	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -149,8 +157,16 @@ public class EmprestimoController {
 			return NENHUM_ITEM_EMPRESTADO;
 		return lista;
 	}
-
-	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws DadoInvalido {
+	
+	/**
+	 * Metodo que retorna os Emprestimos em que o usuario esta pegando o item emprestado
+	 * 
+	 * @param nome
+	 * @param telefone
+	 * @return
+	 * @throws Exception
+	 */
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos pegos: ";
@@ -167,6 +183,12 @@ public class EmprestimoController {
 		return lista;
 	}
 
+	/**
+	 * Metodo que retorna os emprestimos associados ao item
+	 * 
+	 * @param nomeItem
+	 * @return
+	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		String lista = "Emprestimos associados ao item: ";
 		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
@@ -180,6 +202,11 @@ public class EmprestimoController {
 
 	}
 
+	/**
+	 * Metodo que retorna os itens que nao estao emprestados
+	 * 
+	 * @return
+	 */
 	public String listarItensNaoEmprestados() {
 		List<Item> lista = new ArrayList<>();
 		String saida = "";
@@ -197,6 +224,11 @@ public class EmprestimoController {
 		return saida;
 	}
 
+	/**
+	 * Metodo que retorna os 10 itens mais emprestados
+	 * 
+	 * @return
+	 */
 	public String listarTop10Itens() {
 		List<Item> itensPopulares = new ArrayList<>();
 		for (Usuario usuario : this.util.getUsuarios()) {
