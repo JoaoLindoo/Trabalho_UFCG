@@ -9,6 +9,7 @@ import java.util.List;
 import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
+import main.elementos.ordenacao.EmprestimoOrdenacaoPorNome;
 import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoPopularidade;
 import main.elementos.ordenacao.UsuarioOrdenaPorNome;
@@ -113,7 +114,6 @@ public class EmprestimoController {
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
 		Item item = util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
-		Date dataDoEmprestimo = emprestimoRepository.converteParaData(dataEmprestimo);
 		util.retornaUsuario(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
@@ -137,7 +137,9 @@ public class EmprestimoController {
 		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos: ";
-		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+		List<Emprestimo> emprestimosUsuarioEmprestando = emprestimoRepository.getEmprestimos();
+		Collections.sort(emprestimosUsuarioEmprestando, new EmprestimoOrdenacaoPorNome());
+		for (Emprestimo emprestimo : emprestimosUsuarioEmprestando) {
 			if (emprestimo.getUsuarioDono().getNome().equals(nome)
 					&& emprestimo.getUsuarioDono().getNumeroDoCelular().equals(telefone)) {
 				lista += emprestimo.toString();
@@ -152,7 +154,9 @@ public class EmprestimoController {
 		if (util.retornaUsuario(nome, telefone) == null)
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		String lista = "Emprestimos pegos: ";
-		for (Emprestimo emprestimo : emprestimoRepository.getEmprestimos()) {
+		List<Emprestimo> emprestimosUsuarioPegandoEmprestado = emprestimoRepository.getEmprestimos();
+		Collections.sort(emprestimosUsuarioPegandoEmprestado, new EmprestimoOrdenacaoPorNome());
+		for (Emprestimo emprestimo : emprestimosUsuarioPegandoEmprestado) {
 			if (emprestimo.getUsuarioRequerente().getNome().equals(nome)
 					&& emprestimo.getUsuarioRequerente().getNumeroDoCelular().equals(telefone)) {
 				lista += emprestimo.toString();

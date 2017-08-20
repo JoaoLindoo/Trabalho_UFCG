@@ -120,7 +120,7 @@ public class Serie extends BluRay {
 	 * @return retorna o a duracao total da temporada
 	 */
 	public int getDuracaoTotal() {
-		int duracaoTotal = getDuracao();
+		int duracaoTotal = 0;
 		for (int duracao : episodios) {
 			duracaoTotal += duracao;
 		}
