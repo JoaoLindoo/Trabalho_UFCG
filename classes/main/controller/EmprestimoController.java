@@ -42,6 +42,19 @@ public class EmprestimoController {
 		this.util = new Util();
 		emprestimoRepository = new EmprestimoRepository();
 	}
+	
+	/**
+	 * Metodo que registra o emprestimo
+	 * 
+	 * @param nomeDono
+	 * @param telefoneDono
+	 * @param nomeRequerente
+	 * @param telefoneRequerente
+	 * @param nomeItem
+	 * @param dataEmprestimo
+	 * @param periodo
+	 * @throws Exception
+	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
 

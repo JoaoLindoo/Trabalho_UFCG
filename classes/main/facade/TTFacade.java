@@ -106,7 +106,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Método que retorna a informação do item de acordo com o atributo.
+	 * Método que retorna a informacao do item de acordo com o atributo.
 	 * 
 	 * @param nome
 	 * @param telefone
@@ -330,7 +330,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Metodo que pesquisa o item com a descri��o completa.
+	 * Metodo que pesquisa o item com a descricao completa.
 	 * 
 	 * @param nome
 	 *            em String
@@ -338,7 +338,7 @@ public class TTFacade {
 	 *            em String
 	 * @param nomeItem
 	 *            em String
-	 * @return a descri��o do item em string
+	 * @return a descricao do item em string
 	 * @throws Exception
 	 */
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) throws Exception {
@@ -371,7 +371,7 @@ public class TTFacade {
 	}
 
 	/**
-	 * Metodo que edevolve um item ao seu dono original
+	 * Metodo que devolve um item ao seu dono original
 	 * 
 	 * @param nomeDono
 	 *            nome do dono do item
@@ -394,27 +394,58 @@ public class TTFacade {
 		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, dataDevolucao);
 	}
-
+	
+	/**
+	 * Metodo que lista os emprestimos de um usuario que esta emprestando
+	 * @param nome
+	 * @param telefone
+	 * @return
+	 * @throws Exception
+	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
 		return sistemaController.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 
+	/**
+	 * Metodo que lista os emprestimos de um usuario que esta pegando emprestado
+	 * @param nome
+	 * @param telefone
+	 * @return
+	 * @throws Exception
+	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
 		return sistemaController.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
 
+	/**
+	 * Metodo que lista os emprestimos associados ao item
+	 * @param nomeItem
+	 * @return
+	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		return sistemaController.listarEmprestimosItem(nomeItem);
 	}
 
+	/**
+	 * Metodo que lista os itens emprestados
+	 * @return
+	 */
 	public String listarItensEmprestados() {
 		return sistemaController.listarItensEmprestados();
 	}
 
+	/**
+	 * Metodo que lista os itens nao emprestados
+	 * @return
+	 */
 	public String listarItensNaoEmprestados() {
 		return this.sistemaController.listarItensNaoEmprestados();
 	}
 
+	/**
+	 * Metodo que lista os 10 itens mais emprestados
+	 * @return
+	 */
 	public String listarTop10Itens() {
 		return sistemaController.listarTop10Itens();
 	}

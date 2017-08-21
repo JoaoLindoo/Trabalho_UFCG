@@ -45,6 +45,9 @@ public class EmprestimoRepositoryTest {
 		
 	}
 	
+	/**
+	 * Teste para verificar se a lista contem o numero certo de elementos
+	 */
 	@Test
 	public void testListaDeEmprestimos() {
 		assertEquals(2, repository.getEmprestimos().size());
