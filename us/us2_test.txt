@@ -4,7 +4,7 @@
 
 iniciarSistema
 
-stackTrace cadastrarEletronico nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" preco=99.99 plataforma="NINTENDO_3DS"
+cadastrarEletronico nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" preco=99.99 plataforma="NINTENDO_3DS"
 expect "99.99" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" atributo="Preco"
 
 cadastrarEletronico nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" preco=15.00 plataforma="OUTRO"
