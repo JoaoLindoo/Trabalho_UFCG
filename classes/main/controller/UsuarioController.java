@@ -1,5 +1,10 @@
 package main.controller;
+import java.util.Collections;
+import java.util.List;
+
 import main.elementos.Usuario;
+import main.elementos.ordenacao.UsuarioOrdenaPorBaixaReputacao;
+import main.elementos.ordenacao.UsuarioOrdenaPorReputacao;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.factory.RepositoryFactory;
@@ -124,6 +129,45 @@ public class UsuarioController {
 	public Usuario recuperar(String nome, String telefone) {
 		return recuperar(nome, telefone);
 	}
-//	
 
+	/**
+	 * Metodo que lista os usuarios caloteiros
+	 * @return
+	 */
+	public String listarCaloteiros() {
+		String lista = "Lista de usuarios com reputacao negativa: ";
+		for (Usuario usuario : repository.getUsuarios()) {
+			if (usuario.getReputacao().toStringReputacao().equals("Caloteiro"))
+				lista += usuario.toString();
+		}
+		return lista;
+	}
+	
+	/**
+	 * Metodo que lista os 10 usuarios com melhor reputacao
+	 * @return
+	 */
+	public String listarTop10MelhoresUsuarios() {
+		List<Usuario> melhoresUsuarios = repository.getUsuarios();
+		Collections.sort(melhoresUsuarios, new UsuarioOrdenaPorReputacao());
+		String lista = "";
+		for (int i = 0; i < 10; i++) {
+			lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+		}
+		return lista;
+	}
+	
+	/**
+	 * Metodo que lista os 10 usuarios com pior reputacao
+	 * @return
+	 */
+	public String listarTop10PioresUsuarios() {
+		List<Usuario> pioresUsuarios = repository.getUsuarios();
+		Collections.sort(pioresUsuarios, new UsuarioOrdenaPorBaixaReputacao());
+		String lista = "";
+		for (int i = 0; i < 10; i++) {
+			lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+		}
+		return lista;
+	}
 }

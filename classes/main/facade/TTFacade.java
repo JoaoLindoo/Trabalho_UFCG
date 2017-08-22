@@ -10,7 +10,7 @@ import main.elementos.Usuario;
  * Classe responsabel pela interacao do administrador com o programa
  */
 public class TTFacade {
-	private EmprestimoController sistemaController;
+	private EmprestimoController emprestimoController;
 	private UsuarioController usuarioController;
 	private ItemController itemController;
 
@@ -18,7 +18,7 @@ public class TTFacade {
 	 * Contrutor da facade
 	 */
 	public TTFacade() {
-		sistemaController = new EmprestimoController();
+		emprestimoController = new EmprestimoController();
 		usuarioController = new UsuarioController();
 		itemController = new ItemController();
 
@@ -26,7 +26,7 @@ public class TTFacade {
 
 	public static void main(String[] args) throws Exception {
 		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt", "us/us4_test.txt","us/us5_test.txt",
-				"us/us6_test.txt","us/us7_test.txt"};
+				"us/us6_test.txt","us/us7_test.txt", "us/us8_test.txt"};
 		EasyAccept.main(args);
 
 	}
@@ -366,7 +366,7 @@ public class TTFacade {
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws Exception {
-		sistemaController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
+		emprestimoController.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, periodo);
 	}
 
@@ -391,7 +391,7 @@ public class TTFacade {
 	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws Exception {
-		sistemaController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
+		emprestimoController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, dataDevolucao);
 	}
 	
@@ -403,7 +403,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
-		return sistemaController.listarEmprestimosUsuarioEmprestando(nome, telefone);
+		return emprestimoController.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 
 	/**
@@ -414,7 +414,7 @@ public class TTFacade {
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
-		return sistemaController.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+		return emprestimoController.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
 
 	/**
@@ -423,7 +423,7 @@ public class TTFacade {
 	 * @return
 	 */
 	public String listarEmprestimosItem(String nomeItem) {
-		return sistemaController.listarEmprestimosItem(nomeItem);
+		return emprestimoController.listarEmprestimosItem(nomeItem);
 	}
 
 	/**
@@ -431,7 +431,7 @@ public class TTFacade {
 	 * @return
 	 */
 	public String listarItensEmprestados() {
-		return sistemaController.listarItensEmprestados();
+		return emprestimoController.listarItensEmprestados();
 	}
 
 	/**
@@ -439,7 +439,7 @@ public class TTFacade {
 	 * @return
 	 */
 	public String listarItensNaoEmprestados() {
-		return this.sistemaController.listarItensNaoEmprestados();
+		return this.emprestimoController.listarItensNaoEmprestados();
 	}
 
 	/**
@@ -447,6 +447,30 @@ public class TTFacade {
 	 * @return
 	 */
 	public String listarTop10Itens() {
-		return sistemaController.listarTop10Itens();
+		return emprestimoController.listarTop10Itens();
+	}
+	
+	/** 
+	 * Metodo que lista os usuarios caloteiros
+	 * @return
+	 */
+	public String listarCaloteiros() {
+		return usuarioController.listarCaloteiros();
+	}
+	
+	/**
+	 * Metodo que lista os 10 melhores usuarios
+	 * @return
+	 */
+	public String listarTop10MelhoresUsuarios() {
+		return usuarioController.listarTop10MelhoresUsuarios();
+	}
+	
+	/**
+	 * Metodo que lista os 10 piores usuarios
+	 * @return
+	 */
+	public String listarTop10PioresUsuarios() {
+		return usuarioController.listarTop10PioresUsuarios();
 	}
 }

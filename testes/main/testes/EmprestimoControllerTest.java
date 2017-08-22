@@ -3,11 +3,8 @@ package main.testes;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
-import main.controller.EmprestimoController;
-import main.controller.ItemController;
-import main.controller.UsuarioController;
 import main.exception.DadoInvalido;
 import main.facade.TTFacade;
 
@@ -75,5 +72,5 @@ public class EmprestimoControllerTest {
 				"1) 1 emprestimos - JOGO DE TABULEIRO: Xadrez, R$ 20.0, Emprestado, COMPLETO|2) 1 emprestimos - FILME: Kung-Fu Futebol Clube, R$ 3.5, Emprestado, 113 min, 12, Esportes/Acao, 2001|3) 1 emprestimos - JOGO DE TABULEIRO: Dama, R$ 11.5, Emprestado, COMPLETO|4) 1 emprestimos - JOGO ELETRONICO: Super Mario, R$ 20.0, Emprestado, Super Nintendo|5) 1 emprestimos - SERIE: The Flash, R$ 30.0, Emprestado, 40 min, 12, Super-Heroi/Acao/Ficcao Cientifica, Temporada 3|",
 				facade.listarTop10Itens());
 	}
-
+	
 }

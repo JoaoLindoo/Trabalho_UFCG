@@ -1,6 +1,7 @@
 package main.elementos;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import main.elementos.bluray.Filme;
@@ -157,9 +158,16 @@ public class Usuario {
 	 */
 	@Override
 	public String toString() {
-		return "Usuario [nome=" + nome + ", email=" + email + ", numeroDoCelular=" + numeroDoCelular + "]";
+		return nome + ", " + email + ", " + numeroDoCelular + "|";
 	}
-
+	
+	/**
+	 * Metodo que retorna uma representacao em String com a reputacao do usuario
+	 * @return
+	 */
+	public String toStringComReputacao() {
+		return String.format("%s - Reputacao: %.2f|", nome, reputacaoValor);
+	}
 	/**
 	 * Metodo que retorna uma representacao inteira do usuario
 	 */
@@ -337,9 +345,8 @@ public class Usuario {
 	 * @return retorna o valor do item desejado
 	 */
 	public double getValorItem(String nomeItem) {
-		if (recuperItem(nomeItem) != null) {
+		if (recuperItem(nomeItem) != null) 
 			return recuperItem(nomeItem).getValor();
-		}
 		return 0;
 	}
 
@@ -351,9 +358,8 @@ public class Usuario {
 	 * @return retorna o próprios nome do item
 	 */
 	public String getNomeItem(String nomeItem) {
-		if (recuperItem(nomeItem) != null) {
+		if (recuperItem(nomeItem) != null)
 			return recuperItem(nomeItem).getNome();
-		}
 		return "";
 	}
 
@@ -366,9 +372,8 @@ public class Usuario {
 	 */
 	public Item recuperItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
+			if (item.getNome().equals(nomeItem)) 
 				return item;
-			}
 		}
 		return null;
 	}
@@ -435,9 +440,8 @@ public class Usuario {
 	 */
 	public boolean recuperaAlocados(String nomeItem) {
 		for (Item item : listaItensPegos) {
-			if (nomeItem.equalsIgnoreCase(item.getNome())) {
+			if (nomeItem.equalsIgnoreCase(item.getNome())) 
 				return true;
-			}
 		}
 		return false;
 	}
@@ -497,12 +501,8 @@ public class Usuario {
 		for (Item item : listaItens) {
 			if(item.getStatus() == false)
 				totalItens++;
-			
 		}
 		return totalItens;
 	}
-	
-	
-	
 	
 }
