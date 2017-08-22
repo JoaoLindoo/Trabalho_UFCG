@@ -127,7 +127,6 @@ public class EmprestimoController {
 			throw new DadoInvalido(EMPRESTIMO_NAO_ENCONTRADO);
 		Item item = util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem);
 		Date data = emprestimoRepository.converteParaData(dataDevolucao);
-		util.retornaUsuario(nomeRequerente, telefoneRequerente).removerItemEmprestado(nomeItem);
 		emprestimoRepository.recuperar(nomeItem).setDataDevolucao(data);
 		emprestimoRepository.removerItenList(nomeDono, nomeItem);
 		item.setStatus(false);
@@ -283,7 +282,13 @@ public class EmprestimoController {
 		}
 		return item.getValor() * 0.05;
 	}
-
+	/**
+	 * Metodo feito para contar dias
+	 * @param dataInicial data inicial do emprestimo
+	 * @param dataFinal data final do emprestimo
+	 * @return
+	 * @throws Exception
+	 */
 	public int contaDias(String dataInicial, String dataFinal) throws Exception {
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		df.setLenient(false);

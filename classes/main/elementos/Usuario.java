@@ -24,6 +24,7 @@ public class Usuario {
 	private String numeroDoCelular;
 	private double reputacaoValor;
 	private Reputacao reputacao; 
+	private static final double porcentagemReputacao = 0.05;
 
 	// uso do hashset pois apenas adicionar elementos com nomes diferentes.
 	private Set<Item> listaItens;
@@ -210,7 +211,7 @@ public class Usuario {
 	 */
 	public void adicionarItemJogoTabuleiro(String nome, double valor) throws Exception {
 		this.listaItens.add(new JogoDeTabuleiro(nome, valor));
-		this.reputacaoValor += valor * 0.05;
+		this.reputacaoValor += valor * porcentagemReputacao;
 	}
 
 	/**
@@ -226,7 +227,7 @@ public class Usuario {
 	 */
 	public void adiconarItemJogoEletronico(String nome, double valor, String plataforma) throws Exception {
 		this.listaItens.add(new JogoEletronico(nome, valor, plataforma));
-		this.reputacaoValor += valor * 0.05;
+		this.reputacaoValor += valor * porcentagemReputacao;
 	}
 
 	/**
@@ -249,7 +250,7 @@ public class Usuario {
 	public void adicionarItemFilme(String nome, double valor, int duracao, String genero, String classificacao,
 			String anoDeLancamento) throws Exception {
 		this.listaItens.add(new Filme(nome, valor, duracao, genero, classificacao, anoDeLancamento));
-		this.reputacaoValor += valor * 0.05;
+		this.reputacaoValor += valor * porcentagemReputacao;
 	}
 
 	/**
@@ -274,7 +275,7 @@ public class Usuario {
 	public void adicionarItemSerie(String nome, double valor, String descricao, int duracao, String classificacao,
 			String genero, int temporada) throws Exception {
 		this.listaItens.add(new Serie(nome, valor, descricao, duracao, classificacao, genero, temporada));
-		this.reputacaoValor += valor * 0.05;
+		this.reputacaoValor += valor * porcentagemReputacao;
 	}
 
 	/**
@@ -297,7 +298,7 @@ public class Usuario {
 	public void adicionarItemShow(String nome, double valor, int duracao, int numeroFaixas, String artista,
 			String classificacao) throws Exception {
 		this.listaItens.add(new Show(nome, valor, duracao, numeroFaixas, artista, classificacao));
-		this.reputacaoValor += valor * 0.05;
+		this.reputacaoValor += valor * porcentagemReputacao;
 	}
 
 	/**
