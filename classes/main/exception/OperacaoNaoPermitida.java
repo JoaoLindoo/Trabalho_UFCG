@@ -9,6 +9,11 @@ package main.exception;
 public class OperacaoNaoPermitida extends Exception {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Contrutor da exception OperacaoNaoPermitida
 	 * 
 	 * @param msg

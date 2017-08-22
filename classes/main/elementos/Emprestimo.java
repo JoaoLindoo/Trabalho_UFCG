@@ -1,7 +1,6 @@
 package main.elementos;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import main.exception.DadoInvalido;

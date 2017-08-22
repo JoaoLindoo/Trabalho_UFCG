@@ -1,9 +1,6 @@
 package main.elementos;
-
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
-
 import main.elementos.bluray.Filme;
 import main.elementos.bluray.Serie;
 import main.elementos.bluray.Show;
