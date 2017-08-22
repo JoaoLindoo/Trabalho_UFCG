@@ -15,8 +15,8 @@ import main.testes.elementos.TestUsuario;
  *
  */
 @RunWith(Suite.class)
-@SuiteClasses({ JogoDeTabuleiroTest.class, JogoEletronicoTest.class, TestUsuario.class, TestUsuarioController.class,
-		TestUsuarioRepository.class })
+@SuiteClasses({ JogoDeTabuleiroTest.class, JogoEletronicoTest.class, TestUsuario.class, TestUsuarioController.class, EmprestimoControllerTest.class, 
+	EmprestimoRepositoryTest.class, TestUsuarioRepository.class, ItemOrdenacaoDescricaoTest.class, ItemOrdenacaoValorTest.class })
 public class AllTests {
 
 }
