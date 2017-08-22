@@ -7,12 +7,10 @@ import main.elementos.ordenacao.UsuarioOrdenaPorBaixaReputacao;
 import main.elementos.ordenacao.UsuarioOrdenaPorReputacao;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
-import main.factory.RepositoryFactory;
 import main.repository.UsuarioRepository;
 
 public class UsuarioController {
 	private UsuarioRepository repository;
-	private RepositoryFactory repositoryFactory;
 	private Usuario usuario;
 	private static final String ATRIBUTO_EMAIL = "email";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
@@ -24,9 +22,16 @@ public class UsuarioController {
 	 * Construtor de sistemaController
 	 */
 	public UsuarioController() {
-		this.repositoryFactory = new RepositoryFactory();
-		this.repository = repositoryFactory.criaRepository();
+		this.repository = new UsuarioRepository();
 	}
+
+	
+	
+	public UsuarioRepository getRepository() {
+		return repository;
+	}
+
+
 
 	/**
 	 * Adiciona um {@link Usuario} em um sistema de usuarios

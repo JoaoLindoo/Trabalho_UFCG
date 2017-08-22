@@ -18,9 +18,9 @@ public class TTFacade {
 	 * Contrutor da facade
 	 */
 	public TTFacade() {
-		emprestimoController = new EmprestimoController();
 		usuarioController = new UsuarioController();
-		itemController = new ItemController();
+		emprestimoController = new EmprestimoController(usuarioController.getRepository());
+		itemController = new ItemController(usuarioController.getRepository());
 
 	}
 

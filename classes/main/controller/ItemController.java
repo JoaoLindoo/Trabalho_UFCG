@@ -9,6 +9,7 @@ import main.elementos.ordenacao.ItemOrdenacaoDescricao;
 import main.elementos.ordenacao.ItemOrdenacaoValor;
 import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
+import main.repository.UsuarioRepository;
 import main.util.Util;
 /**
  * Classe que representa controle Item
@@ -19,8 +20,9 @@ public class ItemController {
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private Util util;
 	
-	public ItemController() {
-		util = new Util();
+	public ItemController(UsuarioRepository 
+			usRepositorio) {
+		util = new Util(usRepositorio);
 	}
 	
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)

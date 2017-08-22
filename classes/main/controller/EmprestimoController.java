@@ -15,6 +15,7 @@ import main.elementos.ordenacao.ItemOrdenacaoPopularidade;
 import main.elementos.ordenacao.UsuarioOrdenaPorNome;
 import main.exception.DadoInvalido;
 import main.repository.EmprestimoRepository;
+import main.repository.UsuarioRepository;
 import main.util.Util;
 
 /**
@@ -38,8 +39,8 @@ public class EmprestimoController {
 	/**
 	 * Construtor de sistemaController
 	 */
-	public EmprestimoController() {
-		this.util = new Util();
+	public EmprestimoController(UsuarioRepository usRepositorio) {
+		this.util = new Util(usRepositorio);
 		emprestimoRepository = new EmprestimoRepository();
 	}
 	
