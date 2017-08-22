@@ -151,8 +151,15 @@ public class UsuarioController {
 		List<Usuario> melhoresUsuarios = repository.getUsuarios();
 		Collections.sort(melhoresUsuarios, new UsuarioOrdenaPorReputacao());
 		String lista = "";
-		for (int i = 0; i < 10; i++) {
-			lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+		if (melhoresUsuarios.size() < 10) {
+			for (int i = 0; i < melhoresUsuarios.size(); i++) {
+				lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+			}
+		}
+		else {
+			for (int i = 0; i < 10; i++) {
+				lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+			}
 		}
 		return lista;
 	}
@@ -165,8 +172,15 @@ public class UsuarioController {
 		List<Usuario> pioresUsuarios = repository.getUsuarios();
 		Collections.sort(pioresUsuarios, new UsuarioOrdenaPorBaixaReputacao());
 		String lista = "";
-		for (int i = 0; i < 10; i++) {
-			lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+		if (pioresUsuarios.size() < 10) {
+			for (int i = 0; i < pioresUsuarios.size(); i++) {
+				lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+			}
+		}
+		else {
+			for (int i = 0; i < 10; i++) {
+				lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+			}
 		}
 		return lista;
 	}

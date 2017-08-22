@@ -81,6 +81,13 @@ public class EmprestimoRepository {
 		Date data = sdf.parse(datinha);
 		return data;
 	}
+	
+	/** 
+	 * Metodo que remove um emprestimo da lista emprestimosItens
+	 * 
+	 * @param nomeDono
+	 * @param item
+	 */
 	public void removerItenList(String nomeDono,String item) {
 		for (Emprestimo emprestimo : emprestimosItens) {
 			if(emprestimo.getUsuarioDono().getNome().equals(nomeDono) && emprestimo.getItemEmprestado().getNome().equals(item)) {
@@ -91,6 +98,10 @@ public class EmprestimoRepository {
 		}
 	}
 
+	/**
+	 * Metodo que retorna a lista de emprestimosItens
+	 * @return
+	 */
 	public List<Emprestimo> getEmprestimosItens() {
 		return emprestimosItens;
 	}

@@ -33,9 +33,18 @@ public class TestUsuarioController {
 		facade.cadastrarBluRayFilme("Joao", "3322", "Xuxa o retorno do pacto", 50, 60, "Terror", "14", "2020");
 		facade.cadastrarEletronico("Joao", "3322", "Guitarrinha", 150, "Pancadao");
 		facade.cadastrarUsuario("Redson", "7813", "redson@ccc.ufcg.br");
+		facade.cadastrarUsuario("Giovana", "2233", "giovana@ccc.ufcg.br");
+		facade.cadastrarUsuario("Matheus", "1234", "matheus@ccc.ufcg.br");
+		facade.cadastrarEletronico("Matheus", "1234", "GTA V", 109.90, "XBOX");
+		facade.cadastrarJogoTabuleiro("Giovana", "2233", "Dama", 10);
 		facade.cadastrarBluRaySerie("Redson", "7813", "24 Horas", 100, "Vida loka", 500, "18", "Acao", 1);
-		facade.cadastrarBluRaySerie("Redson", "7813", "Supernatural", 100, "Cacando o capeta", 500, "18",
-				"Acao", 1);
+		facade.cadastrarBluRaySerie("Redson", "7813", "Supernatural", 100, "Cacando o capeta", 500, "18", "Acao", 1);
+		facade.registrarEmprestimo("Redson", "7813", "Giovana", "2233", "24 Horas", "21/08/2017", 7);
+		facade.registrarEmprestimo("Redson", "7813", "Joao", "3322", "Supernatural", "21/08/2017", 7);
+		facade.registrarEmprestimo("Joao", "3322", "Matheus", "1234", "Guitarrinha", "25/09/2017", 2);
+		facade.devolverItem("Redson", "7813", "Giovana", "2233", "24 Horas", "21/08/2017", "10/09/2017");
+		facade.devolverItem("Redson", "7813", "Joao", "3322", "Supernatural", "21/08/2017", "12/08/2017");
+		facade.devolverItem("Joao", "3322", "Matheus", "1234", "Guitarrinha", "25/09/2017", "27/09/2017");
 	}
 
 	/**
@@ -70,10 +79,12 @@ public class TestUsuarioController {
 		assertEquals(
 				"FILME: Xuxa, R$ 2.0, Nao emprestado, 60 min, 14, Infantil, 2016|"
 				+ "FILME: Pneu Assasino, R$ 10.0, Nao emprestado, 60 min, 14, Terror, 2016|"
+				+ "JOGO DE TABULEIRO: Dama, R$ 10.0, Nao emprestado, COMPLETO|"
 				+ "FILME: Jogos Mortais, R$ 15.0, Nao emprestado, 60 min, 16, Terror, 2016|"
 				+ "FILME: Xuxa o retorno do pacto, R$ 50.0, Nao emprestado, 60 min, 14, Terror, 2020|"
-				+ "SERIE: Supernatural, R$ 100.0, Nao emprestado, 500 min, 18, Acao, Temporada 1|"
-				+ "SERIE: 24 Horas, R$ 100.0, Nao emprestado, 500 min, 18, Acao, Temporada 1|"
+				+ "SERIE: Supernatural, R$ 100.0, Nao emprestado, 0 min, 18, Acao, Temporada 1|"
+				+ "SERIE: 24 Horas, R$ 100.0, Nao emprestado, 0 min, 18, Acao, Temporada 1|"
+				+ "JOGO ELETRONICO: GTA V, R$ 109.9, Nao emprestado, XBOX|"
 				+ "JOGO ELETRONICO: Guitarrinha, R$ 150.0, Nao emprestado, Pancadao|",
 				facade.listarItensOrdenadosPorValor());
 	}
@@ -84,13 +95,15 @@ public class TestUsuarioController {
 	@Test
 	public void testOrdenacaNome() {
 		assertEquals(
-				"SERIE: 24 Horas, R$ 100.0, Nao emprestado, 500 min, 18, Acao, Temporada 1|"
-						+ "JOGO ELETRONICO: Guitarrinha, R$ 150.0, Nao emprestado, Pancadao|"
-						+ "FILME: Jogos Mortais, R$ 15.0, Nao emprestado, 60 min, 16, Terror, 2016|"
-						+ "FILME: Pneu Assasino, R$ 10.0, Nao emprestado, 60 min, 14, Terror, 2016|"
-						+ "SERIE: Supernatural, R$ 100.0, Nao emprestado, 500 min, 18, Acao, Temporada 1|"
-						+ "FILME: Xuxa, R$ 2.0, Nao emprestado, 60 min, 14, Infantil, 2016|"
-						+ "FILME: Xuxa o retorno do pacto, R$ 50.0, Nao emprestado, 60 min, 14, Terror, 2020|",
+				"SERIE: 24 Horas, R$ 100.0, Nao emprestado, 0 min, 18, Acao, Temporada 1|"
+				+ "JOGO DE TABULEIRO: Dama, R$ 10.0, Nao emprestado, COMPLETO|"
+				+ "JOGO ELETRONICO: GTA V, R$ 109.9, Nao emprestado, XBOX|"
+				+ "JOGO ELETRONICO: Guitarrinha, R$ 150.0, Nao emprestado, Pancadao|"
+				+ "FILME: Jogos Mortais, R$ 15.0, Nao emprestado, 60 min, 16, Terror, 2016|"
+				+ "FILME: Pneu Assasino, R$ 10.0, Nao emprestado, 60 min, 14, Terror, 2016|"
+				+ "SERIE: Supernatural, R$ 100.0, Nao emprestado, 0 min, 18, Acao, Temporada 1|"
+				+ "FILME: Xuxa, R$ 2.0, Nao emprestado, 60 min, 14, Infantil, 2016|"
+				+ "FILME: Xuxa o retorno do pacto, R$ 50.0, Nao emprestado, 60 min, 14, Terror, 2020|",
 				facade.listarItensOrdenadosPorNome());
 	}
 
@@ -112,8 +125,31 @@ public class TestUsuarioController {
 	 */
 	@Test
 	public void testPesquisarDetalhesItem() throws Exception {
-		assertEquals("SERIE: Supernatural, R$ 100.0, Nao emprestado, 500 min, 18, Acao, Temporada 1",
+		assertEquals("SERIE: Supernatural, R$ 100.0, Nao emprestado, 0 min, 18, Acao, Temporada 1",
 				facade.pesquisarDetalhesItem("Redson", "7813", "Supernatural"));
 	}
-
+	
+	/**
+	 * Testa o metodo listarCaloteiros
+	 */
+	@Test
+	public void testListarCaloteiros() {
+		assertEquals("Lista de usuarios com reputacao negativa: Giovana, giovana@ccc.ufcg.br, 2233|", facade.listarCaloteiros());
+	}
+	
+	/**
+	 * Testa o metodo listarTop10MelhoresUsuarios
+	 */
+	@Test
+	public void testListarTop10MelhoresUsuarios() {
+		assertEquals("1: Joao - Reputacao: 31,35|2: Redson - Reputacao: 30,00|3: Matheus - Reputacao: 13,00|4: Giovana - Reputacao: -12,50|", facade.listarTop10MelhoresUsuarios());
+	}
+	
+	/** 
+	 * Testa o metodo listarTop10PioresUsuarios
+	 */
+	@Test
+	public void testListarTop10PioresUsuarios() {
+		assertEquals("1: Giovana - Reputacao: -12,50|2: Matheus - Reputacao: 13,00|3: Redson - Reputacao: 30,00|4: Joao - Reputacao: 31,35|", facade.listarTop10PioresUsuarios());
+	}
 }
