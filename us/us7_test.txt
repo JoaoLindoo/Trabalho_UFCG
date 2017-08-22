@@ -1,4 +1,4 @@
-﻿#####################
+#####################
 # PROJETO LP2 - US7 #
 #####################
 
@@ -41,3 +41,5 @@ cadastrarEletronico nome="Atreus" telefone="90202-2010" nomeItem="God of War III
 expect "Noob" getInfoUsuario nome="Atreus" telefone="90202-2010" atributo="Cartao"
 
 fecharSistema
+
+
