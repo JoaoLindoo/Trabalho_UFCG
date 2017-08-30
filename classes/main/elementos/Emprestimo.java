@@ -1,5 +1,6 @@
 package main.elementos;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,8 +12,12 @@ import main.exception.DadoInvalido;
  * @author Redson
  *
  */
-public class Emprestimo {
+public class Emprestimo implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1530576260002476688L;
 	/**
 	 * Parametros de Emprestimo.
 	 */

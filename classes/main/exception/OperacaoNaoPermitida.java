@@ -1,12 +1,14 @@
 package main.exception;
 
+import java.io.Serializable;
+
 /**
  * Metodo que representa a exception de OperacaoNaoPermitida
  * 
  * @author Joao
  *
  */
-public class OperacaoNaoPermitida extends Exception {
+public class OperacaoNaoPermitida extends Exception implements Serializable {
 
 	/**
 	 * 

@@ -1,4 +1,5 @@
 package main.elementos;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import main.elementos.bluray.Filme;
@@ -17,8 +18,12 @@ import main.reputacao.Reputacao;
  * @author Matheus
  *
  */
-public class Usuario {
+public class Usuario implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1402844845936290606L;
 	private String nome;
 	private String email;
 	private String numeroDoCelular;
