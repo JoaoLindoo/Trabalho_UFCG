@@ -112,7 +112,7 @@ public class UsuarioRepository implements Serializable {
 		ObjectInputStream arqObjeto = null;
 
 		try {
-			arqObjeto = new ObjectInputStream(new FileInputStream("arquivos_sistema/ur_tt.dat"));
+			arqObjeto = new ObjectInputStream(new FileInputStream("ur_tt.dat"));
 			return (UsuarioRepository) arqObjeto.readObject();
 		} finally {
 			if (arqObjeto != null) {
@@ -134,7 +134,7 @@ public class UsuarioRepository implements Serializable {
 		ObjectOutput arqObjeto = null;
 
 		try {
-			arqObjeto = new ObjectOutputStream(new FileOutputStream("arquivos_sistema/ur_tt.dat"));
+			arqObjeto = new ObjectOutputStream(new FileOutputStream("ur_tt.dat"));
 			arqObjeto.writeObject(usuarioRepository);
 		} finally {
 			if (arqObjeto != null) {

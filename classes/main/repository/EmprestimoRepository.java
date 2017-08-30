@@ -134,7 +134,7 @@ public class EmprestimoRepository implements Serializable {
 		ObjectInputStream arqObjeto = null;
 
 		try {
-			arqObjeto = new ObjectInputStream(new FileInputStream("arquivos_sistema/er_tt.dat"));
+			arqObjeto = new ObjectInputStream(new FileInputStream("er_tt.dat"));
 			return (EmprestimoRepository) arqObjeto.readObject();
 		} finally {
 			if (arqObjeto != null) {
@@ -155,7 +155,7 @@ public class EmprestimoRepository implements Serializable {
 		ObjectOutput arqObjeto = null;
 
 		try {
-			arqObjeto = new ObjectOutputStream(new FileOutputStream("arquivos_sistema/er_tt.dat"));
+			arqObjeto = new ObjectOutputStream(new FileOutputStream("er_tt.dat"));
 			arqObjeto.writeObject(emprestimoRepository);
 		} finally {
 			if (arqObjeto != null) {

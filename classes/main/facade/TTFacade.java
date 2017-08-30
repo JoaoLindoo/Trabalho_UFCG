@@ -32,6 +32,12 @@ public class TTFacade implements Serializable {
 
 	}
 
+	/**
+	 * Metodo por onde vai se iniciar o programa
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void main(String[] args) throws Exception {
 		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt",
 				"us/us4_test.txt", "us/us5_test.txt", "us/us6_test.txt", "us/us7_test.txt", "us/us8_test.txt" };
@@ -41,16 +47,21 @@ public class TTFacade implements Serializable {
 
 	/**
 	 * Metodo que inicia o sistema
+	 * @throws ClassNotFoundException 
 	 */
 	public void iniciarSistema() {
 		try {
 			this.usuarioController.iniciarSistema();
-			this.emprestimoController.iniciaSistema();
 
 		} catch (IOException e) {
 
 		} catch (ClassNotFoundException e) {
-
+		} 
+		try {
+			this.emprestimoController.iniciaSistema();
+		} catch (IOException e) {
+			
+		} catch (ClassNotFoundException e) {
 		}
 	}
 
@@ -60,8 +71,12 @@ public class TTFacade implements Serializable {
 	public void fecharSistema() {
 		try {
 			usuarioController.salvarSistema();
+		} catch (IOException e) {
+		}
+		try {
 			emprestimoController.salvarSistema();
 		} catch (IOException e) {
+			
 		}
 	}
 
