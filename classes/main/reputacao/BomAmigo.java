@@ -7,6 +7,11 @@ package main.reputacao;
 public class BomAmigo implements Reputacao {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7327739511491333531L;
+
+	/**
 	 * Metodo que retorna uma boolean true para emprestar o item.
 	 * @return a boolean true
 	 */

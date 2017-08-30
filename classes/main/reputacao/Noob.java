@@ -1,10 +1,18 @@
 package main.reputacao;
+
+import java.io.Serializable;
+
 /**
  * classe que representa o objeto da reputacao noob.
  * @author Matheus Thiago
  *
  */
 public class Noob implements Reputacao {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 383023537677601318L;
 
 	/**
 	 * Metodo que retorna uma boolean true para emprestar o item.

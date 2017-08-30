@@ -9,6 +9,10 @@ import main.exception.DadoInvalido;
  */
 public class JogoEletronico extends Item {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4935711967042775308L;
 	private String plataforma;
 
 	/**

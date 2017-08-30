@@ -13,6 +13,10 @@ import main.exception.DadoInvalido;
  */
 public class Serie extends BluRay {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 13784028056361153L;
 	private String nome;
 	private List<Integer> episodios;
 	private String genero;

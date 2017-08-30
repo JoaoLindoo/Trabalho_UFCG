@@ -1,5 +1,9 @@
 package main.facade;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
+
 import easyaccept.EasyAccept;
 import main.controller.EmprestimoController;
 import main.controller.ItemController;
@@ -9,7 +13,11 @@ import main.elementos.Usuario;
 /**
  * Classe responsabel pela interacao do administrador com o programa
  */
-public class TTFacade {
+public class TTFacade implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2950013313250796321L;
 	private EmprestimoController emprestimoController;
 	private UsuarioController usuarioController;
 	private ItemController itemController;
@@ -25,8 +33,8 @@ public class TTFacade {
 	}
 
 	public static void main(String[] args) throws Exception {
-		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt", "us/us4_test.txt","us/us5_test.txt",
-				"us/us6_test.txt","us/us7_test.txt", "us/us8_test.txt"};
+		args = new String[] { "main.facade.TTFacade", "us/us1_test.txt", "us/us2_test.txt", "us/us3_test.txt",
+				"us/us4_test.txt", "us/us5_test.txt", "us/us6_test.txt", "us/us7_test.txt", "us/us8_test.txt" };
 		EasyAccept.main(args);
 
 	}
@@ -35,14 +43,26 @@ public class TTFacade {
 	 * Metodo que inicia o sistema
 	 */
 	public void iniciarSistema() {
+		try {
+			this.usuarioController.iniciarSistema();
+			this.emprestimoController.iniciaSistema();
 
+		} catch (IOException e) {
+
+		} catch (ClassNotFoundException e) {
+
+		}
 	}
 
 	/**
 	 * Metodo que fecha o sistema
 	 */
 	public void fecharSistema() {
-
+		try {
+			usuarioController.salvarSistema();
+			emprestimoController.salvarSistema();
+		} catch (IOException e) {
+		}
 	}
 
 	/**
@@ -199,8 +219,8 @@ public class TTFacade {
 	 */
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) throws Exception {
-		itemController.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao,
-				genero, temporada);
+		itemController.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero,
+				temporada);
 	}
 
 	/**
@@ -394,9 +414,10 @@ public class TTFacade {
 		emprestimoController.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
 				dataEmprestimo, dataDevolucao);
 	}
-	
+
 	/**
 	 * Metodo que lista os emprestimos de um usuario que esta emprestando
+	 * 
 	 * @param nome
 	 * @param telefone
 	 * @return
@@ -408,6 +429,7 @@ public class TTFacade {
 
 	/**
 	 * Metodo que lista os emprestimos de um usuario que esta pegando emprestado
+	 * 
 	 * @param nome
 	 * @param telefone
 	 * @return
@@ -419,6 +441,7 @@ public class TTFacade {
 
 	/**
 	 * Metodo que lista os emprestimos associados ao item
+	 * 
 	 * @param nomeItem
 	 * @return
 	 */
@@ -428,6 +451,7 @@ public class TTFacade {
 
 	/**
 	 * Metodo que lista os itens emprestados
+	 * 
 	 * @return
 	 */
 	public String listarItensEmprestados() {
@@ -436,6 +460,7 @@ public class TTFacade {
 
 	/**
 	 * Metodo que lista os itens nao emprestados
+	 * 
 	 * @return
 	 */
 	public String listarItensNaoEmprestados() {
@@ -444,30 +469,34 @@ public class TTFacade {
 
 	/**
 	 * Metodo que lista os 10 itens mais emprestados
+	 * 
 	 * @return
 	 */
 	public String listarTop10Itens() {
 		return emprestimoController.listarTop10Itens();
 	}
-	
-	/** 
+
+	/**
 	 * Metodo que lista os usuarios caloteiros
+	 * 
 	 * @return
 	 */
 	public String listarCaloteiros() {
 		return usuarioController.listarCaloteiros();
 	}
-	
+
 	/**
 	 * Metodo que lista os 10 melhores usuarios
+	 * 
 	 * @return
 	 */
 	public String listarTop10MelhoresUsuarios() {
 		return usuarioController.listarTop10MelhoresUsuarios();
 	}
-	
+
 	/**
 	 * Metodo que lista os 10 piores usuarios
+	 * 
 	 * @return
 	 */
 	public String listarTop10PioresUsuarios() {

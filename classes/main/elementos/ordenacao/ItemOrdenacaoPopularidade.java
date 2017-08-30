@@ -4,6 +4,11 @@ import java.util.Comparator;
 
 import main.elementos.Item;
 
+/**
+ * Classe de ordenacao por popularidade
+ * @author Matheus
+ *
+ */
 public class ItemOrdenacaoPopularidade implements Comparator<Item>{
 
 	@Override

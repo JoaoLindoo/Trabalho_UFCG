@@ -12,6 +12,10 @@ import main.exception.DadoInvalido;
  */
 public class JogoDeTabuleiro extends Item {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8985246013476131872L;
 	private List<String> listaDePecasPerdidas;
 
 	/**

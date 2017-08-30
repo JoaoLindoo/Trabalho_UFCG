@@ -1,9 +1,14 @@
 package main.util;
+import java.io.Serializable;
 import java.util.List;
 import main.elementos.Usuario;
 import main.repository.UsuarioRepository;
 
-public class Util {
+public class Util implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4767399050127962885L;
 	private UsuarioRepository usuarioRepository ;
 	
 	public Util(UsuarioRepository usRepositorio) {

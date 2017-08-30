@@ -7,6 +7,11 @@ package main.reputacao;
 public class Caloteiro implements Reputacao {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9087657364417708773L;
+
+	/**
 	 * Metodo que retorna uma boolean false para emprestar o item.
 	 * @return a boolean false
 	 */

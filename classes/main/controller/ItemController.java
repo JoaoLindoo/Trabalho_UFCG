@@ -1,4 +1,6 @@
 package main.controller;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,25 +13,30 @@ import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
 import main.util.Util;
+
 /**
  * Classe que representa controle Item
  * 
  */
-public class ItemController {
+public class ItemController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 412339628496129992L;
 	private static final String ITEM_NAO_ENCONTRADO = "Item nao encontrado";
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private Util util;
-	
-	public ItemController(UsuarioRepository 
-			usRepositorio) {
+
+	public ItemController(UsuarioRepository usRepositorio) {
 		util = new Util(usRepositorio);
 	}
-	
+
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
 		util.retornaUsuario(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
 		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
+
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -83,7 +90,8 @@ public class ItemController {
 		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
 		}
-		util.retornaUsuario(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+		util.retornaUsuario(nome, telefone).adicionarItemSerie(nomeItem, preco, descricao, duracao, classificacao,
+				genero, temporada);
 		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
@@ -110,7 +118,8 @@ public class ItemController {
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double valor, int duracao,
 			String genero, String classificacao, String anoDeLancamento) throws Exception {
-		util.retornaUsuario(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao, anoDeLancamento);
+		util.retornaUsuario(nome, telefone).adicionarItemFilme(nomeItem, valor, duracao, genero, classificacao,
+				anoDeLancamento);
 		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
@@ -137,8 +146,9 @@ public class ItemController {
 	 */
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double valor, int duracao,
 			int numeroDeFaixas, String artista, String classificacao) throws Exception {
-	util.retornaUsuario(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista, classificacao);
-	util.retornaUsuario(nome, telefone).atualizarReputacao();
+		util.retornaUsuario(nome, telefone).adicionarItemShow(nomeItem, valor, duracao, numeroDeFaixas, artista,
+				classificacao);
+		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
 	/**
@@ -158,6 +168,18 @@ public class ItemController {
 		util.retornaUsuario(nome, telefone).adicionarBluRay(nomeItem, duracao);
 		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
+
+	/**
+	 * Metodo que emove um item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item a ser removido
+	 * @throws Exception
+	 */
 	public void removerItem(String nome, String telefone, String nomeItem) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -215,7 +237,20 @@ public class ItemController {
 		return util.retornaUsuario(nome, telefone).recuperItem(nomeItem).toString();
 	}
 
-	
+	/**
+	 * Retorna informacao solicitada do item
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome od item
+	 * @param atributo
+	 *            nome do atributo que se deseja obter
+	 * @return retorna a informacao solicitada
+	 * @throws Exception
+	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) throws Exception {
 		Usuario usuario = util.retornaUsuario(nome, telefone);
 		if (usuario.recuperItem(nomeItem) == null) {
@@ -230,6 +265,7 @@ public class ItemController {
 		}
 		return "";
 	}
+
 	/**
 	 * Metodo para ordenacao de itens por nome
 	 * 
@@ -267,7 +303,7 @@ public class ItemController {
 	 */
 	public List<Item> listaTotalItens() {
 		List<Item> listaItens = new ArrayList<Item>();
-		for (Usuario usuario : util.getUsuarios() ) {
+		for (Usuario usuario : util.getUsuarios()) {
 			Set<Item> listaItenUser = usuario.getListaItens();
 			for (Item item : listaItenUser) {
 				listaItens.add(item);

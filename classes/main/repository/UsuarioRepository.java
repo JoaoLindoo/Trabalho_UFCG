@@ -1,14 +1,27 @@
 package main.repository;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import main.elementos.Usuario;
 
 /**
  * Classe responsavel pelo CRUD de {@link Usuario}
  *
  */
-public class UsuarioRepository {
+public class UsuarioRepository implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2854071381660172427L;
 	private List<Usuario> usuarios;
 
 	/**
@@ -87,4 +100,46 @@ public class UsuarioRepository {
 		return usuarios;
 	}
 
+	/**
+	 * Metodo que inicia o sistema com as informacoes salvas
+	 * 
+	 * @return retorna o repositorio de usuario ja salvo
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public UsuarioRepository iniciarSistema() throws FileNotFoundException, IOException, ClassNotFoundException {
+		ObjectInputStream arqObjeto = null;
+
+		try {
+			arqObjeto = new ObjectInputStream(new FileInputStream("arquivos_sistema/ur_tt.dat"));
+			return (UsuarioRepository) arqObjeto.readObject();
+		} finally {
+			if (arqObjeto != null) {
+				arqObjeto.close();
+			}
+		}
+
+	}
+
+	/**
+	 * Metodo que salva o repositorio no seu atual estado
+	 * 
+	 * @param usuarioRepository
+	 *            repositorio de usuario a ser salvo
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public void salvarSistema(UsuarioRepository usuarioRepository) throws FileNotFoundException, IOException {
+		ObjectOutput arqObjeto = null;
+
+		try {
+			arqObjeto = new ObjectOutputStream(new FileOutputStream("arquivos_sistema/ur_tt.dat"));
+			arqObjeto.writeObject(usuarioRepository);
+		} finally {
+			if (arqObjeto != null) {
+				arqObjeto.close();
+			}
+		}
+	}
 }

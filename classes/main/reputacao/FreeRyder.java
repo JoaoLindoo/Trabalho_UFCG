@@ -7,6 +7,11 @@ package main.reputacao;
 public class FreeRyder implements Reputacao {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8016535632391917903L;
+
+	/**
 	 * Metodo que retorna uma boolean true para emprestar o item.
 	 * @return a boolean true
 	 */

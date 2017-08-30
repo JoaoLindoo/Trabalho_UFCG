@@ -9,7 +9,11 @@ import main.exception.DadoInvalido;
  * @author Giovana Brito Oliveira - 116110904
  *
  */
-public abstract class BluRay extends Item {
+public abstract class BluRay extends Item{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 463778901049982484L;
 	private String nome;
 	private int duracao;
 	private String classificacao;

@@ -10,6 +10,10 @@ import main.exception.DadoInvalido;
  */
 public class Show extends BluRay {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5775263303007503598L;
 	private String nomeDoArtista;
 	private int numeroFaixas;
 

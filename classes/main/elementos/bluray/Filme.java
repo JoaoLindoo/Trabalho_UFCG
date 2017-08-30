@@ -10,6 +10,10 @@ import main.exception.DadoInvalido;
  */
 public class Filme extends BluRay {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5199378486793140695L;
 	private String genero;
 	private String anoDeLancamento;
 

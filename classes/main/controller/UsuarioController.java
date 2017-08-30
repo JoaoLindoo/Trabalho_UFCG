@@ -1,4 +1,7 @@
 package main.controller;
+
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,7 +12,16 @@ import main.exception.DadoInvalido;
 import main.exception.OperacaoNaoPermitida;
 import main.repository.UsuarioRepository;
 
-public class UsuarioController {
+/**
+ * Classe que representa o controller de usuario
+ * @author Joao
+ *
+ */
+public class UsuarioController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6841527212000176036L;
 	private UsuarioRepository repository;
 	private Usuario usuario;
 	private static final String ATRIBUTO_EMAIL = "email";
@@ -25,13 +37,14 @@ public class UsuarioController {
 		this.repository = new UsuarioRepository();
 	}
 
-	
-	
+	/**
+	 * Retorna o repositorio
+	 * 
+	 * @return retorna o repositorio
+	 */
 	public UsuarioRepository getRepository() {
 		return repository;
 	}
-
-
 
 	/**
 	 * Adiciona um {@link Usuario} em um sistema de usuarios
@@ -43,8 +56,8 @@ public class UsuarioController {
 	 * @param email
 	 *            Email do usuario
 	 * @throws Exception
-	 *             Verifica se ja existe um usuario no sistema caso verdade , lanca
-	 *             um Exception
+	 *             Verifica se ja existe um usuario no sistema caso verdade ,
+	 *             lanca um Exception
 	 */
 	public void adicionar(String nome, String telefone, String email) throws Exception {
 		if (repository.recuperar(nome, telefone) != null) {
@@ -78,7 +91,7 @@ public class UsuarioController {
 		if (ATRIBUTO_REPUTACAO.equalsIgnoreCase(atributo)) {
 			return String.valueOf(usuario.getReputacaoValor());
 		}
-		if(ATRIBUTO_CARTAO.equalsIgnoreCase(atributo)) {
+		if (ATRIBUTO_CARTAO.equalsIgnoreCase(atributo)) {
 			return usuario.getReputacao().toStringReputacao();
 		}
 		return null;
@@ -137,6 +150,7 @@ public class UsuarioController {
 
 	/**
 	 * Metodo que lista os usuarios caloteiros
+	 * 
 	 * @return
 	 */
 	public String listarCaloteiros() {
@@ -147,9 +161,10 @@ public class UsuarioController {
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * Metodo que lista os 10 usuarios com melhor reputacao
+	 * 
 	 * @return
 	 */
 	public String listarTop10MelhoresUsuarios() {
@@ -158,19 +173,19 @@ public class UsuarioController {
 		String lista = "";
 		if (melhoresUsuarios.size() < 10) {
 			for (int i = 0; i < melhoresUsuarios.size(); i++) {
-				lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+				lista += i + 1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
 			}
-		}
-		else {
+		} else {
 			for (int i = 0; i < 10; i++) {
-				lista += i+1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
+				lista += i + 1 + ": " + melhoresUsuarios.get(i).toStringComReputacao();
 			}
 		}
 		return lista;
 	}
-	
+
 	/**
 	 * Metodo que lista os 10 usuarios com pior reputacao
+	 * 
 	 * @return
 	 */
 	public String listarTop10PioresUsuarios() {
@@ -179,14 +194,34 @@ public class UsuarioController {
 		String lista = "";
 		if (pioresUsuarios.size() < 10) {
 			for (int i = 0; i < pioresUsuarios.size(); i++) {
-				lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+				lista += i + 1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
 			}
-		}
-		else {
+		} else {
 			for (int i = 0; i < 10; i++) {
-				lista += i+1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
+				lista += i + 1 + ": " + pioresUsuarios.get(i).toStringComReputacao();
 			}
 		}
 		return lista;
+	}
+
+	/**
+	 * Metodo que recupera as informações para o reinicio do sistema
+	 * 
+	 * @return retorna o usuarioRepository que foi salvo
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public UsuarioRepository iniciarSistema() throws IOException, ClassNotFoundException {
+		return repository.iniciarSistema();
+	}
+
+	/**
+	 * Metodo que salva o o usuarioController
+	 * 
+	 * @param usuarioController
+	 * @throws IOException
+	 */
+	public void salvarSistema() throws IOException {
+		repository.salvarSistema(this.repository);
 	}
 }

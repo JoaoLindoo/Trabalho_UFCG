@@ -1,5 +1,7 @@
 package main.elementos;
 
+import java.io.Serializable;
+
 import main.exception.DadoInvalido;
 
 /**
@@ -7,8 +9,12 @@ import main.exception.DadoInvalido;
  *
  *         Classe que representa um Item
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6727407156960527901L;
 	protected String nome;
 	protected double valor;
 	protected boolean status;

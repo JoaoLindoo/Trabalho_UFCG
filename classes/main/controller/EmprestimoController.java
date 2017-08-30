@@ -1,11 +1,17 @@
 package main.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.sun.corba.se.spi.activation.Repository;
+
 import main.elementos.Emprestimo;
 import main.elementos.Item;
 import main.elementos.Usuario;
@@ -24,7 +30,11 @@ import main.util.Util;
  * @author Joao Henrique
  *
  */
-public class EmprestimoController {
+public class EmprestimoController implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5394854940996162843L;
 	private Util util;
 	private EmprestimoRepository emprestimoRepository;
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
@@ -36,6 +46,7 @@ public class EmprestimoController {
 	private static final String NENHUM_EMPRESTIMO_ASSOCIADO_AO_ITEM = "Nenhum emprestimos associados ao item";
 	private static final String USUARIO_NAO_PEGAR_EMPRESTADO = "Usuario nao pode pegar nenhum item emprestado";
 	private static final String USUARIO_NAO_PEGAR_EMPRESTADO_PERIODO = "Usuario impossiblitado de pegar emprestado por esse periodo";
+
 	/**
 	 * Construtor de sistemaController
 	 */
@@ -43,7 +54,7 @@ public class EmprestimoController {
 		this.util = new Util(usRepositorio);
 		emprestimoRepository = new EmprestimoRepository();
 	}
-	
+
 	/**
 	 * Metodo que registra o emprestimo
 	 * 
@@ -66,9 +77,9 @@ public class EmprestimoController {
 			throw new DadoInvalido(ITEM_NAO_ENCONTRADO);
 		if (util.retornaUsuario(nomeDono, telefoneDono).recuperItem(nomeItem).getStatus() == true)
 			throw new DadoInvalido(ITEM_JA_EMPRESTADO);
-		if(!util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().pegarEmprestado())
+		if (!util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().pegarEmprestado())
 			throw new DadoInvalido(USUARIO_NAO_PEGAR_EMPRESTADO);
-		if(periodo > util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().periodoEmprestimo())
+		if (periodo > util.retornaUsuario(nomeRequerente, telefoneRequerente).getReputacao().periodoEmprestimo())
 			throw new DadoInvalido(USUARIO_NAO_PEGAR_EMPRESTADO_PERIODO);
 		Usuario dono = util.retornaUsuario(nomeDono, telefoneDono);
 		Usuario requerente = util.retornaUsuario(nomeRequerente, telefoneRequerente);
@@ -145,9 +156,10 @@ public class EmprestimoController {
 		}
 		return listar;
 	}
-	
+
 	/**
-	 * Metodo que retorna os Emprestimos em que o usuario esta emprestando o item
+	 * Metodo que retorna os Emprestimos em que o usuario esta emprestando o
+	 * item
 	 * 
 	 * @param nome
 	 * @param telefone
@@ -170,9 +182,10 @@ public class EmprestimoController {
 			return NENHUM_ITEM_EMPRESTADO;
 		return lista;
 	}
-	
+
 	/**
-	 * Metodo que retorna os Emprestimos em que o usuario esta pegando o item emprestado
+	 * Metodo que retorna os Emprestimos em que o usuario esta pegando o item
+	 * emprestado
 	 * 
 	 * @param nome
 	 * @param telefone
@@ -272,7 +285,7 @@ public class EmprestimoController {
 	 * @param item
 	 *            item devolvido
 	 * @return retorna a quantidade a ser atualizada na reputacao do usuario
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public double atualizacaoReputacao(String dataEmprestimo, String dataDevolucao, Item item) throws Exception {
 		int dias = this.contaDias(dataEmprestimo, dataDevolucao);
@@ -283,10 +296,14 @@ public class EmprestimoController {
 		}
 		return item.getValor() * 0.05;
 	}
+
 	/**
 	 * Metodo feito para contar dias
-	 * @param dataInicial data inicial do emprestimo
-	 * @param dataFinal data final do emprestimo
+	 * 
+	 * @param dataInicial
+	 *            data inicial do emprestimo
+	 * @param dataFinal
+	 *            data final do emprestimo
 	 * @return
 	 * @throws Exception
 	 */
@@ -298,7 +315,28 @@ public class EmprestimoController {
 		long dt = (dataFim.getTime() - dataInicio.getTime()) + 3600000;
 		Long diasCorridosAnoLong = (dt / 86400000L);
 		Integer diasDecorridosInt = Integer.valueOf(diasCorridosAnoLong.toString());
-		return diasDecorridosInt ;
+		return diasDecorridosInt;
+
+	}
+
+	/**
+	 * Metodo que recupera os dados salvos do repositorio de emprestimo
+	 * @throws IOException 
+	 * @throws ClassNotFoundException 
+	 * @throws FileNotFoundException 
+	 */
+	public void iniciaSistema() throws FileNotFoundException, ClassNotFoundException, IOException {
+		this.emprestimoRepository.iniciaSistema();
+
+	}
+
+	/**
+	 * Metodo que salva o sistema em seu estado atual
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 */
+	public void salvarSistema() throws FileNotFoundException, IOException {
+		this.emprestimoRepository.salvarSistema(this.emprestimoRepository);
 
 	}
 }
