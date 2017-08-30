@@ -59,12 +59,19 @@ public class EmprestimoController implements Serializable {
 	 * Metodo que registra o emprestimo
 	 * 
 	 * @param nomeDono
+	 *            nome do dono
 	 * @param telefoneDono
+	 *            telefone do dono
 	 * @param nomeRequerente
+	 *            nome do requerente
 	 * @param telefoneRequerente
+	 *            telefone do requerente
 	 * @param nomeItem
+	 *            nome do item
 	 * @param dataEmprestimo
+	 *            data em que foi feito o emprestimo
 	 * @param periodo
+	 *            periodo de emprestimo
 	 * @throws Exception
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
@@ -147,6 +154,12 @@ public class EmprestimoController implements Serializable {
 		util.retornaUsuario(nomeRequerente, telefoneRequerente).atualizarReputacao();
 	}
 
+	/**
+	 * Metodo que lista os itens emprestados
+	 * 
+	 * @return retorna uma string com os toString's de todos os itens que estao
+	 *         emprestados
+	 */
 	public String listarItensEmprestados() {
 		String listar = "";
 		List<Emprestimo> listaUsuario = emprestimoRepository.getEmprestimosItens();
@@ -162,8 +175,10 @@ public class EmprestimoController implements Serializable {
 	 * item
 	 * 
 	 * @param nome
+	 *            nome o usuario
 	 * @param telefone
-	 * @return
+	 *            telefone do usuario
+	 * @return retorna os emprestimos em que o usuario esta emprestando o item
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
@@ -188,8 +203,11 @@ public class EmprestimoController implements Serializable {
 	 * emprestado
 	 * 
 	 * @param nome
+	 *            nome do usuario
 	 * @param telefone
-	 * @return
+	 *            telefone do usuario
+	 * @return retorna os emprestimos em que o usuario esta pegando o item
+	 *         emprestado
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
@@ -213,7 +231,8 @@ public class EmprestimoController implements Serializable {
 	 * Metodo que retorna os emprestimos associados ao item
 	 * 
 	 * @param nomeItem
-	 * @return
+	 *            nome do item
+	 * @return retorna os emprestimos associados ao item
 	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		String lista = "Emprestimos associados ao item: ";
@@ -231,7 +250,7 @@ public class EmprestimoController implements Serializable {
 	/**
 	 * Metodo que retorna os itens que nao estao emprestados
 	 * 
-	 * @return
+	 * @return retorna os itens que nao estao emprestados
 	 */
 	public String listarItensNaoEmprestados() {
 		List<Item> lista = new ArrayList<>();
@@ -253,7 +272,7 @@ public class EmprestimoController implements Serializable {
 	/**
 	 * Metodo que retorna os 10 itens mais emprestados
 	 * 
-	 * @return
+	 * @return retorna os 10 itens mais emprestados
 	 */
 	public String listarTop10Itens() {
 		List<Item> itensPopulares = new ArrayList<>();
@@ -321,9 +340,10 @@ public class EmprestimoController implements Serializable {
 
 	/**
 	 * Metodo que recupera os dados salvos do repositorio de emprestimo
-	 * @throws IOException 
-	 * @throws ClassNotFoundException 
-	 * @throws FileNotFoundException 
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws FileNotFoundException
 	 */
 	public void iniciaSistema() throws FileNotFoundException, ClassNotFoundException, IOException {
 		this.emprestimoRepository.iniciaSistema();
@@ -332,8 +352,9 @@ public class EmprestimoController implements Serializable {
 
 	/**
 	 * Metodo que salva o sistema em seu estado atual
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * 
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
 	public void salvarSistema() throws FileNotFoundException, IOException {
 		this.emprestimoRepository.salvarSistema(this.emprestimoRepository);

@@ -1,4 +1,5 @@
 package main.elementos;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String numeroDoCelular;
 	private double reputacaoValor;
-	private Reputacao reputacao; 
+	private Reputacao reputacao;
 	private static final double porcentagemReputacao = 0.05;
 
 	// uso do hashset pois apenas adicionar elementos com nomes diferentes.
@@ -50,7 +51,6 @@ public class Usuario implements Serializable {
 		if (nome.trim().equals("") || email.trim().equals("") || numeroDoCelular.trim().equals("")) {
 			throw new DadoInvalido("Dado invalido");
 		}
-
 		this.nome = nome;
 		this.email = email;
 		this.numeroDoCelular = numeroDoCelular;
@@ -163,14 +163,16 @@ public class Usuario implements Serializable {
 	public String toString() {
 		return nome + ", " + email + ", " + numeroDoCelular + "|";
 	}
-	
+
 	/**
 	 * Metodo que retorna uma representacao em String com a reputacao do usuario
-	 * @return
+	 * 
+	 * @return retorna uma representacao em String da reputacao do usuario
 	 */
 	public String toStringComReputacao() {
 		return String.format("%s - Reputacao: %.2f|", nome, reputacaoValor);
 	}
+
 	/**
 	 * Metodo que retorna uma representacao inteira do usuario
 	 */
@@ -311,7 +313,7 @@ public class Usuario implements Serializable {
 	 * 
 	 * @param nomeItem
 	 *            nome do idem
-	 * @return
+	 * @return retorna um booleano indicando se o item foi ou nao removido
 	 */
 	public boolean removerItem(String nomeItem) {
 		for (Item item : listaItens) {
@@ -348,7 +350,7 @@ public class Usuario implements Serializable {
 	 * @return retorna o valor do item desejado
 	 */
 	public double getValorItem(String nomeItem) {
-		if (recuperItem(nomeItem) != null) 
+		if (recuperItem(nomeItem) != null)
 			return recuperItem(nomeItem).getValor();
 		return 0;
 	}
@@ -375,7 +377,7 @@ public class Usuario implements Serializable {
 	 */
 	public Item recuperItem(String nomeItem) {
 		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) 
+			if (item.getNome().equals(nomeItem))
 				return item;
 		}
 		return null;
@@ -443,7 +445,7 @@ public class Usuario implements Serializable {
 	 */
 	public boolean recuperaAlocados(String nomeItem) {
 		for (Item item : listaItensPegos) {
-			if (nomeItem.equalsIgnoreCase(item.getNome())) 
+			if (nomeItem.equalsIgnoreCase(item.getNome()))
 				return true;
 		}
 		return false;
@@ -473,39 +475,43 @@ public class Usuario implements Serializable {
 	public void atualizarReputacaoValor(double atualizacao) {
 		this.reputacaoValor += atualizacao;
 	}
-	
+
 	/**
 	 * Metodo que atualiza a reputacao do usuario toda vez que e chamado.
 	 */
 	public void atualizarReputacao() {
-		if(this.reputacaoValor > 100)
+		if (this.reputacaoValor > 100)
 			this.reputacao = new BomAmigo();
-		else if(this.reputacaoValor < 0)
+		else if (this.reputacaoValor < 0)
 			this.reputacao = new Caloteiro();
-		else if(this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() != 0)
+		else if (this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() != 0)
 			this.reputacao = new Noob();
-		else if(this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() == 0)
+		else if (this.reputacaoValor >= 0 && this.numeroItensParaEmprestar() == 0)
 			this.reputacao = new FreeRyder();
-			
+
 	}
+
 	/**
 	 * metodo get que retorna o objeto reputacao.
+	 * 
 	 * @return o objeto Reputacao
 	 */
 	public Reputacao getReputacao() {
 		return reputacao;
 	}
+
 	/**
 	 * Metodo para listar o numeros de itens do usuario para serem emprestados.
-	 * @return inteiro do numeros de itens para serem emprestados 
+	 * 
+	 * @return inteiro do numeros de itens para serem emprestados
 	 */
 	public int numeroItensParaEmprestar() {
 		int totalItens = 0;
 		for (Item item : listaItens) {
-			if(item.getStatus() == false)
+			if (item.getStatus() == false)
 				totalItens++;
 		}
 		return totalItens;
 	}
-	
+
 }

@@ -1,6 +1,5 @@
 package main.facade;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -141,13 +140,13 @@ public class TTFacade implements Serializable {
 	}
 
 	/**
-	 * Método que retorna a informacao do item de acordo com o atributo.
+	 * Metodo que retorna a informacao do item de acordo com o atributo.
 	 * 
-	 * @param nome
-	 * @param telefone
-	 * @param itemNome
-	 * @param atributo
-	 * @return
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @param itemNome nome do item
+	 * @param atributo atriuto solicitado
+	 * @return retorna a informacao do item de acordo com o atributo
 	 * @throws Exception
 	 */
 	public String getInfoItem(String nome, String telefone, String itemNome, String atributo) throws Exception {
@@ -155,7 +154,6 @@ public class TTFacade implements Serializable {
 	}
 
 	/**
-	 * @author Giovana Brito Oliveira - 116110904
 	 * @param nome
 	 *            nome do usuario
 	 * @param telefone
@@ -176,7 +174,6 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que cadastra um novo jogo de tabuleiro
 	 * 
-	 * @author Giovana Brito Oliveira - 116110904
 	 * @param nome
 	 *            nome do usuario
 	 * @param telefone
@@ -194,7 +191,6 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que adiciona uma nova peca perdida
 	 * 
-	 * @author Giovana Brito Oliveira - 116110904
 	 * @param nome
 	 *            nome do usuario
 	 * @param telefone
@@ -211,7 +207,6 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que cadastra um novo bluRay de serie
 	 * 
-	 * @author Giovana Brito Oliveira - 116110904
 	 * @param nome
 	 *            nome do usuario
 	 * @param telefone
@@ -433,9 +428,9 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os emprestimos de um usuario que esta emprestando
 	 * 
-	 * @param nome
-	 * @param telefone
-	 * @return
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @return retorna todos os itens que o usuairo esta emprestando no momento
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) throws Exception {
@@ -445,9 +440,9 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os emprestimos de um usuario que esta pegando emprestado
 	 * 
-	 * @param nome
-	 * @param telefone
-	 * @return
+	 * @param nome nome do usuario
+	 * @param telefone telefone do usuario
+	 * @return retorna todos os itens que o usuario esta com eles emprestados
 	 * @throws Exception
 	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) throws Exception {
@@ -457,8 +452,8 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os emprestimos associados ao item
 	 * 
-	 * @param nomeItem
-	 * @return
+	 * @param nomeItem nome do item
+	 * @return retorna todos os emprestimos ja associados ao item
 	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		return emprestimoController.listarEmprestimosItem(nomeItem);
@@ -467,7 +462,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os itens emprestados
 	 * 
-	 * @return
+	 * @return retorna os itens emprestados
 	 */
 	public String listarItensEmprestados() {
 		return emprestimoController.listarItensEmprestados();
@@ -476,7 +471,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os itens nao emprestados
 	 * 
-	 * @return
+	 * @return retorna os itens nao emprestados
 	 */
 	public String listarItensNaoEmprestados() {
 		return this.emprestimoController.listarItensNaoEmprestados();
@@ -485,7 +480,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os 10 itens mais emprestados
 	 * 
-	 * @return
+	 * @return retorna os 10 itens mais emprestados
 	 */
 	public String listarTop10Itens() {
 		return emprestimoController.listarTop10Itens();
@@ -494,7 +489,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os usuarios caloteiros
 	 * 
-	 * @return
+	 * @return retorna os usuarios caloteiros
 	 */
 	public String listarCaloteiros() {
 		return usuarioController.listarCaloteiros();
@@ -503,7 +498,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os 10 melhores usuarios
 	 * 
-	 * @return
+	 * @return retorna os 10 melhores usuarios
 	 */
 	public String listarTop10MelhoresUsuarios() {
 		return usuarioController.listarTop10MelhoresUsuarios();
@@ -512,7 +507,7 @@ public class TTFacade implements Serializable {
 	/**
 	 * Metodo que lista os 10 piores usuarios
 	 * 
-	 * @return
+	 * @return retorna oos 10 piores usuarios
 	 */
 	public String listarTop10PioresUsuarios() {
 		return usuarioController.listarTop10PioresUsuarios();

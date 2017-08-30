@@ -47,6 +47,11 @@ public class EmprestimoRepository implements Serializable {
 		emprestimos.add(emprestimo);
 	}
 
+	/**
+	 * Metodo que adiciona um emprestimo ao item
+	 * 
+	 * @param emprestimo emprestimo a ser adicionado
+	 */
 	public void adicionarEmpIntens(Emprestimo emprestimo) {
 		this.emprestimosItens.add(emprestimo);
 	}
@@ -77,6 +82,11 @@ public class EmprestimoRepository implements Serializable {
 		emprestimos.remove(recuperar(itemEmprestado));
 	}
 
+	/**
+	 * Metodo que retorna a lista de emprestimos
+	 * 
+	 * @return retorna a lista de emprestimos
+	 */
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimos;
 	}
@@ -99,7 +109,9 @@ public class EmprestimoRepository implements Serializable {
 	 * Metodo que remove um emprestimo da lista emprestimosItens
 	 * 
 	 * @param nomeDono
+	 *            nome do dono
 	 * @param item
+	 *            nome do item
 	 */
 	public void removerItenList(String nomeDono, String item) {
 		for (Emprestimo emprestimo : emprestimosItens) {
@@ -115,7 +127,7 @@ public class EmprestimoRepository implements Serializable {
 	/**
 	 * Metodo que retorna a lista de emprestimosItens
 	 * 
-	 * @return
+	 * @return retorna a lista de emprestimos
 	 */
 	public List<Emprestimo> getEmprestimosItens() {
 		return emprestimosItens;
@@ -148,6 +160,7 @@ public class EmprestimoRepository implements Serializable {
 	 * Metodo que salva o repositorio de emprestimos na sua situaccao atual
 	 * 
 	 * @param emprestimoRepository
+	 *            repositorios em emprestimo
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */

@@ -151,7 +151,7 @@ public class UsuarioController implements Serializable {
 	/**
 	 * Metodo que lista os usuarios caloteiros
 	 * 
-	 * @return
+	 * @return retorna uma string com os toStrings dos usuarios caloteiros
 	 */
 	public String listarCaloteiros() {
 		String lista = "Lista de usuarios com reputacao negativa: ";
@@ -165,7 +165,7 @@ public class UsuarioController implements Serializable {
 	/**
 	 * Metodo que lista os 10 usuarios com melhor reputacao
 	 * 
-	 * @return
+	 * @return retorna uma string com as toStrings dos 10 melhores usuarios
 	 */
 	public String listarTop10MelhoresUsuarios() {
 		List<Usuario> melhoresUsuarios = repository.getUsuarios();
@@ -186,7 +186,7 @@ public class UsuarioController implements Serializable {
 	/**
 	 * Metodo que lista os 10 usuarios com pior reputacao
 	 * 
-	 * @return
+	 * @return retorna uma string com os toStrings dos 10 piores usuarios
 	 */
 	public String listarTop10PioresUsuarios() {
 		List<Usuario> pioresUsuarios = repository.getUsuarios();

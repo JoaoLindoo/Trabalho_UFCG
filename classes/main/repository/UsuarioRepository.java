@@ -35,6 +35,7 @@ public class UsuarioRepository implements Serializable {
 	 * Adiciona um {@link Usuario} ao sistema
 	 * 
 	 * @param usuario
+	 *            usuario a ser adicionado
 	 */
 	public boolean adiciona(Usuario usuario) {
 		return usuarios.add(usuario);
@@ -47,7 +48,7 @@ public class UsuarioRepository implements Serializable {
 	 *            Nome do ususario
 	 * @param telefone
 	 *            Telefone do usuario
-	 * @return
+	 * @return retorna um usuario que se dejesa ter acesso
 	 */
 	public Usuario recuperar(String nome, String telefone) {
 		for (Usuario usuario : usuarios) {
@@ -65,7 +66,7 @@ public class UsuarioRepository implements Serializable {
 	 *            Nome do usuario
 	 * @param telefone
 	 *            Telefone de um usuario
-	 * @return
+	 * @return retorna um booleano indicando se o usuario foi ou nao removido
 	 */
 	public boolean remover(String nome, String telefone) {
 		return usuarios.remove(recuperar(nome, telefone));

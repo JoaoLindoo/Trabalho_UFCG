@@ -18,9 +18,7 @@ public class Emprestimo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1530576260002476688L;
-	/**
-	 * Parametros de Emprestimo.
-	 */
+	// Parametros de Emprestimo.
 	private Usuario usuarioDono;
 	private Usuario usuarioRequerente;
 	private Item itemEmprestado;
@@ -30,7 +28,8 @@ public class Emprestimo implements Serializable {
 
 	/**
 	 * Construtor de Emprestimo.
-	 * @throws DadoInvalido 
+	 * 
+	 * @throws DadoInvalido
 	 *
 	 */
 	public Emprestimo(Usuario usuarioDono, Usuario usuarioRequerente, Item itemEmprestado, Date dataEmprestimo,
@@ -50,14 +49,19 @@ public class Emprestimo implements Serializable {
 		this.tempoEmprestimo = tempoEmprestimo;
 		this.dataDevolucao = null;
 	}
-	
+
+	/**
+	 * Metodo que retorna a data final para devolucao do item
+	 * 
+	 * @return retorna a data final para devolucao do item
+	 */
 	public String dataFinal() {
 		if (this.dataDevolucao == null)
 			return "Emprestimo em andamento";
 		else
 			return getDataEmprestimoString(this.dataDevolucao);
 	}
-	
+
 	/**
 	 * Metodo que retorna o objeto Usuario dono do Emprestimo.
 	 * 
@@ -166,7 +170,7 @@ public class Emprestimo implements Serializable {
 	 * Metodo que retorna a data do emprestimo em String.
 	 * 
 	 * @param dataEmprestimo
-	 * @return
+	 * @return retorna a data do emprestimo em string
 	 */
 	public String getDataEmprestimoString(Date dataEmprestimo) {
 		Date data = dataEmprestimo;
@@ -217,14 +221,23 @@ public class Emprestimo implements Serializable {
 		return true;
 	}
 
+	/**
+	 * Metodo que retorna uma representacao em string do emprestimo
+	 */
 	@Override
 	public String toString() {
-			return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", "
-					+ itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo
-					+ " dias, ENTREGA: " +  dataFinal() +"|";
-		}
-		
+		return "EMPRESTIMO - De: " + usuarioDono.getNome() + ", Para: " + usuarioRequerente.getNome() + ", "
+				+ itemEmprestado.getNome() + ", " + getDataEmprestimoString(dataEmprestimo) + ", " + tempoEmprestimo
+				+ " dias, ENTREGA: " + dataFinal() + "|";
+	}
+
+	/**
+	 * Metodo que retorna uma representacao em string do emprestimo
+	 * 
+	 * @return retorna uma representacao em string do emprestimo
+	 */
 	public String toString2() {
-		return "Dono do item: " + usuarioDono.getNome() + ", Nome do item emprestado: " + itemEmprestado.getNome() + "|";
+		return "Dono do item: " + usuarioDono.getNome() + ", Nome do item emprestado: " + itemEmprestado.getNome()
+				+ "|";
 	}
 }

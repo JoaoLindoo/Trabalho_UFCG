@@ -10,6 +10,9 @@ import main.elementos.Emprestimo;
  *
  */
 public class UsuarioOrdenaPorNome implements Comparator<Emprestimo> {
+	/**
+	 * Metodo que compara usuarios por nome
+	 */
 	@Override
 	public int compare(Emprestimo o1, Emprestimo o2) {
 		return o1.getUsuarioDono().getNome().trim().toLowerCase()

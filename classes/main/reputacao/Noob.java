@@ -1,7 +1,5 @@
 package main.reputacao;
 
-import java.io.Serializable;
-
 /**
  * classe que representa o objeto da reputacao noob.
  * @author Matheus Thiago

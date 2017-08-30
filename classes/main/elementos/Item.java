@@ -89,15 +89,23 @@ public abstract class Item implements Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
+
+	/**
+	 * Metodo que retorna a popularidade do item
+	 * 
+	 * @return retorna a popularidade do item
+	 */
 	public int getPopularidade() {
 		return popularidade;
 	}
 
+	/**
+	 * Metodo que adiciona 1 a popularidade do item
+	 */
 	public void setPopularidade() {
 		this.popularidade += 1;
 	}
-	
+
 	/**
 	 * Metodo que retorna uma representacao inteira do item
 	 * 
@@ -139,6 +147,6 @@ public abstract class Item implements Serializable {
 	 * @throws DadoInvalido
 	 */
 	public void addBluray(int duracao) throws DadoInvalido {
-
+		// funciona apenas na serie
 	}
 }

@@ -11,6 +11,9 @@ import main.elementos.Item;
  */
 public class ItemOrdenacaoPopularidade implements Comparator<Item>{
 
+	/**
+	 * Metodo que compara itens por popularidade
+	 */
 	@Override
 	public int compare(Item o1, Item o2) {
 		if (o1.getPopularidade() > o2.getPopularidade())

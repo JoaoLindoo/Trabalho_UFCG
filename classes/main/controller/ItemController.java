@@ -27,16 +27,50 @@ public class ItemController implements Serializable {
 	private static final String USUARIO_INVALIDO = "Usuario invalido";
 	private Util util;
 
+	/**
+	 * Contrutor do itemController
+	 * 
+	 * @param usRepositorio
+	 *            repositorio de usuarios
+	 */
 	public ItemController(UsuarioRepository usRepositorio) {
 		util = new Util(usRepositorio);
 	}
 
+	/**
+	 * Metodo que cadastra um novo jogo eletronico
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param preco
+	 *            preco do item
+	 * @param plataforma
+	 *            plataforma do jogo
+	 * @throws Exception
+	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma)
 			throws Exception {
 		util.retornaUsuario(nome, telefone).adiconarItemJogoEletronico(nomeItem, preco, plataforma);
 		util.retornaUsuario(nome, telefone).atualizarReputacao();
 	}
 
+	/**
+	 * Metodo que cadastra um novo jogo de tabuleiro
+	 * 
+	 * @param nome
+	 *            nome do usuario
+	 * @param telefone
+	 *            telefone do usuario
+	 * @param nomeItem
+	 *            nome do item
+	 * @param preco
+	 *            preco do item
+	 * @throws Exception
+	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) throws Exception {
 		if (util.retornaUsuario(nome, telefone) == null) {
 			throw new DadoInvalido(USUARIO_INVALIDO);
@@ -269,7 +303,7 @@ public class ItemController implements Serializable {
 	/**
 	 * Metodo para ordenacao de itens por nome
 	 * 
-	 * @return
+	 * @return retorna a lista ordenada
 	 */
 	public String listarItensOrdenadosPorNome() {
 		List<Item> listaItens = listaTotalItens();
@@ -284,7 +318,7 @@ public class ItemController implements Serializable {
 	/**
 	 * Metodo para ordenacao de itens por valor
 	 * 
-	 * @return
+	 * @return retorna lista ordenada
 	 */
 	public String ordenacaoItensValor() {
 		List<Item> listaItens = listaTotalItens();
